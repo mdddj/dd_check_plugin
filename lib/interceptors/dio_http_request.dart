@@ -116,7 +116,8 @@ class SocetResponseModel {
       "body": body,
       "headers": headers,
       "responseHeaders": responseHeaders,
-      "timesatamp": timestamp
+      "timesatamp": timestamp,
+      "projectName": SocketConnect.projectName
     };
   }
 }

@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:dd_check_plugin/model/response_model.dart';
+import 'package:package_info/package_info.dart';
 
 ///服务监听端口
 const serverPort = 9999;
@@ -16,7 +17,10 @@ class SocketConnect {
   static SocketConnect get instance => SocketConnect._();
   static Socket? socket;
 
-///发送消息
+  ///项目名字
+ static String? projectName;
+
+  ///发送消息
   void sendData(String msg) {
     if (socket == null) {
       return;
@@ -32,6 +36,8 @@ class SocketConnect {
 
   /// 连接到idea插件
   Future<void> connect() async {
+    final infos =  await PackageInfo.fromPlatform();
+    projectName = infos.appName +'('+ infos.version+')';
     String ip = await _getServerAddress(conectSuccess: (e) => socket = e);
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
@@ -39,7 +45,6 @@ class SocketConnect {
         responseHandle(str);
       },onDone: (){
         print("连接断开,准备重连");
-
       },onError: (e){
         print("出现错误....准备重连");
       });
