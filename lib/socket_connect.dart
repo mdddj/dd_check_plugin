@@ -71,7 +71,7 @@ class SocketConnect {
     List<Future<String>> futureList = [];
     String? ip = await NetworkInfo().getWifiIP();
     for (int i = 1; i < 256; ++i) {
-      Future<String> future = Future<String>.sync(() async {
+     Future<String>.sync(() async {
         final host = '${ip!.substring(0, ip.lastIndexOf('.'))}.$i';
         try {
           var s = await Socket.connect(host, serverPort);

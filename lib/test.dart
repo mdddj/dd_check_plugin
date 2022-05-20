@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-void main() async {
+void main1() async {
   final socket = await Socket.connect("127.0.0.1", 9999);
 
   var str = "我是数据,可以无限长度";
