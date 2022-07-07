@@ -70,10 +70,11 @@ class SocketConnect {
   Future<String> _getServerAddress({ValueChanged<Socket>? conectSuccess}) async {
     List<Future<String>> futureList = [];
     String? ip = await NetworkInfo().getWifiIP();
-    if(ip!=null){
-      for (int i = 1; i < 256; ++i) {
+    if (ip != null) {
+      final indexs = List.generate(256, (index) => index + 1);
+      await Future.forEach(indexs, (element) async {
         Future<String>.sync(() async {
-          final host = '${ip.substring(0, ip.lastIndexOf('.'))}.$i';
+          final host = '${ip.substring(0, ip.lastIndexOf('.'))}.$element';
           try {
             var s = await Socket.connect(host, serverPort);
             conectSuccess?.call(s);
@@ -82,8 +83,8 @@ class SocketConnect {
             return '';
           }
         });
-      }
-    }else{
+      });
+    } else {
       printError("$kProjectName:获取IP失败,请检查你的代理或者网络是否在同一网域下,反馈QQ群:667186542");
     }
     List<String> results = await Future.wait<String>(futureList);

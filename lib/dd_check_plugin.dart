@@ -2,7 +2,6 @@ import 'package:dd_check_plugin/interceptors/dio_http_request.dart';
 import 'package:dd_check_plugin/socket_connect.dart';
 import 'package:dio/dio.dart';
 
-
 const kProjectName = 'dd_check_plugin';
 
 class DdCheckPlugin {
@@ -13,8 +12,8 @@ class DdCheckPlugin {
   static DdCheckPlugin get instance => DdCheckPlugin._();
 
   //初始化
-  void init(Dio dio) {
-    _connect();
+  Future<void> init(Dio dio) async {
+    await _connect();
     addInterceptors(dio);
   }
 
@@ -23,8 +22,5 @@ class DdCheckPlugin {
     dio.interceptors.add(DioHttpRequestInterceptor());
   }
 
-
-  void _connect()=>SocketConnect.instance.connect();
-
-
+  Future<void> _connect() async => await SocketConnect.instance.connect();
 }
