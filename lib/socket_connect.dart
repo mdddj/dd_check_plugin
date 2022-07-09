@@ -39,9 +39,13 @@ class SocketConnect {
   }
 
   /// 连接到idea插件
-  Future<void> connect() async {
+  Future<void> connect({String? defaultProjectName}) async {
     final infos = await PackageInfo.fromPlatform();
-    projectName = infos.appName + '(' + infos.version + ')';
+    var appName = infos.appName;
+    if(appName.isEmpty){
+      appName = defaultProjectName ?? '未知项目';
+    }
+    projectName = appName + '(' + infos.version + ')';
     String ip = await _getServerAddress(conectSuccess: (e) => socket = e);
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {

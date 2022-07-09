@@ -12,8 +12,8 @@ class DdCheckPlugin {
   static DdCheckPlugin get instance => DdCheckPlugin._();
 
   //初始化
-  Future<void> init(Dio dio) async {
-    await _connect();
+  Future<void> init(Dio dio,{String? defaultProjectName}) async {
+    await _connect(defaultProjectName);
     addInterceptors(dio);
   }
 
@@ -22,5 +22,5 @@ class DdCheckPlugin {
     dio.interceptors.add(DioHttpRequestInterceptor());
   }
 
-  Future<void> _connect() async => await SocketConnect.instance.connect();
+  Future<void> _connect(String? defaultProjectName) async => await SocketConnect.instance.connect(defaultProjectName: defaultProjectName);
 }
