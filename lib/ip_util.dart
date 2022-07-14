@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:network_info_plus/network_info_plus.dart';
+
+typedef HostHandle = bool Function(String host);
 
 ///扫描端口失败异常
 class ScanFailException implements Exception {
@@ -26,26 +29,39 @@ class IpUtil {
   static IpUtil get instance => _init();
 
   /// 获取服务器IP,也就是用户电脑的IP
-  Future<String> scanSockit(int port) async {
+  Future<String> checkConnectServerAddress(int serverPort, {ValueChanged<Socket>? conectSuccess, HostHandle? hostHandle, Duration? timeOut,String? initHost}) async {
     List<Future<String>> futureList = [];
-    String? ip = await NetworkInfo().getWifiIP();
-    for (int i = 1; i < 256; ++i) {
-      Future<String> future = Future<String>.sync(() async {
-        final host = '${ip!.substring(0, ip.lastIndexOf('.'))}.$i';
-        try {
-          var s = await Socket.connect(host, port);
-          return host;
-        } catch (e) {
-          return '';
-        }
-      });
+    if(initHost!=null){
+      var s = await Socket.connect(initHost, serverPort, timeout: timeOut);
+      conectSuccess?.call(s);
+      return initHost;
+    }else{
+      String? ip = await NetworkInfo().getWifiIP();
+      if (ip != null) {
+        final indexs = List.generate(256, (index) => index + 1);
+        await Future.forEach(indexs, (element) async {
+          var v = "";
+          if (v.isEmpty) {
+            v = await Future<String>.sync(() async {
+              final host = '${ip.substring(0, ip.lastIndexOf('.'))}.$element';
+              final isHandle = hostHandle?.call(host) ?? true;
+              if (isHandle) {
+                try {
+                  var s = await Socket.connect(host, serverPort, timeout: timeOut);
+                  conectSuccess?.call(s);
+                  return host;
+                } catch (e) {
+                  return '';
+                }
+              }
+              return "";
+            });
+          }
+        });
+      }
+      List<String> results = await Future.wait<String>(futureList);
+      return results.firstWhere((e) => e.isNotEmpty, orElse: () => '');
     }
-    List<String> results = await Future.wait<String>(futureList);
-    if (results.isEmpty) {
-      throw ScanFailException("Scan failed !");
-    }
-    return results.firstWhere((e) => e.isNotEmpty, orElse: () {
-      throw ScanFailException("Scan failed !");
-    });
+
   }
 }

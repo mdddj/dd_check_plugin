@@ -40,8 +40,10 @@ class SocketConnect {
 
   /// 连接到idea插件
   Future<void> connect({String? defaultProjectName}) async {
+
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
+    print("---> $defaultProjectName  $appName");
     if(appName.isEmpty){
       appName = defaultProjectName ?? '未知项目';
     }
