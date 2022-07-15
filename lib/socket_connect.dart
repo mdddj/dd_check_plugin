@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert' show utf8, jsonDecode;
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:dd_check_plugin/ip_util.dart';
 import 'package:dd_check_plugin/log.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:network_info_plus/network_info_plus.dart';
@@ -40,11 +41,10 @@ class SocketConnect {
 
   /// 连接到idea插件
   Future<void> connect({String? defaultProjectName}) async {
-
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
     print("---> $defaultProjectName  $appName");
-    if(appName.isEmpty){
+    if (appName.isEmpty) {
       appName = defaultProjectName ?? '未知项目';
     }
     projectName = appName + '(' + infos.version + ')';
@@ -74,27 +74,7 @@ class SocketConnect {
 
   /// 获取服务器IP,也就是用户电脑的IP
   Future<String> _getServerAddress({ValueChanged<Socket>? conectSuccess}) async {
-    List<Future<String>> futureList = [];
-    String? ip = await NetworkInfo().getWifiIP();
-    if (ip != null) {
-      final indexs = List.generate(256, (index) => index + 1);
-      await Future.forEach(indexs, (element) async {
-        Future<String>.sync(() async {
-          final host = '${ip.substring(0, ip.lastIndexOf('.'))}.$element';
-          try {
-            var s = await Socket.connect(host, serverPort);
-            conectSuccess?.call(s);
-            return host;
-          } catch (e) {
-            return '';
-          }
-        });
-      });
-    } else {
-      printError("$kProjectName:获取IP失败,请检查你的代理或者网络是否在同一网域下,反馈QQ群:667186542");
-    }
-    List<String> results = await Future.wait<String>(futureList);
-    return results.firstWhere((e) => e.isNotEmpty, orElse: () => '');
+    return await IpUtil.instance.checkConnectServerAddress(serverPort, conectSuccess: conectSuccess);
   }
 
   Uint8List int32BigEndianBytes(int value) => Uint8List(4)..buffer.asByteData().setInt32(0, value, Endian.big);
