@@ -2,6 +2,8 @@ import 'package:dd_check_plugin/interceptors/dio_http_request.dart';
 import 'package:dd_check_plugin/socket_connect.dart';
 import 'package:dio/dio.dart';
 
+import 'ip_util.dart';
+
 const kProjectName = 'dd_check_plugin';
 
 class DdCheckPlugin {
@@ -12,8 +14,8 @@ class DdCheckPlugin {
   static DdCheckPlugin get instance => DdCheckPlugin._();
 
   //初始化
-  Future<void> init(Dio dio,{String? defaultProjectName}) async {
-    await _connect(defaultProjectName);
+  Future<void> init(Dio dio, {String? defaultProjectName, int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost}) async {
+    await _connect(defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
     addInterceptors(dio);
   }
 
@@ -22,5 +24,7 @@ class DdCheckPlugin {
     dio.interceptors.add(DioHttpRequestInterceptor());
   }
 
-  Future<void> _connect(String? defaultProjectName) async => await SocketConnect.instance.connect(defaultProjectName: defaultProjectName);
+  Future<void> _connect(String? defaultProjectName, {int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost}) async =>
+      await SocketConnect.instance
+          .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
 }

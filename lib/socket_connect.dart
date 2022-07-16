@@ -40,7 +40,7 @@ class SocketConnect {
   }
 
   /// 连接到idea插件
-  Future<void> connect({String? defaultProjectName}) async {
+  Future<void> connect({String? defaultProjectName,int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost}) async {
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
     print("---> $defaultProjectName  $appName");
@@ -48,7 +48,8 @@ class SocketConnect {
       appName = defaultProjectName ?? '未知项目';
     }
     projectName = appName + '(' + infos.version + ')';
-    String ip = await _getServerAddress(conectSuccess: (e) => socket = e);
+    String ip = await _getServerAddress(conectSuccess: (e) => socket = e,port: port,hostHandle: hostHandle,
+    timeOut: timeOut,initHost: initHost);
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
         var str = utf8.decode(event..buffer.asByteData());
@@ -73,8 +74,10 @@ class SocketConnect {
   }
 
   /// 获取服务器IP,也就是用户电脑的IP
-  Future<String> _getServerAddress({ValueChanged<Socket>? conectSuccess}) async {
-    return await IpUtil.instance.checkConnectServerAddress(serverPort, conectSuccess: conectSuccess);
+  Future<String> _getServerAddress(
+      {ValueChanged<Socket>? conectSuccess, int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost}) async {
+    return await IpUtil.instance
+        .checkConnectServerAddress(port ?? serverPort, conectSuccess: conectSuccess, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
   }
 
   Uint8List int32BigEndianBytes(int value) => Uint8List(4)..buffer.asByteData().setInt32(0, value, Endian.big);
