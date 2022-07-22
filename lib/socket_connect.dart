@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:convert' show utf8, jsonDecode;
+import 'dart:convert' show jsonDecode, jsonEncode, utf8;
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:dd_check_plugin/ip_util.dart';
-import 'package:dd_check_plugin/log.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:network_info_plus/network_info_plus.dart';
 import 'package:dd_check_plugin/model/response_model.dart';
 import 'package:package_info/package_info.dart';
 
@@ -26,38 +24,49 @@ class SocketConnect {
   static String? projectName;
 
   ///发送消息
-  void sendData(String msg) {
+  void sendData(String msg, DataFormatVersions version, {String? type = "request"}) {
     if (socket == null) {
       return;
     }
-    final bytes = utf8.encode(msg);
+
+    late List<int> bytes;
+    switch (version) {
+      case DataFormatVersions.version_2:
+        final map = <String,dynamic>{
+          "type": type,
+          "jsonString": msg
+        };
+        bytes = utf8.encode(jsonEncode(map));
+        break;
+      default:
+        bytes = utf8.encode(msg);
+        break;
+    }
+
     var strLen = bytes.length;
     var l = int32BigEndianBytes(strLen);
-
-    //Dart 中的类Socket继承自IOSink该类，该类具有add()方法添加数据长度的byte数据
-    socket!.add(l..buffer.asByteData());
-    socket!.write(msg);
+    socket?.add(l..buffer.asByteData());
+    socket?.write(msg);
   }
 
   /// 连接到idea插件
-  Future<void> connect({String? defaultProjectName,int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost}) async {
+  Future<void> connect(
+      {String? defaultProjectName, int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost, DataFormatVersions? version}) async {
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
-    print("---> $defaultProjectName  $appName");
     if (appName.isEmpty) {
       appName = defaultProjectName ?? '未知项目';
     }
     projectName = appName + '(' + infos.version + ')';
-    String ip = await _getServerAddress(conectSuccess: (e) => socket = e,port: port,hostHandle: hostHandle,
-    timeOut: timeOut,initHost: initHost);
+    String ip = await _getServerAddress(conectSuccess: (e) => socket = e, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
         var str = utf8.decode(event..buffer.asByteData());
         responseHandle(str);
       }, onDone: () {
-        print("连接断开,准备重连");
+        debugPrint("连接断开,准备重连");
       }, onError: (e) {
-        print("出现错误....准备重连");
+        debugPrint("出现错误....准备重连");
       });
     } else {}
   }
@@ -69,7 +78,7 @@ class SocketConnect {
       final model = ResponseModel.fromMap(map);
       model.handle();
     } catch (e, s) {
-      print("sokcet数据解析错误:$e\n$s");
+      debugPrint("sokcet数据解析错误:$e\n$s");
     }
   }
 

@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:dd_check_plugin/socket_connect.dart';
 import 'package:dio/dio.dart';
 
+import '../dd_check_plugin.dart';
+
 class DDCheckPluginError extends Error {
   final String msg;
   final dynamic s;
@@ -20,6 +22,9 @@ class DDCheckPluginError extends Error {
 class DioHttpRequestInterceptor extends Interceptor {
   late var startDate;
 
+  final DataFormatVersions version; //版本级别,用来分辨个版本之间不同的数据格式
+  DioHttpRequestInterceptor(this.version);
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // print("进来拦截器了...${options.uri} ${options.method}");
@@ -31,7 +36,7 @@ class DioHttpRequestInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
-    SocetResponseModel.makeByResponse(response, timers).send();
+    SocetResponseModel.makeByResponse(response, timers).send(version);
     super.onResponse(response, handler);
   }
 
@@ -41,7 +46,7 @@ class DioHttpRequestInterceptor extends Interceptor {
       var endTime = DateTime.now();
       var timers = endTime.difference(startDate).inMilliseconds;
 
-      SocetResponseModel.makeByResponse(err.response!, timers).send();
+      SocetResponseModel.makeByResponse(err.response!, timers).send(version);
     }
     super.onError(err, handler);
   }
@@ -124,10 +129,10 @@ class SocetResponseModel {
 
 /// SocetResponseModel 对象扩展
 extension SocetResponseModelExt on SocetResponseModel {
-  void send() {
+  void send(DataFormatVersions version) {
     try {
       final jsonStr = jsonEncode(toJson());
-      SocketConnect.instance.sendData(jsonStr);
+      SocketConnect.instance.sendData(jsonStr,version);
     } catch (e, s) {
       print(e);
       print(s);
