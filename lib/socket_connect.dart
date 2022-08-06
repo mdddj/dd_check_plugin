@@ -30,15 +30,15 @@ class SocketConnect {
     }
 
     late List<int> bytes;
+    late String sendDataString;
     switch (version) {
       case DataFormatVersions.version_2:
-        final map = <String,dynamic>{
-          "type": type,
-          "jsonString": msg
-        };
-        bytes = utf8.encode(jsonEncode(map));
+        final map = <String, dynamic>{"type": type, "jsonString": msg};
+        sendDataString = jsonEncode(map);
+        bytes = utf8.encode(sendDataString);
         break;
       default:
+        sendDataString = msg;
         bytes = utf8.encode(msg);
         break;
     }
@@ -46,19 +46,28 @@ class SocketConnect {
     var strLen = bytes.length;
     var l = int32BigEndianBytes(strLen);
     socket?.add(l..buffer.asByteData());
-    socket?.write(msg);
+    socket?.write(sendDataString);
   }
 
   /// 连接到idea插件
   Future<void> connect(
-      {String? defaultProjectName, int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost, DataFormatVersions? version}) async {
+      {String? defaultProjectName,
+      int? port,
+      HostHandle? hostHandle,
+      Duration? timeOut,
+      String? initHost,
+      DataFormatVersions? version,
+      ValueChanged<Socket>? connectSuccess}) async {
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
     if (appName.isEmpty) {
       appName = defaultProjectName ?? '未知项目';
     }
     projectName = appName + '(' + infos.version + ')';
-    String ip = await _getServerAddress(conectSuccess: (e) => socket = e, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
+    String ip = await IpUtil.instance.checkConnectServerAddress(port ?? serverPort, conectSuccess: (s) {
+      socket = s;
+      connectSuccess?.call(s);
+    }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
         var str = utf8.decode(event..buffer.asByteData());
@@ -80,13 +89,6 @@ class SocketConnect {
     } catch (e, s) {
       debugPrint("sokcet数据解析错误:$e\n$s");
     }
-  }
-
-  /// 获取服务器IP,也就是用户电脑的IP
-  Future<String> _getServerAddress(
-      {ValueChanged<Socket>? conectSuccess, int? port, HostHandle? hostHandle, Duration? timeOut, String? initHost}) async {
-    return await IpUtil.instance
-        .checkConnectServerAddress(port ?? serverPort, conectSuccess: conectSuccess, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
   }
 
   Uint8List int32BigEndianBytes(int value) => Uint8List(4)..buffer.asByteData().setInt32(0, value, Endian.big);
