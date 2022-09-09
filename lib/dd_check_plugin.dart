@@ -5,6 +5,7 @@ import 'package:dd_check_plugin/socket_connect.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'interceptors/server_message_handle.dart';
 import 'ip_util.dart';
 
 const kProjectName = 'dd_check_plugin';
@@ -33,7 +34,7 @@ class DdCheckPlugin {
       Duration? timeOut,
       String? initHost,
       DataFormatVersions? version,
-      ValueChanged<Socket>? conectSuccess}) async {
+      ValueChanged<Socket>? conectSuccess,ServerMessageHandle? handle}) async {
     await SocketConnect.instance.connect(
         defaultProjectName: defaultProjectName,
         port: port,
@@ -41,7 +42,7 @@ class DdCheckPlugin {
         timeOut: timeOut,
         initHost: initHost,
         version: version,
-        connectSuccess: conectSuccess);
+        connectSuccess: conectSuccess,handle: handle);
     addInterceptors(dio, version: version);
   }
 

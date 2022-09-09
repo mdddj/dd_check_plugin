@@ -8,6 +8,7 @@ import 'package:dd_check_plugin/model/response_model.dart';
 import 'package:package_info/package_info.dart';
 
 import 'dd_check_plugin.dart';
+import 'interceptors/server_message_handle.dart';
 
 ///服务监听端口
 const serverPort = 9999;
@@ -29,6 +30,7 @@ class SocketConnect {
       return;
     }
 
+
     late List<int> bytes;
     late String sendDataString;
     switch (version) {
@@ -44,6 +46,7 @@ class SocketConnect {
     }
 
     var strLen = bytes.length;
+    // print('发送数据长度:$strLen  ${type}');
     var l = int32BigEndianBytes(strLen);
     socket?.add(l..buffer.asByteData());
     socket?.write(sendDataString);
@@ -57,7 +60,8 @@ class SocketConnect {
       Duration? timeOut,
       String? initHost,
       DataFormatVersions? version,
-      ValueChanged<Socket>? connectSuccess}) async {
+      ValueChanged<Socket>? connectSuccess,
+      ServerMessageHandle? handle}) async {
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
     if (appName.isEmpty) {
@@ -71,7 +75,7 @@ class SocketConnect {
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
         var str = utf8.decode(event..buffer.asByteData());
-        responseHandle(str);
+        responseHandle(str,handle);
       }, onDone: () {
         debugPrint("连接断开,准备重连");
       }, onError: (e) {
@@ -81,15 +85,16 @@ class SocketConnect {
   }
 
   /// 处理插件返回的数据
-  void responseHandle(String data) {
+  void responseHandle(String data,ServerMessageHandle? handle) {
     try {
       final map = jsonDecode(data);
+      handle?.mapMessageHandle(map);
       final model = ResponseModel.fromMap(map);
       model.handle();
-    } catch (e, s) {
-      debugPrint("sokcet数据解析错误:$e\n$s");
+    } catch (e) {
+      handle?.stringMessageHandle(data);
     }
   }
 
-  Uint8List int32BigEndianBytes(int value) => Uint8List(4)..buffer.asByteData().setInt32(0, value, Endian.big);
+  Uint8List int32BigEndianBytes(int value) => Uint8List(4)..buffer.asByteData().setInt32(0, value);
 }
