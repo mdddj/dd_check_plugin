@@ -68,7 +68,7 @@ class SocketConnect {
       appName = defaultProjectName ?? '未知项目';
     }
     projectName = appName + '(' + infos.version + ')';
-    String ip = await IpUtil.instance.checkConnectServerAddress(port ?? serverPort, conectSuccess: (s) {
+    String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort, conectSuccess: (s) {
       socket = s;
       connectSuccess?.call(s);
     }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);

@@ -28,13 +28,10 @@ class ScanFailException implements Exception {
 class IpUtil {
   IpUtil._();
 
-  static IpUtil? _instance;
+  static IpUtil get _instance => IpUtil._();
 
-  static IpUtil _init() {
-    return _instance ?? IpUtil._();
-  }
+  factory IpUtil() => _instance;
 
-  static IpUtil get instance => _init();
 
   /// 获取服务器IP,也就是用户电脑的IP
   Future<String> checkConnectServerAddress(int serverPort, {ValueChanged<Socket>? conectSuccess, HostHandle? hostHandle, Duration? timeOut,String? initHost}) async {

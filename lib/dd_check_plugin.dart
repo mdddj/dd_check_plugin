@@ -15,7 +15,7 @@ enum DataFormatVersions { version_1, version_2 }
 class DdCheckPlugin {
   DdCheckPlugin._();
 
-  factory DdCheckPlugin() => DdCheckPlugin._();
+  factory DdCheckPlugin() => instance;
 
   static DdCheckPlugin get instance => DdCheckPlugin._();
 
