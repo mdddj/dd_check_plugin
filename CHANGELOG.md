@@ -1,3 +1,7 @@
+* 1.0.0 
+
+update version to 3.3.7
+
 ## 0.2.4
 
 * 适配Swift工具
