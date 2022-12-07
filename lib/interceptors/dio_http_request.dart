@@ -20,7 +20,7 @@ class DDCheckPluginError extends Error {
 }
 
 class DioHttpRequestInterceptor extends Interceptor {
-  late var startDate;
+  late DateTime startDate;
 
   final DataFormatVersions version; //版本级别,用来分辨个版本之间不同的数据格式
   DioHttpRequestInterceptor(this.version);
@@ -94,14 +94,21 @@ class SocetResponseModel {
 
   /// 生成一个socket发送对象模型
   factory SocetResponseModel.makeByResponse(Response response, int time) {
+    var data = <String,dynamic>{};
+    if(response.data is String){
+      try{
+        data = jsonDecode(response.data);
+      }catch(_){}
+    }
     try {
+
       return SocetResponseModel(
           data: response.requestOptions.data,
           methed: response.requestOptions.method,
           queryParams: response.requestOptions.queryParameters,
           url: response.requestOptions.uri.toString(),
           statusCode: response.statusCode ?? -1,
-          body: response.data,
+          body:data.isNotEmpty ? data : response.data,
           headers: response.requestOptions.headers,
           responseHeaders: response.headers.map,
           timestamp: time);
