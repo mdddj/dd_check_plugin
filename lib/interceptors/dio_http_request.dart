@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dd_check_plugin/socket_connect.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../dd_check_plugin.dart';
 
@@ -100,12 +101,15 @@ class SocetResponseModel {
         data = jsonDecode(response.data);
       }catch(_){}
     }
-    try {
+    var params = response.requestOptions.queryParameters;
+    var bodyData = response.requestOptions.data;
+    params.addAll(bodyData);
 
+    try {
       return SocetResponseModel(
           data: response.requestOptions.data,
           methed: response.requestOptions.method,
-          queryParams: response.requestOptions.queryParameters,
+          queryParams: params,
           url: response.requestOptions.uri.toString(),
           statusCode: response.statusCode ?? -1,
           body:data.isNotEmpty ? data : response.data,
@@ -140,9 +144,8 @@ extension SocetResponseModelExt on SocetResponseModel {
     try {
       final jsonStr = jsonEncode(toJson());
       SocketConnect.instance.sendData(jsonStr,version);
-    } catch (e, s) {
-      print(e);
-      print(s);
+    } catch (e) {
+      debugPrint("发送内容失败");
     }
   }
 }

@@ -25,7 +25,6 @@ class ResponseModel {
   void handle(){
     switch(type){
       case initConnectType:
-        _printLog(initMessage);
         break;
     }
   }
@@ -43,7 +42,3 @@ class ResponseModel {
   String get initMessage => type == initConnectType ? json : '';
 }
 
-
-void _printLog(String log){
-  print('$log\n');
-}
