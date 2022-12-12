@@ -103,7 +103,9 @@ class SocetResponseModel {
     }
     var params = response.requestOptions.queryParameters;
     var bodyData = response.requestOptions.data;
-    params.addAll(bodyData);
+    if(bodyData!=null){
+      params.addAll(bodyData);
+    }
 
     try {
       return SocetResponseModel(
