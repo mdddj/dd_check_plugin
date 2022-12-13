@@ -1,4 +1,4 @@
-
+part of dd_check_plugin;
 ///服务端的消息处理
 abstract class ServerMessageHandle {
 

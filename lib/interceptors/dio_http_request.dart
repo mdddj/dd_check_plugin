@@ -1,14 +1,9 @@
-import 'dart:convert';
-
-import 'package:dd_check_plugin/socket_connect.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-
-import '../dd_check_plugin.dart';
+part of dd_check_plugin;
 
 class DDCheckPluginError extends Error {
   final String msg;
   final dynamic s;
+
   DDCheckPluginError(this.msg, this.s);
 
   @override
@@ -22,13 +17,14 @@ class DDCheckPluginError extends Error {
 
 class DioHttpRequestInterceptor extends Interceptor {
   late DateTime startDate;
-
-  final DataFormatVersions version; //版本级别,用来分辨个版本之间不同的数据格式
-  DioHttpRequestInterceptor(this.version);
+  //版本级别,用来分辨个版本之间不同的数据格式
+  final DataFormatVersions version;
+  //自定义解析返回数据
+  final CustomResponseData? customHandleResponse;
+  DioHttpRequestInterceptor(this.version,{this.customHandleResponse});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // print("进来拦截器了...${options.uri} ${options.method}");
     startDate = DateTime.now();
     super.onRequest(options, handler);
   }
@@ -37,7 +33,7 @@ class DioHttpRequestInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
-    SocetResponseModel.makeByResponse(response, timers).send(version);
+    SocetResponseModel.makeByResponse(response, timers,customHandleResponse: customHandleResponse).send(version);
     super.onResponse(response, handler);
   }
 
@@ -94,16 +90,21 @@ class SocetResponseModel {
       required this.timestamp});
 
   /// 生成一个socket发送对象模型
-  factory SocetResponseModel.makeByResponse(Response response, int time) {
-    var data = <String,dynamic>{};
-    if(response.data is String){
-      try{
-        data = jsonDecode(response.data);
-      }catch(_){}
+  factory SocetResponseModel.makeByResponse(Response response, int time,
+      {CustomResponseData? customHandleResponse}) {
+    var data = <String, dynamic>{};
+    if (customHandleResponse == null) {
+      if (response.data is String) {
+        try {
+          data = jsonDecode(response.data);
+        } catch (_) {}
+      }
+    } else {
+      data = customHandleResponse.call(response);
     }
     var params = response.requestOptions.queryParameters;
     var bodyData = response.requestOptions.data;
-    if(bodyData!=null){
+    if (bodyData != null) {
       params.addAll(bodyData);
     }
 
@@ -114,7 +115,7 @@ class SocetResponseModel {
           queryParams: params,
           url: response.requestOptions.uri.toString(),
           statusCode: response.statusCode ?? -1,
-          body:data.isNotEmpty ? data : response.data,
+          body: data.isNotEmpty ? data : response.data,
           headers: response.requestOptions.headers,
           responseHeaders: response.headers.map,
           timestamp: time);
@@ -145,7 +146,7 @@ extension SocetResponseModelExt on SocetResponseModel {
   void send(DataFormatVersions version) {
     try {
       final jsonStr = jsonEncode(toJson());
-      SocketConnect.instance.sendData(jsonStr,version);
+      SocketConnect.instance.sendData(jsonStr, version);
     } catch (e) {
       debugPrint("发送内容失败");
     }

@@ -1,12 +1,30 @@
+library dd_check_plugin;
+
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:dd_check_plugin/interceptors/dio_http_request.dart';
-import 'package:dd_check_plugin/socket_connect.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:logger/logger.dart';
+import 'package:network_info_plus/network_info_plus.dart';
+import 'package:package_info/package_info.dart';
+import 'dart:html' as html;
 
-import 'interceptors/server_message_handle.dart';
-import 'ip_util.dart';
+part 'dd_check_plugin_web.dart';
+
+part 'ip_util.dart';
+
+part 'log.dart';
+
+part 'socket_connect.dart';
+
+part 'model/response_model.dart';
+
+part 'interceptors/dio_http_request.dart';
+
+part 'interceptors/server_message_handle.dart';
 
 const kProjectName = 'dd_check_plugin';
 
@@ -34,7 +52,9 @@ class DdCheckPlugin {
       Duration? timeOut,
       String? initHost,
       DataFormatVersions? version,
-      ValueChanged<Socket>? conectSuccess,ServerMessageHandle? handle}) async {
+      ValueChanged<Socket>? conectSuccess,
+      ServerMessageHandle? handle,
+      CustomResponseData? customHandleResponse}) async {
     await SocketConnect.instance.connect(
         defaultProjectName: defaultProjectName,
         port: port,
@@ -42,12 +62,15 @@ class DdCheckPlugin {
         timeOut: timeOut,
         initHost: initHost,
         version: version,
-        connectSuccess: conectSuccess,handle: handle);
-    addInterceptors(dio, version: version);
+        connectSuccess: conectSuccess,
+        handle: handle);
+    addInterceptors(dio, version: version, customResponseData: customHandleResponse);
   }
 
   // 给dio添加拦截器,获取http请求信息
-  void addInterceptors(Dio dio, {DataFormatVersions? version}) {
-    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1));
+  void addInterceptors(Dio dio,
+      {DataFormatVersions? version, CustomResponseData? customResponseData}) {
+    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1,
+        customHandleResponse: customResponseData));
   }
 }

@@ -1,7 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:network_info_plus/network_info_plus.dart';
+part of dd_check_plugin;
 class ConnectException implements Exception{
   final String msg;
   const ConnectException(this.msg):super();

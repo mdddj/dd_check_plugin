@@ -1,14 +1,4 @@
-import 'dart:async';
-import 'dart:convert' show jsonDecode, jsonEncode, utf8;
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:dd_check_plugin/ip_util.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:dd_check_plugin/model/response_model.dart';
-import 'package:package_info/package_info.dart';
-
-import 'dd_check_plugin.dart';
-import 'interceptors/server_message_handle.dart';
+part of dd_check_plugin;
 
 ///服务监听端口
 const serverPort = 9999;

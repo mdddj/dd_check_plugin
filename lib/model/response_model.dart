@@ -1,9 +1,8 @@
-import 'dart:convert';
+part of dd_check_plugin;
 
 
-/// 连接事件
 const initConnectType = 'connected';
-
+typedef CustomResponseData = Map<String,dynamic> Function(Response response);
 
 class ResponseModel {
   final String type;
