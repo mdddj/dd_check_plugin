@@ -1,3 +1,7 @@
+# 1.1.0+1
+
+bug fix
+
 # 1.1.0
 
 添加新特性: `CustomResponseData? customHandleResponse` 自定义解析返回数据
