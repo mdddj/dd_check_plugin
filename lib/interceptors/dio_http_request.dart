@@ -17,13 +17,17 @@ class DDCheckPluginError extends Error {
 
 class DioHttpRequestInterceptor extends Interceptor {
   late DateTime startDate;
+
   //版本级别,用来分辨个版本之间不同的数据格式
   final DataFormatVersions version;
+
   //自定义解析返回数据
   final CustomResponseData? customHandleResponse;
+
   //自定义解析参数
   final CustomParamsData? customParamsData;
-  DioHttpRequestInterceptor(this.version,{this.customHandleResponse,this.customParamsData});
+
+  DioHttpRequestInterceptor(this.version, {this.customHandleResponse, this.customParamsData});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -35,7 +39,7 @@ class DioHttpRequestInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
-    SocetResponseModel.makeByResponse(response, timers,customHandleResponse: customHandleResponse,customParamsData: customParamsData).send(version);
+    SocetResponseModel.makeByResponse(response, timers, customHandleResponse: customHandleResponse, customParamsData: customParamsData).send(version);
     super.onResponse(response, handler);
   }
 
@@ -45,7 +49,7 @@ class DioHttpRequestInterceptor extends Interceptor {
       var endTime = DateTime.now();
       var timers = endTime.difference(startDate).inMilliseconds;
 
-      SocetResponseModel.makeByResponse(err.response!, timers,customHandleResponse: customHandleResponse,customParamsData: customParamsData).send(version);
+      SocetResponseModel.makeByResponse(err.response!, timers, customHandleResponse: customHandleResponse, customParamsData: customParamsData).send(version);
     }
     super.onError(err, handler);
   }
@@ -92,8 +96,7 @@ class SocetResponseModel {
       required this.timestamp});
 
   /// 生成一个socket发送对象模型
-  factory SocetResponseModel.makeByResponse(Response response, int time,
-      {CustomResponseData? customHandleResponse, CustomParamsData? customParamsData}) {
+  factory SocetResponseModel.makeByResponse(Response response, int time, {CustomResponseData? customHandleResponse, CustomParamsData? customParamsData}) {
     var data = <String, dynamic>{};
     if (customHandleResponse == null) {
       if (response.data is String) {
@@ -112,9 +115,9 @@ class SocetResponseModel {
 
     try {
       return SocetResponseModel(
-          data: response.requestOptions.data,
+          data: customParamsData?.call(response.requestOptions) ?? response.requestOptions.data,
           methed: response.requestOptions.method,
-          queryParams:customParamsData?.call(response.requestOptions) ?? params,
+          queryParams: customParamsData?.call(response.requestOptions) ?? params,
           url: response.requestOptions.uri.toString(),
           statusCode: response.statusCode ?? -1,
           body: data.isNotEmpty ? data : response.data,

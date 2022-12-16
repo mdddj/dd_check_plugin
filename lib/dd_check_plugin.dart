@@ -9,7 +9,6 @@ import 'package:logger/logger.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
 
-
 part 'ip_util.dart';
 
 part 'log.dart';
@@ -50,23 +49,15 @@ class DdCheckPlugin {
       DataFormatVersions? version,
       ValueChanged<Socket>? conectSuccess,
       ServerMessageHandle? handle,
-      CustomResponseData? customHandleResponse,CustomParamsData? customParamsData}) async {
-    await SocketConnect.instance.connect(
-        defaultProjectName: defaultProjectName,
-        port: port,
-        hostHandle: hostHandle,
-        timeOut: timeOut,
-        initHost: initHost,
-        version: version,
-        connectSuccess: conectSuccess,
-        handle: handle);
-    addInterceptors(dio, version: version, customResponseData: customHandleResponse,customParamsData: customParamsData);
+      CustomResponseData? customHandleResponse,
+      CustomParamsData? customParamsData}) async {
+    await SocketConnect.instance
+        .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost, version: version, connectSuccess: conectSuccess, handle: handle);
+    addInterceptors(dio, version: version, customResponseData: customHandleResponse, customParamsData: customParamsData);
   }
 
   // 给dio添加拦截器,获取http请求信息
-  void addInterceptors(Dio dio,
-      {DataFormatVersions? version, CustomResponseData? customResponseData,CustomParamsData? customParamsData}) {
-    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1,
-        customHandleResponse: customResponseData,customParamsData: customParamsData));
+  void addInterceptors(Dio dio, {DataFormatVersions? version, CustomResponseData? customResponseData, CustomParamsData? customParamsData}) {
+    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1, customHandleResponse: customResponseData, customParamsData: customParamsData));
   }
 }
