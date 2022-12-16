@@ -1,6 +1,6 @@
 name: dd_check_plugin
 description: A flutter plugin for idea to listen to network requests
-version: 1.1.0+1
+version: 1.1.2
 homepage: https://github.com/mdddj/dd_check_plugin
 environment:
   sdk: ">=2.18.4 <3.0.0"

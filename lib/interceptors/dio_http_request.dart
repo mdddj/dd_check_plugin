@@ -21,7 +21,9 @@ class DioHttpRequestInterceptor extends Interceptor {
   final DataFormatVersions version;
   //自定义解析返回数据
   final CustomResponseData? customHandleResponse;
-  DioHttpRequestInterceptor(this.version,{this.customHandleResponse});
+  //自定义解析参数
+  final CustomParamsData? customParamsData;
+  DioHttpRequestInterceptor(this.version,{this.customHandleResponse,this.customParamsData});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -33,7 +35,7 @@ class DioHttpRequestInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
-    SocetResponseModel.makeByResponse(response, timers,customHandleResponse: customHandleResponse).send(version);
+    SocetResponseModel.makeByResponse(response, timers,customHandleResponse: customHandleResponse,customParamsData: customParamsData).send(version);
     super.onResponse(response, handler);
   }
 
@@ -43,7 +45,7 @@ class DioHttpRequestInterceptor extends Interceptor {
       var endTime = DateTime.now();
       var timers = endTime.difference(startDate).inMilliseconds;
 
-      SocetResponseModel.makeByResponse(err.response!, timers).send(version);
+      SocetResponseModel.makeByResponse(err.response!, timers,customHandleResponse: customHandleResponse,customParamsData: customParamsData).send(version);
     }
     super.onError(err, handler);
   }
@@ -91,7 +93,7 @@ class SocetResponseModel {
 
   /// 生成一个socket发送对象模型
   factory SocetResponseModel.makeByResponse(Response response, int time,
-      {CustomResponseData? customHandleResponse}) {
+      {CustomResponseData? customHandleResponse, CustomParamsData? customParamsData}) {
     var data = <String, dynamic>{};
     if (customHandleResponse == null) {
       if (response.data is String) {
@@ -112,7 +114,7 @@ class SocetResponseModel {
       return SocetResponseModel(
           data: response.requestOptions.data,
           methed: response.requestOptions.method,
-          queryParams: params,
+          queryParams:customParamsData?.call(response.requestOptions) ?? params,
           url: response.requestOptions.uri.toString(),
           statusCode: response.statusCode ?? -1,
           body: data.isNotEmpty ? data : response.data,

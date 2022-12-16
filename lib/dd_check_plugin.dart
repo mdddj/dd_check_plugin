@@ -50,7 +50,7 @@ class DdCheckPlugin {
       DataFormatVersions? version,
       ValueChanged<Socket>? conectSuccess,
       ServerMessageHandle? handle,
-      CustomResponseData? customHandleResponse}) async {
+      CustomResponseData? customHandleResponse,CustomParamsData? customParamsData}) async {
     await SocketConnect.instance.connect(
         defaultProjectName: defaultProjectName,
         port: port,
@@ -60,13 +60,13 @@ class DdCheckPlugin {
         version: version,
         connectSuccess: conectSuccess,
         handle: handle);
-    addInterceptors(dio, version: version, customResponseData: customHandleResponse);
+    addInterceptors(dio, version: version, customResponseData: customHandleResponse,customParamsData: customParamsData);
   }
 
   // 给dio添加拦截器,获取http请求信息
   void addInterceptors(Dio dio,
-      {DataFormatVersions? version, CustomResponseData? customResponseData}) {
+      {DataFormatVersions? version, CustomResponseData? customResponseData,CustomParamsData? customParamsData}) {
     dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1,
-        customHandleResponse: customResponseData));
+        customHandleResponse: customResponseData,customParamsData: customParamsData));
   }
 }

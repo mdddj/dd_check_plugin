@@ -3,6 +3,7 @@ part of dd_check_plugin;
 
 const initConnectType = 'connected';
 typedef CustomResponseData = Map<String,dynamic> Function(Response response);
+typedef CustomParamsData = Map<String,dynamic> Function(RequestOptions requestOptions);
 
 class ResponseModel {
   final String type;
