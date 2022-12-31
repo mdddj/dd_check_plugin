@@ -1,0 +1,170 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'custom_handle_response.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$DdCustomOptions {
+  CustomShowParams? get customShowParams => throw _privateConstructorUsedError;
+  set customShowParams(CustomShowParams? value) =>
+      throw _privateConstructorUsedError;
+  CustomShowHeader? get customShowHeader => throw _privateConstructorUsedError;
+  set customShowHeader(CustomShowHeader? value) =>
+      throw _privateConstructorUsedError;
+  CustomShowBody? get customShowBody => throw _privateConstructorUsedError;
+  set customShowBody(CustomShowBody? value) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DdCustomOptionsCopyWith<DdCustomOptions> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DdCustomOptionsCopyWith<$Res> {
+  factory $DdCustomOptionsCopyWith(
+          DdCustomOptions value, $Res Function(DdCustomOptions) then) =
+      _$DdCustomOptionsCopyWithImpl<$Res, DdCustomOptions>;
+  @useResult
+  $Res call(
+      {CustomShowParams? customShowParams,
+      CustomShowHeader? customShowHeader,
+      CustomShowBody? customShowBody});
+}
+
+/// @nodoc
+class _$DdCustomOptionsCopyWithImpl<$Res, $Val extends DdCustomOptions>
+    implements $DdCustomOptionsCopyWith<$Res> {
+  _$DdCustomOptionsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customShowParams = freezed,
+    Object? customShowHeader = freezed,
+    Object? customShowBody = freezed,
+  }) {
+    return _then(_value.copyWith(
+      customShowParams: freezed == customShowParams
+          ? _value.customShowParams
+          : customShowParams // ignore: cast_nullable_to_non_nullable
+              as CustomShowParams?,
+      customShowHeader: freezed == customShowHeader
+          ? _value.customShowHeader
+          : customShowHeader // ignore: cast_nullable_to_non_nullable
+              as CustomShowHeader?,
+      customShowBody: freezed == customShowBody
+          ? _value.customShowBody
+          : customShowBody // ignore: cast_nullable_to_non_nullable
+              as CustomShowBody?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_DdCustomOptionsCopyWith<$Res>
+    implements $DdCustomOptionsCopyWith<$Res> {
+  factory _$$_DdCustomOptionsCopyWith(
+          _$_DdCustomOptions value, $Res Function(_$_DdCustomOptions) then) =
+      __$$_DdCustomOptionsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {CustomShowParams? customShowParams,
+      CustomShowHeader? customShowHeader,
+      CustomShowBody? customShowBody});
+}
+
+/// @nodoc
+class __$$_DdCustomOptionsCopyWithImpl<$Res>
+    extends _$DdCustomOptionsCopyWithImpl<$Res, _$_DdCustomOptions>
+    implements _$$_DdCustomOptionsCopyWith<$Res> {
+  __$$_DdCustomOptionsCopyWithImpl(
+      _$_DdCustomOptions _value, $Res Function(_$_DdCustomOptions) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customShowParams = freezed,
+    Object? customShowHeader = freezed,
+    Object? customShowBody = freezed,
+  }) {
+    return _then(_$_DdCustomOptions(
+      customShowParams: freezed == customShowParams
+          ? _value.customShowParams
+          : customShowParams // ignore: cast_nullable_to_non_nullable
+              as CustomShowParams?,
+      customShowHeader: freezed == customShowHeader
+          ? _value.customShowHeader
+          : customShowHeader // ignore: cast_nullable_to_non_nullable
+              as CustomShowHeader?,
+      customShowBody: freezed == customShowBody
+          ? _value.customShowBody
+          : customShowBody // ignore: cast_nullable_to_non_nullable
+              as CustomShowBody?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DdCustomOptions implements _DdCustomOptions {
+  _$_DdCustomOptions(
+      {this.customShowParams, this.customShowHeader, this.customShowBody});
+
+  @override
+  CustomShowParams? customShowParams;
+  @override
+  CustomShowHeader? customShowHeader;
+  @override
+  CustomShowBody? customShowBody;
+
+  @override
+  String toString() {
+    return 'DdCustomOptions(customShowParams: $customShowParams, customShowHeader: $customShowHeader, customShowBody: $customShowBody)';
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DdCustomOptionsCopyWith<_$_DdCustomOptions> get copyWith =>
+      __$$_DdCustomOptionsCopyWithImpl<_$_DdCustomOptions>(this, _$identity);
+}
+
+abstract class _DdCustomOptions implements DdCustomOptions {
+  factory _DdCustomOptions(
+      {CustomShowParams? customShowParams,
+      CustomShowHeader? customShowHeader,
+      CustomShowBody? customShowBody}) = _$_DdCustomOptions;
+
+  @override
+  CustomShowParams? get customShowParams;
+  set customShowParams(CustomShowParams? value);
+  @override
+  CustomShowHeader? get customShowHeader;
+  set customShowHeader(CustomShowHeader? value);
+  @override
+  CustomShowBody? get customShowBody;
+  set customShowBody(CustomShowBody? value);
+  @override
+  @JsonKey(ignore: true)
+  _$$_DdCustomOptionsCopyWith<_$_DdCustomOptions> get copyWith =>
+      throw _privateConstructorUsedError;
+}

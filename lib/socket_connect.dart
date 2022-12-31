@@ -79,7 +79,7 @@ class SocketConnect {
     try {
       final map = jsonDecode(data);
       handle?.mapMessageHandle(map);
-      final model = ResponseModel.fromMap(map);
+      final model = ResponseModel.fromJson(map);
       model.handle();
     } catch (e) {
       handle?.stringMessageHandle(data);

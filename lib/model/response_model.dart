@@ -1,25 +1,24 @@
-part of dd_check_plugin;
+// part of dd_check_plugin;
 
+import 'dart:convert' hide json;
 
+import 'package:dd_check_plugin/model/send_model.dart';
+import 'package:dio/dio.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+//
+part 'response_model.freezed.dart';
+part 'response_model.g.dart';
 const initConnectType = 'connected';
-typedef CustomResponseData = Map<String,dynamic> Function(Response response);
-typedef CustomParamsData = Map<String,dynamic> Function(RequestOptions requestOptions);
+typedef CustomCoverterResponseData = SendResponseModel Function(SendResponseModel nativeModel);
 
-class ResponseModel {
-  final String type;
-  final String json;
+@freezed
+class ResponseModel with _$ResponseModel {
+  const factory ResponseModel(String json, String type) = _ResponseModel;
+  factory ResponseModel.fromJson(dynamic json) => _$ResponseModelFromJson(json);
+}
 
-  ResponseModel(this.json, this.type);
 
-  factory ResponseModel.fromMap(Map<String, dynamic> json) {
-    return ResponseModel(json['json'], json['type']);
-  }
-
-  @override
-  String toString() {
-    return "\n$type\n$json";
-  }
-
+extension ResponseModelExtends on ResponseModel {
 
   /// 对idea插件端的数据进行处理
   void handle(){
@@ -41,4 +40,3 @@ class ResponseModel {
 
   String get initMessage => type == initConnectType ? json : '';
 }
-

@@ -1,6 +1,6 @@
 library dd_check_plugin;
 
-import 'dart:convert';
+import 'dart:convert' hide json;
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -9,13 +9,14 @@ import 'package:logger/logger.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
 
+import 'model/response_model.dart';
+import 'model/send_model.dart';
+
 part 'ip_util.dart';
 
 part 'log.dart';
 
 part 'socket_connect.dart';
-
-part 'model/response_model.dart';
 
 part 'interceptors/dio_http_request.dart';
 
@@ -32,14 +33,17 @@ class DdCheckPlugin {
 
   static DdCheckPlugin get instance => DdCheckPlugin._();
 
-  ///初始化
-  ///[defaultProjectName] - 自定义项目命名
-  ///[port] - 指定连接端口
-  ///[hostHandle] - ip过滤,会回调一个尝试连接的host ip地址,如果返回host,将不会尝试连接到该地址
-  ///[timeOut] - 连接超时时间,建议超过800毫秒
-  ///[initHost] - 指定连接IP,可以加快连接速度
-  ///[version] - 发送格式不同,用来分辨不同版本之间的区别
-  ///[conectSuccess] - 连接成功回调, Socket对象
+  /// 连接idea插件
+  /// [dio] - dio单例对象
+  /// [defaultProjectName] - 自定义项目名称
+  /// [port] - 自定义监听端口
+  /// [hostHandle] - host扫描过滤
+  /// [timeOut] -  idea插件连接超时时间
+  /// [initHost] - 自定义连接IP
+  /// [version] - 传输模型版本,一般默认就行
+  /// [conectSuccess] - 连接idea插件回调
+  /// [handle] - 处理idea端插件发送来的数据
+  /// [customCoverterResponseData] - 自定义传输模型
   Future<void> init(Dio dio,
       {String? defaultProjectName,
       int? port,
@@ -49,15 +53,14 @@ class DdCheckPlugin {
       DataFormatVersions? version,
       ValueChanged<Socket>? conectSuccess,
       ServerMessageHandle? handle,
-      CustomResponseData? customHandleResponse,
-      CustomParamsData? customParamsData}) async {
+      CustomCoverterResponseData? customCoverterResponseData}) async {
     await SocketConnect.instance
         .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost, version: version, connectSuccess: conectSuccess, handle: handle);
-    addInterceptors(dio, version: version, customResponseData: customHandleResponse, customParamsData: customParamsData);
+    addInterceptors(dio, version: version, customCoverterResponseData: customCoverterResponseData);
   }
 
   // 给dio添加拦截器,获取http请求信息
-  void addInterceptors(Dio dio, {DataFormatVersions? version, CustomResponseData? customResponseData, CustomParamsData? customParamsData}) {
-    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1, customHandleResponse: customResponseData, customParamsData: customParamsData));
+  void addInterceptors(Dio dio, {DataFormatVersions? version, CustomCoverterResponseData? customCoverterResponseData}) {
+    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1, customCoverterResponseData: customCoverterResponseData));
   }
 }
