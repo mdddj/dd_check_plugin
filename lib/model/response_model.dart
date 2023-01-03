@@ -2,9 +2,10 @@
 
 import 'dart:convert' hide json;
 
-import 'package:dd_check_plugin/model/send_model.dart';
-import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'send_model.dart';
+
 //
 part 'response_model.freezed.dart';
 part 'response_model.g.dart';

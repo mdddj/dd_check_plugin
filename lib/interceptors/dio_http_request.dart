@@ -11,7 +11,7 @@ class DDCheckPluginError extends Error {
 
   @override
   String toString() {
-    return msg + '\n$s';
+    return '$msg\n$s';
   }
 }
 
@@ -23,7 +23,6 @@ class DioHttpRequestInterceptor extends Interceptor {
 
   ///自定义解析返回数据
   final CustomCoverterResponseData? customCoverterResponseData;
-
 
   DioHttpRequestInterceptor(this.version, {this.customCoverterResponseData});
 
@@ -53,7 +52,7 @@ class DioHttpRequestInterceptor extends Interceptor {
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
     final model = SendResponseModel(
-        url: response.requestOptions.baseUrl,
+        url: response.requestOptions.uri.toString(),
         method: response.requestOptions.method,
         data: response.data,
         queryParams: response.requestOptions.queryParameters,
@@ -64,9 +63,9 @@ class DioHttpRequestInterceptor extends Interceptor {
         timestamp: timers,
         projectName: SocketConnect.projectName ?? '',
         response: response);
-    if(customCoverterResponseData!=null){
+    if (customCoverterResponseData != null) {
       customCoverterResponseData?.call(model).send(version);
-    }else{
+    } else {
       model.send(version);
     }
   }

@@ -55,9 +55,9 @@ class SocketConnect {
     final infos = await PackageInfo.fromPlatform();
     var appName = infos.appName;
     if (appName.isEmpty) {
-      appName = defaultProjectName ?? '未知项目';
+      appName = defaultProjectName ?? 'Flutter Project';
     }
-    projectName = appName + '(' + infos.version + ')';
+    projectName = '$appName(${infos.version})';
     String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort, conectSuccess: (s) {
       socket = s;
       connectSuccess?.call(s);

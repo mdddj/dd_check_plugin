@@ -71,4 +71,37 @@ class IpUtil {
     }
 
   }
+
+  Future<String> getServerAddress(int serverPort, {ValueChanged<Socket>? conectSuccess, HostHandle? hostHandle, Duration? timeOut,String? initHost}) async {
+    List<Future<String>> futureList = [];
+
+    String? ip = await NetworkInfo().getWifiIP();
+    if(ip == null){
+      return '';
+    }
+    for (int i = 1; i < 256; ++i) {
+      Future<String> future = Future<String>.sync(() async {
+        final host = initHost ?? '${ip.substring(0, ip.lastIndexOf('.'))}.$i';
+        var handle =hostHandle?.call(host) ?? true;
+        if(handle){
+          try {
+            final Socket s = await Socket.connect(
+              host,
+              serverPort,
+              timeout: timeOut ?? const Duration(milliseconds: 600),
+            );
+            conectSuccess?.call(s);
+            return host;
+          } catch (e) {
+            return '';
+          }
+        }else{
+          return '';
+        }
+      });
+      futureList.add(future);
+    }
+    List<String> results = await Future.wait<String>(futureList);
+    return results.firstWhere((e) => e.isNotEmpty, orElse: () => '127.0.0.1');
+  }
 }

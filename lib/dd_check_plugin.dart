@@ -3,7 +3,7 @@ library dd_check_plugin;
 import 'dart:convert' hide json;
 import 'dart:io';
 
-import 'package:dio/dio.dart';
+import 'package:diox/diox.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:network_info_plus/network_info_plus.dart';
