@@ -66,8 +66,8 @@ class IpUtil {
         List<String> results = await Future.wait<String>(futureList);
         return results.firstWhere((e) => e.isNotEmpty, orElse: () => '');
       }
-    }catch(e,s){
-      throw ConnectException("连接IDEA-Dio Request模块失败:\n$e\n$s");
+    }catch(e){
+      throw const ConnectException("梁典典: 连接IDEA模块失败");
     }
 
   }

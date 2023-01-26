@@ -19,8 +19,6 @@ class SocketConnect {
     if (socket == null) {
       return;
     }
-
-
     late List<int> bytes;
     late String sendDataString;
     switch (version) {
@@ -36,7 +34,6 @@ class SocketConnect {
     }
 
     var strLen = bytes.length;
-    // print('发送数据长度:$strLen  ${type}');
     var l = int32BigEndianBytes(strLen);
     socket?.add(l..buffer.asByteData());
     socket?.write(sendDataString);

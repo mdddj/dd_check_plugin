@@ -5,7 +5,6 @@ import 'dart:io';
 
 import 'package:diox/diox.dart';
 import 'package:flutter/foundation.dart';
-import 'package:logger/logger.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
 
@@ -14,7 +13,6 @@ import 'model/send_model.dart';
 
 part 'ip_util.dart';
 
-part 'log.dart';
 
 part 'socket_connect.dart';
 
@@ -56,11 +54,10 @@ class DdCheckPlugin {
       CustomCoverterResponseData? customCoverterResponseData}) async {
     await SocketConnect.instance
         .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost, version: version, connectSuccess: conectSuccess, handle: handle);
-    addInterceptors(dio, version: version, customCoverterResponseData: customCoverterResponseData);
+    _addInterceptors(dio, version: version, customCoverterResponseData: customCoverterResponseData);
   }
 
-  // 给dio添加拦截器,获取http请求信息
-  void addInterceptors(Dio dio, {DataFormatVersions? version, CustomCoverterResponseData? customCoverterResponseData}) {
+  void _addInterceptors(Dio dio, {DataFormatVersions? version, CustomCoverterResponseData? customCoverterResponseData}) {
     dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1, customCoverterResponseData: customCoverterResponseData));
   }
 }
