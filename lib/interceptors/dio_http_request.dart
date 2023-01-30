@@ -29,13 +29,13 @@ class DioHttpRequestInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     startDate = DateTime.now();
-    super.onRequest(options, handler);
+    handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     makeModel(response);
-    super.onResponse(response, handler);
+    handler.next(response);
   }
 
   @override
@@ -43,7 +43,7 @@ class DioHttpRequestInterceptor extends Interceptor {
     if (err.response != null) {
       makeModel(err.response!);
     }
-    super.onError(err, handler);
+    handler.next(err);
   }
 
   /// 发送消息到idea插件

@@ -3,7 +3,7 @@ description: A flutter plugin for idea to listen to network requests
 version: 2.0.1+1
 homepage: https://github.com/mdddj/dd_check_plugin
 environment:
-  sdk: ">=2.18.6 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
   flutter: ">=3.3.10"
 
 dependencies:
@@ -12,6 +12,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   network_info_plus: ^3.0.1
+  #^5.0.0-dev.3
   diox: ^5.0.0-dev.3
   package_info: ^2.0.2
   freezed_annotation: ^2.2.0
