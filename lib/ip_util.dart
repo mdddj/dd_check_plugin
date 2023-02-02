@@ -53,8 +53,15 @@ class IpUtil {
                   try {
                     var s = await Socket.connect(host, serverPort, timeout: timeOut);
                     conectSuccess?.call(s);
+                    s.listen((event) {
+
+                    }).onError((e){
+                      ddCheckPluginLog('onError:$e');
+                    });
+
                     return host;
                   } catch (e) {
+                    ddCheckPluginLog("socket-连接断开:$e");
                     return '';
                   }
                 }

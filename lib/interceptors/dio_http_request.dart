@@ -29,26 +29,29 @@ class DioHttpRequestInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     startDate = DateTime.now();
-    handler.next(options);
+    super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    ddCheckPluginLog('onResponse....');
     makeModel(response);
-    handler.next(response);
+    super.onResponse(response, handler);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
+    ddCheckPluginLog('\n接口出现错误:$err');
     if (err.response != null) {
       makeModel(err.response!);
     }
-    handler.next(err);
+    super.onError(err, handler);
   }
 
   /// 发送消息到idea插件
   /// [response] - 接口返回数据
   void makeModel(Response response) {
+    ddCheckPluginLog('进来了makeModel...');
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
     final model = SendResponseModel(

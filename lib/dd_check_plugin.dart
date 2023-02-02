@@ -24,6 +24,18 @@ const kProjectName = 'dd_check_plugin';
 
 enum DataFormatVersions { version_1, version_2 }
 
+class DDCheckPluginSetting {
+  static bool showLog = true;
+}
+
+void ddCheckPluginLog(dynamic msg) {
+  if(DDCheckPluginSetting.showLog){
+    debugPrint("梁典典IDEA插件日志${DateTime.now().toIso8601String()}: $msg");
+  }
+}
+
+
+
 class DdCheckPlugin {
   DdCheckPlugin._();
 
@@ -54,6 +66,7 @@ class DdCheckPlugin {
       CustomCoverterResponseData? customCoverterResponseData}) async {
     await SocketConnect.instance
         .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost, version: version, connectSuccess: conectSuccess, handle: handle);
+    ddCheckPluginLog('即将添加dio监听');
     _addInterceptors(dio, version: version, customCoverterResponseData: customCoverterResponseData);
   }
 

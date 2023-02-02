@@ -32,11 +32,13 @@ class SendResponseModel with _$SendResponseModel {
 
 /// SocketResponseModel 对象扩展
 extension SocetResponseModelExt on SendResponseModel {
-  void send(DataFormatVersions version) {
+  Future<void> send(DataFormatVersions version) async  {
     try {
       final jsonStr = jsonEncode(toJson());
+      ddCheckPluginLog('发送数据到idea:$jsonStr');
       SocketConnect.instance.sendData(jsonStr, version);
-    } catch (_) {
+    } catch (e,s) {
+      ddCheckPluginLog('\n发错出现错误\n$e\n$s');
     }
   }
 }

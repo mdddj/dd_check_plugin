@@ -15,28 +15,33 @@ class SocketConnect {
   static String? projectName;
 
   ///发送消息
-  void sendData(String msg, DataFormatVersions version, {String? type = "request"}) {
-    if (socket == null) {
-      return;
+  Future<void> sendData(String msg, DataFormatVersions version, {String? type = "request"}) async {
+    if (socket != null) {
+      try{
+        ddCheckPluginLog('往idea端发送数据');
+        late List<int> bytes;
+        late String sendDataString;
+        switch (version) {
+          case DataFormatVersions.version_2:
+            final map = <String, dynamic>{"type": type, "jsonString": msg};
+            sendDataString = jsonEncode(map);
+            bytes = utf8.encode(sendDataString);
+            break;
+          default:
+            sendDataString = msg;
+            bytes = utf8.encode(msg);
+            break;
+        }
+        var strLen = bytes.length;
+        var l = int32BigEndianBytes(strLen);
+        socket?.add(l..buffer.asByteData());
+        socket?.write(sendDataString);
+      }catch(e){
+        ddCheckPluginLog('发送出现错误:$e');
+      }
+    }else{
+      ddCheckPluginLog('socket==null,发送失败');
     }
-    late List<int> bytes;
-    late String sendDataString;
-    switch (version) {
-      case DataFormatVersions.version_2:
-        final map = <String, dynamic>{"type": type, "jsonString": msg};
-        sendDataString = jsonEncode(map);
-        bytes = utf8.encode(sendDataString);
-        break;
-      default:
-        sendDataString = msg;
-        bytes = utf8.encode(msg);
-        break;
-    }
-
-    var strLen = bytes.length;
-    var l = int32BigEndianBytes(strLen);
-    socket?.add(l..buffer.asByteData());
-    socket?.write(sendDataString);
   }
 
   /// 连接到idea插件
@@ -79,6 +84,7 @@ class SocketConnect {
       final model = ResponseModel.fromJson(map);
       model.handle();
     } catch (e) {
+      ddCheckPluginLog('处理idea返回数据失败:$e');
       handle?.stringMessageHandle(data);
     }
   }
