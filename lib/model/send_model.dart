@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 
-import 'package:diox/diox.dart';
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../dd_check_plugin.dart';

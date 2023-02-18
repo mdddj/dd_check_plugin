@@ -1,3 +1,8 @@
+# 2.1.0
+
+* update diox to dio
+* Upgrade Dependency
+
 # 2.0.5
 
 * diox to 5.0.0
