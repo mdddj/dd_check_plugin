@@ -5,9 +5,9 @@
 Pod::Spec.new do |s|
   s.name             = 'dd_check_plugin'
   s.version          = '0.0.1'
-  s.summary          = 'A flutter plugin for idea to listen to network requests'
+  s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
-A flutter plugin for idea to listen to network requests
+A new Flutter plugin project.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }

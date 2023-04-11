@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftDdCheckPlugin: NSObject, FlutterPlugin {
+public class DdCheckPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "dd_check_plugin", binaryMessenger: registrar.messenger())
-    let instance = SwiftDdCheckPlugin()
+    let instance = DdCheckPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

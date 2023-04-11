@@ -25,7 +25,7 @@ const kProjectName = 'dd_check_plugin';
 enum DataFormatVersions { version_1, version_2 }
 
 class DDCheckPluginSetting {
-  static bool showLog = true;
+  static bool showLog = false;
 }
 
 void ddCheckPluginLog(dynamic msg) {
@@ -66,7 +66,6 @@ class DdCheckPlugin {
       CustomCoverterResponseData? customCoverterResponseData}) async {
     await SocketConnect.instance
         .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost, version: version, connectSuccess: conectSuccess, handle: handle);
-    ddCheckPluginLog('即将添加dio监听');
     _addInterceptors(dio, version: version, customCoverterResponseData: customCoverterResponseData);
   }
 
