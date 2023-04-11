@@ -1,3 +1,7 @@
+# 2.2.1
+
+* bug fixed
+
 # 2.2.0
 
 * upgrade dio to 5.1.1
