@@ -40,7 +40,7 @@ class DioHttpRequestInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     ddCheckPluginLog('\n接口出现错误:$err');
     if (err.response != null) {
       makeModel(err.response!);
