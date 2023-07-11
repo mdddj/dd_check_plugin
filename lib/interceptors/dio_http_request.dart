@@ -54,11 +54,23 @@ class DioHttpRequestInterceptor extends Interceptor {
     ddCheckPluginLog('进来了makeModel...');
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
+    final queryParameters = response.requestOptions.queryParameters;
+    if(queryParameters.isEmpty){
+      try{
+        final uri =  response.requestOptions.uri;
+        final params = uri.queryParameters;
+        params.forEach((key, value) {
+          queryParameters[key] = value;
+        });
+      }catch(_){
+
+      }
+    }
     final model = SendResponseModel(
         url: response.requestOptions.uri.toString(),
         method: response.requestOptions.method,
         data: response.data,
-        queryParams: response.requestOptions.queryParameters,
+        queryParams: queryParameters,
         statusCode: response.statusCode ?? 0,
         body: response.requestOptions.data,
         headers: response.requestOptions.headers,

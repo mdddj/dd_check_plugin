@@ -43,9 +43,17 @@ mixin _$SendResponseModel {
   set timestamp(int value) => throw _privateConstructorUsedError;
   String get projectName => throw _privateConstructorUsedError;
   set projectName(String value) => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  @JsonKey(
+      toJson: null,
+      fromJson: null,
+      includeFromJson: false,
+      includeToJson: false)
   Response<dynamic>? get response => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  @JsonKey(
+      toJson: null,
+      fromJson: null,
+      includeFromJson: false,
+      includeToJson: false)
   set response(Response<dynamic>? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,7 +79,8 @@ abstract class $SendResponseModelCopyWith<$Res> {
       Map<String, dynamic> responseHeaders,
       int timestamp,
       String projectName,
-      @JsonKey(ignore: true) Response<dynamic>? response});
+      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
+          Response<dynamic>? response});
 }
 
 /// @nodoc
@@ -167,7 +176,8 @@ abstract class _$$_SendResponseModelCopyWith<$Res>
       Map<String, dynamic> responseHeaders,
       int timestamp,
       String projectName,
-      @JsonKey(ignore: true) Response<dynamic>? response});
+      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
+          Response<dynamic>? response});
 }
 
 /// @nodoc
@@ -256,7 +266,8 @@ class _$_SendResponseModel implements _SendResponseModel {
       this.responseHeaders = const {},
       this.timestamp = 0,
       this.projectName = '',
-      @JsonKey(ignore: true) this.response});
+      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
+          this.response});
 
   factory _$_SendResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_SendResponseModelFromJson(json);
@@ -290,7 +301,11 @@ class _$_SendResponseModel implements _SendResponseModel {
   @JsonKey()
   String projectName;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(
+      toJson: null,
+      fromJson: null,
+      includeFromJson: false,
+      includeToJson: false)
   Response<dynamic>? response;
 
   @override
@@ -315,18 +330,18 @@ class _$_SendResponseModel implements _SendResponseModel {
 
 abstract class _SendResponseModel implements SendResponseModel {
   factory _SendResponseModel(
-          {String url,
-          String method,
-          dynamic data,
-          Map<String, dynamic> queryParams,
-          int statusCode,
-          dynamic body,
-          Map<String, dynamic> headers,
-          Map<String, dynamic> responseHeaders,
-          int timestamp,
-          String projectName,
-          @JsonKey(ignore: true) Response<dynamic>? response}) =
-      _$_SendResponseModel;
+      {String url,
+      String method,
+      dynamic data,
+      Map<String, dynamic> queryParams,
+      int statusCode,
+      dynamic body,
+      Map<String, dynamic> headers,
+      Map<String, dynamic> responseHeaders,
+      int timestamp,
+      String projectName,
+      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
+          Response<dynamic>? response}) = _$_SendResponseModel;
 
   factory _SendResponseModel.fromJson(Map<String, dynamic> json) =
       _$_SendResponseModel.fromJson;
@@ -362,9 +377,17 @@ abstract class _SendResponseModel implements SendResponseModel {
   String get projectName;
   set projectName(String value);
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(
+      toJson: null,
+      fromJson: null,
+      includeFromJson: false,
+      includeToJson: false)
   Response<dynamic>? get response;
-  @JsonKey(ignore: true)
+  @JsonKey(
+      toJson: null,
+      fromJson: null,
+      includeFromJson: false,
+      includeToJson: false)
   set response(Response<dynamic>? value);
   @override
   @JsonKey(ignore: true)

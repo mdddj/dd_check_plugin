@@ -23,7 +23,7 @@ class SendResponseModel with _$SendResponseModel {
     @Default({}) Map<String,dynamic> responseHeaders,
     @Default(0) int timestamp,
     @Default('') String projectName,
-    @JsonKey(ignore: true) Response? response
+    @JsonKey(toJson: null,fromJson: null,includeFromJson: false,includeToJson: false) Response? response
 }) = _SendResponseModel;
 
   factory SendResponseModel.fromJson(dynamic json) => _$SendResponseModelFromJson(json);

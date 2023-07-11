@@ -10,31 +10,31 @@ import 'package:package_info/package_info.dart';
 
 import 'model/response_model.dart';
 import 'model/send_model.dart';
+import 'model/socket_send_model.dart';
+import 'model/swift_ui_action.dart';
+import 'sp/sp_model.dart';
 
 part 'ip_util.dart';
-
 
 part 'socket_connect.dart';
 
 part 'interceptors/dio_http_request.dart';
 
 part 'interceptors/server_message_handle.dart';
-
+part 'default_message_handle.dart';
 const kProjectName = 'dd_check_plugin';
 
-enum DataFormatVersions { version_1, version_2 }
+enum DataFormatVersions { ideaPlugin, appleApp }
 
 class DDCheckPluginSetting {
   static bool showLog = false;
 }
 
 void ddCheckPluginLog(dynamic msg) {
-  if(DDCheckPluginSetting.showLog){
+  if (DDCheckPluginSetting.showLog) {
     debugPrint("梁典典IDEA插件日志${DateTime.now().toIso8601String()}: $msg");
   }
 }
-
-
 
 class DdCheckPlugin {
   DdCheckPlugin._();
@@ -64,12 +64,25 @@ class DdCheckPlugin {
       ValueChanged<Socket>? conectSuccess,
       ServerMessageHandle? handle,
       CustomCoverterResponseData? customCoverterResponseData}) async {
-    await SocketConnect.instance
-        .connect(defaultProjectName: defaultProjectName, port: port, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost, version: version, connectSuccess: conectSuccess, handle: handle);
-    _addInterceptors(dio, version: version, customCoverterResponseData: customCoverterResponseData);
+    await SocketConnect.instance.connect(
+        defaultProjectName: defaultProjectName,
+        port: port,
+        hostHandle: hostHandle,
+        timeOut: timeOut,
+        initHost: initHost,
+        version: version,
+        connectSuccess: conectSuccess,
+        handle: handle??DefaultPluginMessageHandle());
+    _addInterceptors(dio,
+        version: version,
+        customCoverterResponseData: customCoverterResponseData);
   }
 
-  void _addInterceptors(Dio dio, {DataFormatVersions? version, CustomCoverterResponseData? customCoverterResponseData}) {
-    dio.interceptors.add(DioHttpRequestInterceptor(version ?? DataFormatVersions.version_1, customCoverterResponseData: customCoverterResponseData));
+  void _addInterceptors(Dio dio,
+      {DataFormatVersions? version,
+      CustomCoverterResponseData? customCoverterResponseData}) {
+    dio.interceptors.add(DioHttpRequestInterceptor(
+        version ?? DataFormatVersions.ideaPlugin,
+        customCoverterResponseData: customCoverterResponseData));
   }
 }

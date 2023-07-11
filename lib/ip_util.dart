@@ -1,13 +1,14 @@
 part of dd_check_plugin;
-class ConnectException implements Exception{
+
+class ConnectException implements Exception {
   final String msg;
-  const ConnectException(this.msg):super();
+  const ConnectException(this.msg) : super();
   @override
   String toString() {
     return msg;
   }
-
 }
+
 typedef HostHandle = bool Function(String host);
 
 ///扫描端口失败异常
@@ -29,17 +30,19 @@ class IpUtil {
 
   factory IpUtil() => _instance;
 
-
   /// 获取服务器IP,也就是用户电脑的IP
-  Future<String> checkConnectServerAddress(int serverPort, {ValueChanged<Socket>? conectSuccess, HostHandle? hostHandle, Duration? timeOut,String? initHost}) async {
-
-    try{
+  Future<String> checkConnectServerAddress(int serverPort,
+      {ValueChanged<Socket>? conectSuccess,
+      HostHandle? hostHandle,
+      Duration? timeOut,
+      String? initHost}) async {
+    try {
       List<Future<String>> futureList = [];
-      if(initHost!=null){
+      if (initHost != null) {
         var s = await Socket.connect(initHost, serverPort, timeout: timeOut);
         conectSuccess?.call(s);
         return initHost;
-      }else{
+      } else {
         String? ip = await NetworkInfo().getWifiIP();
         if (ip != null) {
           final indexs = List.generate(256, (index) => index + 1);
@@ -51,11 +54,10 @@ class IpUtil {
                 final isHandle = hostHandle?.call(host) ?? true;
                 if (isHandle) {
                   try {
-                    var s = await Socket.connect(host, serverPort, timeout: timeOut);
+                    var s = await Socket.connect(host, serverPort,
+                        timeout: timeOut);
                     conectSuccess?.call(s);
-                    s.listen((event) {
-
-                    }).onError((e){
+                    s.listen((event) {}).onError((e) {
                       ddCheckPluginLog('onError:$e');
                     });
 
@@ -73,24 +75,27 @@ class IpUtil {
         List<String> results = await Future.wait<String>(futureList);
         return results.firstWhere((e) => e.isNotEmpty, orElse: () => '');
       }
-    }catch(e){
+    } catch (e) {
       throw const ConnectException("梁典典: 连接IDEA模块失败");
     }
-
   }
 
-  Future<String> getServerAddress(int serverPort, {ValueChanged<Socket>? conectSuccess, HostHandle? hostHandle, Duration? timeOut,String? initHost}) async {
+  Future<String> getServerAddress(int serverPort,
+      {ValueChanged<Socket>? conectSuccess,
+      HostHandle? hostHandle,
+      Duration? timeOut,
+      String? initHost}) async {
     List<Future<String>> futureList = [];
 
     String? ip = await NetworkInfo().getWifiIP();
-    if(ip == null){
+    if (ip == null) {
       return '';
     }
     for (int i = 1; i < 256; ++i) {
       Future<String> future = Future<String>.sync(() async {
         final host = initHost ?? '${ip.substring(0, ip.lastIndexOf('.'))}.$i';
-        var handle =hostHandle?.call(host) ?? true;
-        if(handle){
+        var handle = hostHandle?.call(host) ?? true;
+        if (handle) {
           try {
             final Socket s = await Socket.connect(
               host,
@@ -102,7 +107,7 @@ class IpUtil {
           } catch (e) {
             return '';
           }
-        }else{
+        } else {
           return '';
         }
       });

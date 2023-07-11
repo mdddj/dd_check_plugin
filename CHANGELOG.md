@@ -1,3 +1,31 @@
+# 2.4.0
+
+升级依赖到最新版本
+
+update enum model
+```dart
+enum DataFormatVersions { 
+  ideaPlugin,
+  appleApp 
+}
+```
+
+# 2.3.3
+
+细节优化
+
+# 2.3.2
+
+* bug fixed
+* 
+# 2.3.1
+
+* bug fixed
+
+# 2.3.0
+
+* bug fixed
+
 # 2.2.1
 
 * bug fixed

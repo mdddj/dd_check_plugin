@@ -15,33 +15,56 @@ class SocketConnect {
   static String? projectName;
 
   ///发送消息
-  Future<void> sendData(String msg, DataFormatVersions version, {String? type = "request"}) async {
+  Future<void> sendData(String msg, DataFormatVersions version,
+      {String type = "request"}) async {
     if (socket != null) {
-      try{
-        ddCheckPluginLog('往idea端发送数据');
-        late List<int> bytes;
-        late String sendDataString;
-        switch (version) {
-          case DataFormatVersions.version_2:
-            final map = <String, dynamic>{"type": type, "jsonString": msg};
-            sendDataString = jsonEncode(map);
-            bytes = utf8.encode(sendDataString);
-            break;
-          default:
-            sendDataString = msg;
-            bytes = utf8.encode(msg);
-            break;
-        }
-        var strLen = bytes.length;
-        var l = int32BigEndianBytes(strLen);
-        socket?.add(l..buffer.asByteData());
-        socket?.write(sendDataString);
-      }catch(e){
-        ddCheckPluginLog('发送出现错误:$e');
-      }
-    }else{
+      sendDataMap(msg,type,version);
+    } else {
       ddCheckPluginLog('socket==null,发送失败');
     }
+  }
+
+  Future<void> sendDataByModel(SocketSendModel model,[DataFormatVersions versions = DataFormatVersions.appleApp]) async  {
+    late List<int> bytes;
+    late String sendDataString;
+    switch(versions){
+      case DataFormatVersions.ideaPlugin: {
+        debugPrint("sendDataByModel不支持version_1类型的数据");
+        break;
+      }
+      case DataFormatVersions.appleApp:{
+        final map = model.toJson();
+        sendDataString = jsonEncode(map);
+        bytes = utf8.encode(sendDataString);
+        break;
+      }
+    }
+    var strLen = bytes.length;
+    var l = int32BigEndianBytes(strLen);
+    socket?.add(l..buffer.asByteData());
+    socket?.write(sendDataString);
+  }
+
+  Future<void> sendDataMap(String message,String type,DataFormatVersions versions) async {
+    late List<int> bytes;
+    late String sendDataString;
+    switch(versions){
+      case DataFormatVersions.ideaPlugin: {
+        sendDataString = message;
+        bytes = utf8.encode(message);
+        break;
+      }
+      case DataFormatVersions.appleApp:{
+        final map = <String, dynamic>{"type": type, "jsonString": message};
+        sendDataString = jsonEncode(map);
+        bytes = utf8.encode(sendDataString);
+        break;
+      }
+    }
+    var strLen = bytes.length;
+    var l = int32BigEndianBytes(strLen);
+    socket?.add(l..buffer.asByteData());
+    socket?.write(sendDataString);
   }
 
   /// 连接到idea插件
@@ -60,14 +83,15 @@ class SocketConnect {
       appName = defaultProjectName ?? 'Flutter Project';
     }
     projectName = '$appName(${infos.version})';
-    String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort, conectSuccess: (s) {
+    String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
+        conectSuccess: (s) {
       socket = s;
       connectSuccess?.call(s);
     }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
         var str = utf8.decode(event..buffer.asByteData());
-        responseHandle(str,handle);
+        responseHandle(str, handle);
       }, onDone: () {
         debugPrint("连接断开,准备重连");
       }, onError: (e) {
@@ -77,7 +101,7 @@ class SocketConnect {
   }
 
   /// 处理插件返回的数据
-  void responseHandle(String data,ServerMessageHandle? handle) {
+  void responseHandle(String data, ServerMessageHandle? handle) {
     try {
       final map = jsonDecode(data);
       handle?.mapMessageHandle(map);
@@ -89,5 +113,6 @@ class SocketConnect {
     }
   }
 
-  Uint8List int32BigEndianBytes(int value) => Uint8List(4)..buffer.asByteData().setInt32(0, value);
+  Uint8List int32BigEndianBytes(int value) =>
+      Uint8List(4)..buffer.asByteData().setInt32(0, value);
 }
