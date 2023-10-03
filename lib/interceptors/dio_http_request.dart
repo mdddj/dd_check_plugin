@@ -23,8 +23,10 @@ class DioHttpRequestInterceptor extends Interceptor {
 
   ///自定义解析返回数据
   final CustomCoverterResponseData? customCoverterResponseData;
+  final String? projectName;
 
-  DioHttpRequestInterceptor(this.version, {this.customCoverterResponseData});
+  final SocketConnect socketConnect;
+  DioHttpRequestInterceptor(this.version, this.socketConnect, {this.customCoverterResponseData,this.projectName});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -76,12 +78,12 @@ class DioHttpRequestInterceptor extends Interceptor {
         headers: response.requestOptions.headers,
         responseHeaders: response.headers.map,
         timestamp: timers,
-        projectName: SocketConnect.projectName ?? '',
+        projectName: projectName ?? '',
         response: response);
     if (customCoverterResponseData != null) {
-      customCoverterResponseData?.call(model).send(version);
+      customCoverterResponseData?.call(model).send(version,socketConnect);
     } else {
-      model.send(version);
+      model.send(version,socketConnect);
     }
   }
 }

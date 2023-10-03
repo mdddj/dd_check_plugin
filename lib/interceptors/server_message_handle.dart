@@ -6,7 +6,7 @@ abstract class ServerMessageHandle {
   void stringMessageHandle(String data);
 
   ///json类型的数据处理
-  void mapMessageHandle(Map<String,dynamic> data);
+  void mapMessageHandle(Map<String,dynamic> data,SocketConnect socketConnect);
 
   ///处理错误信息
   void error(dynamic error);

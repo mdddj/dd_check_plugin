@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
 
@@ -21,7 +22,11 @@ part 'socket_connect.dart';
 part 'interceptors/dio_http_request.dart';
 
 part 'interceptors/server_message_handle.dart';
+
 part 'default_message_handle.dart';
+
+part 'hive/hive_tool.dart';
+
 const kProjectName = 'dd_check_plugin';
 
 enum DataFormatVersions { ideaPlugin, appleApp }
@@ -37,12 +42,6 @@ void ddCheckPluginLog(dynamic msg) {
 }
 
 class DdCheckPlugin {
-  DdCheckPlugin._();
-
-  factory DdCheckPlugin() => instance;
-
-  static DdCheckPlugin get instance => DdCheckPlugin._();
-
   /// 连接idea插件
   /// [dio] - dio单例对象
   /// [defaultProjectName] - 自定义项目名称
@@ -63,8 +62,10 @@ class DdCheckPlugin {
       DataFormatVersions? version,
       ValueChanged<Socket>? conectSuccess,
       ServerMessageHandle? handle,
-      CustomCoverterResponseData? customCoverterResponseData}) async {
-    await SocketConnect.instance.connect(
+      CustomCoverterResponseData? customCoverterResponseData,
+      String? projectName}) async {
+    final s = SocketConnect();
+    await s.connect(
         defaultProjectName: defaultProjectName,
         port: port,
         hostHandle: hostHandle,
@@ -72,17 +73,11 @@ class DdCheckPlugin {
         initHost: initHost,
         version: version,
         connectSuccess: conectSuccess,
-        handle: handle??DefaultPluginMessageHandle());
-    _addInterceptors(dio,
-        version: version,
-        customCoverterResponseData: customCoverterResponseData);
-  }
-
-  void _addInterceptors(Dio dio,
-      {DataFormatVersions? version,
-      CustomCoverterResponseData? customCoverterResponseData}) {
+        projectName: projectName,
+        handle: handle ?? DefaultPluginMessageHandle());
     dio.interceptors.add(DioHttpRequestInterceptor(
-        version ?? DataFormatVersions.ideaPlugin,
-        customCoverterResponseData: customCoverterResponseData));
+        version ?? DataFormatVersions.ideaPlugin, s,
+        customCoverterResponseData: customCoverterResponseData,
+        projectName: s.appProjectName));
   }
 }

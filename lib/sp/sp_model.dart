@@ -30,22 +30,22 @@ class SpViewUtil {
 
 
   ///发送keys到Swift客户端
-  static Future<void> sendAllSpKeys(SwiftSpKeysAction _) async {
+  static Future<void> sendAllSpKeys(SwiftSpKeysAction _,SocketConnect socketConnect) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
-    SocketConnect.instance.sendDataByModel(SocketSendModel.sp(model: SpView(keys: keys),type: SpView.socketKey));
+    socketConnect.sendDataByModel(SocketSendModel.sp(model: SpView(keys: keys),type: SpView.socketKey));
   }
 
 
   ///发送sp key 的值到Swift客户端
-  static Future<void> sendSpValueToSwift(SwiftSpGetValueAction action) async {
+  static Future<void> sendSpValueToSwift(SwiftSpGetValueAction action,SocketConnect socketConnect) async {
     _log(action.toJson());
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final object = prefs.get(action.data);
     if(object==null){
       Logger().w("not found!! ${action.data}");
     }else{
-      SocketConnect.instance.sendDataByModel(SocketSendModel.sp(model: SpView.sendKeyValue(value: object),type: SpView.socketSpGetValuesKey));
+      socketConnect.sendDataByModel(SocketSendModel.sp(model: SpView.sendKeyValue(value: object),type: SpView.socketSpGetValuesKey));
     }
   }
 

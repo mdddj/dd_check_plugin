@@ -12,7 +12,7 @@ dd_check_plugin: any
 ```dart
 
 /// Dio() 换成你的自己的dio实例
-DdCheckPlugin.instance.init(Dio());
+DdCheckPlugin().init(Dio());
 ```
 
 接入完成.

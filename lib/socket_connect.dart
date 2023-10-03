@@ -4,40 +4,38 @@ part of dd_check_plugin;
 const serverPort = 9999;
 
 class SocketConnect {
-  SocketConnect._();
-
-  factory SocketConnect() => SocketConnect._();
-
-  static SocketConnect get instance => SocketConnect._();
-  static Socket? socket;
+  Socket? socket;
 
   ///项目名字
-  static String? projectName;
+  String? appProjectName;
 
   ///发送消息
   Future<void> sendData(String msg, DataFormatVersions version,
       {String type = "request"}) async {
     if (socket != null) {
-      sendDataMap(msg,type,version);
+      sendDataMap(msg, type, version);
     } else {
       ddCheckPluginLog('socket==null,发送失败');
     }
   }
 
-  Future<void> sendDataByModel(SocketSendModel model,[DataFormatVersions versions = DataFormatVersions.appleApp]) async  {
+  Future<void> sendDataByModel(SocketSendModel model,
+      [DataFormatVersions versions = DataFormatVersions.appleApp]) async {
     late List<int> bytes;
     late String sendDataString;
-    switch(versions){
-      case DataFormatVersions.ideaPlugin: {
-        debugPrint("sendDataByModel不支持version_1类型的数据");
-        break;
-      }
-      case DataFormatVersions.appleApp:{
-        final map = model.toJson();
-        sendDataString = jsonEncode(map);
-        bytes = utf8.encode(sendDataString);
-        break;
-      }
+    switch (versions) {
+      case DataFormatVersions.ideaPlugin:
+        {
+          debugPrint("sendDataByModel不支持version_1类型的数据");
+          break;
+        }
+      case DataFormatVersions.appleApp:
+        {
+          final map = model.toJson();
+          sendDataString = jsonEncode(map);
+          bytes = utf8.encode(sendDataString);
+          break;
+        }
     }
     var strLen = bytes.length;
     var l = int32BigEndianBytes(strLen);
@@ -45,21 +43,24 @@ class SocketConnect {
     socket?.write(sendDataString);
   }
 
-  Future<void> sendDataMap(String message,String type,DataFormatVersions versions) async {
+  Future<void> sendDataMap(
+      String message, String type, DataFormatVersions versions) async {
     late List<int> bytes;
     late String sendDataString;
-    switch(versions){
-      case DataFormatVersions.ideaPlugin: {
-        sendDataString = message;
-        bytes = utf8.encode(message);
-        break;
-      }
-      case DataFormatVersions.appleApp:{
-        final map = <String, dynamic>{"type": type, "jsonString": message};
-        sendDataString = jsonEncode(map);
-        bytes = utf8.encode(sendDataString);
-        break;
-      }
+    switch (versions) {
+      case DataFormatVersions.ideaPlugin:
+        {
+          sendDataString = message;
+          bytes = utf8.encode(message);
+          break;
+        }
+      case DataFormatVersions.appleApp:
+        {
+          final map = <String, dynamic>{"type": type, "jsonString": message};
+          sendDataString = jsonEncode(map);
+          bytes = utf8.encode(sendDataString);
+          break;
+        }
     }
     var strLen = bytes.length;
     var l = int32BigEndianBytes(strLen);
@@ -76,13 +77,21 @@ class SocketConnect {
       String? initHost,
       DataFormatVersions? version,
       ValueChanged<Socket>? connectSuccess,
-      ServerMessageHandle? handle}) async {
-    final infos = await PackageInfo.fromPlatform();
-    var appName = infos.appName;
-    if (appName.isEmpty) {
-      appName = defaultProjectName ?? 'Flutter Project';
+      ServerMessageHandle? handle,
+      String? projectName}) async {
+    String? pName = projectName;
+    String version = '0.0';
+    if (pName == null) {
+      final infos = await PackageInfo.fromPlatform();
+      pName = infos.appName;
+      if (pName.isEmpty) {
+        pName = defaultProjectName ?? 'Flutter Project';
+      }
+      version = infos.version;
     }
-    projectName = '$appName(${infos.version})';
+
+    pName = '$pName($version)';
+    appProjectName = pName;
     String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
         conectSuccess: (s) {
       socket = s;
@@ -104,7 +113,7 @@ class SocketConnect {
   void responseHandle(String data, ServerMessageHandle? handle) {
     try {
       final map = jsonDecode(data);
-      handle?.mapMessageHandle(map);
+      handle?.mapMessageHandle(map,this);
       final model = ResponseModel.fromJson(map);
       model.handle();
     } catch (e) {
