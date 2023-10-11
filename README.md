@@ -15,4 +15,23 @@ dd_check_plugin: any
 DdCheckPlugin().init(Dio());
 ```
 
+
+
+
+# example
+```dart
+
+void connecnt(){
+  await DdCheckPlugin().init(
+    BaseApi.getDio(),
+    initHost: '192.168.0.1', // Change to your computer IP 
+    port: 9999, // Modify the listening port to, default to 9999
+    projectName: "Project", // Custom Project Name
+    conectSuccess: (Socket value) {
+      socket = value;
+    },
+  );
+}
+```
+
 接入完成.
