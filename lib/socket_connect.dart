@@ -81,15 +81,14 @@ class SocketConnect {
       String? projectName}) async {
     String? pName = projectName;
     String version = '0.0';
+    final infos = await PackageInfo.fromPlatform();
     if (pName == null) {
-      final infos = await PackageInfo.fromPlatform();
       pName = infos.appName;
       if (pName.isEmpty) {
         pName = defaultProjectName ?? 'Flutter Project';
       }
-      version = infos.version;
     }
-
+    version = infos.version;
     pName = '$pName($version)';
     appProjectName = pName;
     String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
