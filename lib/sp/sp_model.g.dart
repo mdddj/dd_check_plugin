@@ -6,25 +6,26 @@ part of 'sp_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SpView _$$_SpViewFromJson(Map<String, dynamic> json) => _$_SpView(
+_$SpViewImpl _$$SpViewImplFromJson(Map<String, dynamic> json) => _$SpViewImpl(
       keys: (json['keys'] as List<dynamic>).map((e) => e as String).toSet(),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_SpViewToJson(_$_SpView instance) => <String, dynamic>{
+Map<String, dynamic> _$$SpViewImplToJson(_$SpViewImpl instance) =>
+    <String, dynamic>{
       'keys': instance.keys.toList(),
       'runtimeType': instance.$type,
     };
 
-_$_SpSendKeyValueModel _$$_SpSendKeyValueModelFromJson(
+_$SpSendKeyValueModelImpl _$$SpSendKeyValueModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SpSendKeyValueModel(
+    _$SpSendKeyValueModelImpl(
       value: json['value'] as Object,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_SpSendKeyValueModelToJson(
-        _$_SpSendKeyValueModel instance) =>
+Map<String, dynamic> _$$SpSendKeyValueModelImplToJson(
+        _$SpSendKeyValueModelImpl instance) =>
     <String, dynamic>{
       'value': instance.value,
       'runtimeType': instance.$type,

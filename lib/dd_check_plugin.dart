@@ -6,9 +6,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
+import 'package:logger/logger.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
 
+import 'hive/hive_plugin_action.dart';
+import 'model/public_send_model.dart';
 import 'model/response_model.dart';
 import 'model/send_model.dart';
 import 'model/socket_send_model.dart';
@@ -37,7 +40,7 @@ class DDCheckPluginSetting {
 
 void ddCheckPluginLog(dynamic msg) {
   if (DDCheckPluginSetting.showLog) {
-    debugPrint("梁典典IDEA插件日志${DateTime.now().toIso8601String()}: $msg");
+    debugPrint("dd_check_plugin:${DateTime.now().toIso8601String()}: $msg");
   }
 }
 
@@ -62,11 +65,10 @@ class DdCheckPlugin {
       DataFormatVersions? version,
       ValueChanged<Socket>? conectSuccess,
       CustomCoverterResponseData? customCoverterResponseData,
-      String? projectName,List<DdPluginExtend>? extend}) async {
-
-    final extendList = extend??[];
+      String? projectName,
+      List<DdPluginExtend>? extend}) async {
+    final extendList = extend ?? [];
     extendList.add(DefaultPluginMessageHandle());
-
     final s = SocketConnect();
     await s.connect(
         defaultProjectName: defaultProjectName,

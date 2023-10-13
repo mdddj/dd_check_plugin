@@ -9,13 +9,19 @@ class SocketConnect {
   ///项目名字
   String? appProjectName;
 
-  ///发送消息
+  ///发送数据类型
+  DataFormatVersions? dataFormatVersions;
+
+
+
+
+  ///发送消息 (dio 专用)
   Future<void> sendData(String msg, DataFormatVersions version,
       {String type = "request"}) async {
     if (socket != null) {
       sendDataMap(msg, type, version);
     } else {
-      ddCheckPluginLog('socket==null,发送失败');
+      ddCheckPluginLog('socket is null,send fail');
     }
   }
 
@@ -26,7 +32,7 @@ class SocketConnect {
     switch (versions) {
       case DataFormatVersions.ideaPlugin:
         {
-          debugPrint("sendDataByModel不支持version_1类型的数据");
+          debugPrint("SendDataByModel does not support data of type ideaPlugin");
           break;
         }
       case DataFormatVersions.appleApp:
@@ -41,6 +47,17 @@ class SocketConnect {
     var l = int32BigEndianBytes(strLen);
     socket?.add(l..buffer.asByteData());
     socket?.write(sendDataString);
+  }
+
+
+  ///发送数据
+  void sendMap(Map<String,dynamic> map,String type) {
+    if(dataFormatVersions!=null){
+      ddCheckPluginLog("send data : $map");
+      sendDataMap(jsonEncode(map), type, dataFormatVersions!);
+    }else{
+      ddCheckPluginLog("DataFormatVersions is null");
+    }
   }
 
   Future<void> sendDataMap(
@@ -80,7 +97,8 @@ class SocketConnect {
       String? projectName,
       required List<DdPluginExtend> extend}) async {
     String? pName = projectName;
-    String version = '0.0';
+    dataFormatVersions = version;
+    String v = '0.0';
     final infos = await PackageInfo.fromPlatform();
     if (pName == null) {
       pName = infos.appName;
@@ -88,8 +106,8 @@ class SocketConnect {
         pName = defaultProjectName ?? 'Flutter Project';
       }
     }
-    version = infos.version;
-    pName = '$pName($version)';
+    v = infos.version;
+    pName = '$pName($v)';
     appProjectName = pName;
     String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
         conectSuccess: (s) {
@@ -101,23 +119,21 @@ class SocketConnect {
         var str = utf8.decode(event..buffer.asByteData());
         responseHandle(str, extend);
       }, onDone: () {
-        debugPrint("连接断开,准备重连");
+        ddCheckPluginLog('Connection disconnected');
+
       }, onError: (e) {
-        debugPrint("出现错误....准备重连");
+        ddCheckPluginLog("An error occurred : $e");
       });
     } else {}
   }
 
-  /// 处理插件返回的数据
+  /// 处理socket接收到的数据返回的数据
   void responseHandle(String data, List<ServerMessageHandle> handle) {
     for (var element in handle) {
       try {
         final map = jsonDecode(data);
         element.mapMessageHandle(map, this);
-        final model = ResponseModel.fromJson(map);
-        model.handle();
       } catch (e) {
-        ddCheckPluginLog('处理idea返回数据失败:$e');
         element.stringMessageHandle(data);
       }
     }

@@ -79,8 +79,12 @@ abstract class $SendResponseModelCopyWith<$Res> {
       Map<String, dynamic> responseHeaders,
       int timestamp,
       String projectName,
-      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
-          Response<dynamic>? response});
+      @JsonKey(
+          toJson: null,
+          fromJson: null,
+          includeFromJson: false,
+          includeToJson: false)
+      Response<dynamic>? response});
 }
 
 /// @nodoc
@@ -158,11 +162,11 @@ class _$SendResponseModelCopyWithImpl<$Res, $Val extends SendResponseModel>
 }
 
 /// @nodoc
-abstract class _$$_SendResponseModelCopyWith<$Res>
+abstract class _$$SendResponseModelImplCopyWith<$Res>
     implements $SendResponseModelCopyWith<$Res> {
-  factory _$$_SendResponseModelCopyWith(_$_SendResponseModel value,
-          $Res Function(_$_SendResponseModel) then) =
-      __$$_SendResponseModelCopyWithImpl<$Res>;
+  factory _$$SendResponseModelImplCopyWith(_$SendResponseModelImpl value,
+          $Res Function(_$SendResponseModelImpl) then) =
+      __$$SendResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -176,16 +180,20 @@ abstract class _$$_SendResponseModelCopyWith<$Res>
       Map<String, dynamic> responseHeaders,
       int timestamp,
       String projectName,
-      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
-          Response<dynamic>? response});
+      @JsonKey(
+          toJson: null,
+          fromJson: null,
+          includeFromJson: false,
+          includeToJson: false)
+      Response<dynamic>? response});
 }
 
 /// @nodoc
-class __$$_SendResponseModelCopyWithImpl<$Res>
-    extends _$SendResponseModelCopyWithImpl<$Res, _$_SendResponseModel>
-    implements _$$_SendResponseModelCopyWith<$Res> {
-  __$$_SendResponseModelCopyWithImpl(
-      _$_SendResponseModel _value, $Res Function(_$_SendResponseModel) _then)
+class __$$SendResponseModelImplCopyWithImpl<$Res>
+    extends _$SendResponseModelCopyWithImpl<$Res, _$SendResponseModelImpl>
+    implements _$$SendResponseModelImplCopyWith<$Res> {
+  __$$SendResponseModelImplCopyWithImpl(_$SendResponseModelImpl _value,
+      $Res Function(_$SendResponseModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -203,7 +211,7 @@ class __$$_SendResponseModelCopyWithImpl<$Res>
     Object? projectName = null,
     Object? response = freezed,
   }) {
-    return _then(_$_SendResponseModel(
+    return _then(_$SendResponseModelImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -254,8 +262,8 @@ class __$$_SendResponseModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SendResponseModel implements _SendResponseModel {
-  _$_SendResponseModel(
+class _$SendResponseModelImpl implements _SendResponseModel {
+  _$SendResponseModelImpl(
       {this.url = '',
       this.method = '',
       this.data,
@@ -266,11 +274,15 @@ class _$_SendResponseModel implements _SendResponseModel {
       this.responseHeaders = const {},
       this.timestamp = 0,
       this.projectName = '',
-      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
-          this.response});
+      @JsonKey(
+          toJson: null,
+          fromJson: null,
+          includeFromJson: false,
+          includeToJson: false)
+      this.response});
 
-  factory _$_SendResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SendResponseModelFromJson(json);
+  factory _$SendResponseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SendResponseModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -316,13 +328,13 @@ class _$_SendResponseModel implements _SendResponseModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SendResponseModelCopyWith<_$_SendResponseModel> get copyWith =>
-      __$$_SendResponseModelCopyWithImpl<_$_SendResponseModel>(
+  _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>
+      __$$SendResponseModelImplCopyWithImpl<_$SendResponseModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SendResponseModelToJson(
+    return _$$SendResponseModelImplToJson(
       this,
     );
   }
@@ -340,11 +352,15 @@ abstract class _SendResponseModel implements SendResponseModel {
       Map<String, dynamic> responseHeaders,
       int timestamp,
       String projectName,
-      @JsonKey(toJson: null, fromJson: null, includeFromJson: false, includeToJson: false)
-          Response<dynamic>? response}) = _$_SendResponseModel;
+      @JsonKey(
+          toJson: null,
+          fromJson: null,
+          includeFromJson: false,
+          includeToJson: false)
+      Response<dynamic>? response}) = _$SendResponseModelImpl;
 
   factory _SendResponseModel.fromJson(Map<String, dynamic> json) =
-      _$_SendResponseModel.fromJson;
+      _$SendResponseModelImpl.fromJson;
 
   @override
   String get url;
@@ -391,6 +407,6 @@ abstract class _SendResponseModel implements SendResponseModel {
   set response(Response<dynamic>? value);
   @override
   @JsonKey(ignore: true)
-  _$$_SendResponseModelCopyWith<_$_SendResponseModel> get copyWith =>
+  _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

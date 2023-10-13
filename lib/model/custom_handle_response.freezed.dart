@@ -78,11 +78,11 @@ class _$DdCustomOptionsCopyWithImpl<$Res, $Val extends DdCustomOptions>
 }
 
 /// @nodoc
-abstract class _$$_DdCustomOptionsCopyWith<$Res>
+abstract class _$$DdCustomOptionsImplCopyWith<$Res>
     implements $DdCustomOptionsCopyWith<$Res> {
-  factory _$$_DdCustomOptionsCopyWith(
-          _$_DdCustomOptions value, $Res Function(_$_DdCustomOptions) then) =
-      __$$_DdCustomOptionsCopyWithImpl<$Res>;
+  factory _$$DdCustomOptionsImplCopyWith(_$DdCustomOptionsImpl value,
+          $Res Function(_$DdCustomOptionsImpl) then) =
+      __$$DdCustomOptionsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -92,11 +92,11 @@ abstract class _$$_DdCustomOptionsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DdCustomOptionsCopyWithImpl<$Res>
-    extends _$DdCustomOptionsCopyWithImpl<$Res, _$_DdCustomOptions>
-    implements _$$_DdCustomOptionsCopyWith<$Res> {
-  __$$_DdCustomOptionsCopyWithImpl(
-      _$_DdCustomOptions _value, $Res Function(_$_DdCustomOptions) _then)
+class __$$DdCustomOptionsImplCopyWithImpl<$Res>
+    extends _$DdCustomOptionsCopyWithImpl<$Res, _$DdCustomOptionsImpl>
+    implements _$$DdCustomOptionsImplCopyWith<$Res> {
+  __$$DdCustomOptionsImplCopyWithImpl(
+      _$DdCustomOptionsImpl _value, $Res Function(_$DdCustomOptionsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_DdCustomOptionsCopyWithImpl<$Res>
     Object? customShowHeader = freezed,
     Object? customShowBody = freezed,
   }) {
-    return _then(_$_DdCustomOptions(
+    return _then(_$DdCustomOptionsImpl(
       customShowParams: freezed == customShowParams
           ? _value.customShowParams
           : customShowParams // ignore: cast_nullable_to_non_nullable
@@ -125,8 +125,8 @@ class __$$_DdCustomOptionsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DdCustomOptions implements _DdCustomOptions {
-  _$_DdCustomOptions(
+class _$DdCustomOptionsImpl implements _DdCustomOptions {
+  _$DdCustomOptionsImpl(
       {this.customShowParams, this.customShowHeader, this.customShowBody});
 
   @override
@@ -144,15 +144,16 @@ class _$_DdCustomOptions implements _DdCustomOptions {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DdCustomOptionsCopyWith<_$_DdCustomOptions> get copyWith =>
-      __$$_DdCustomOptionsCopyWithImpl<_$_DdCustomOptions>(this, _$identity);
+  _$$DdCustomOptionsImplCopyWith<_$DdCustomOptionsImpl> get copyWith =>
+      __$$DdCustomOptionsImplCopyWithImpl<_$DdCustomOptionsImpl>(
+          this, _$identity);
 }
 
 abstract class _DdCustomOptions implements DdCustomOptions {
   factory _DdCustomOptions(
       {CustomShowParams? customShowParams,
       CustomShowHeader? customShowHeader,
-      CustomShowBody? customShowBody}) = _$_DdCustomOptions;
+      CustomShowBody? customShowBody}) = _$DdCustomOptionsImpl;
 
   @override
   CustomShowParams? get customShowParams;
@@ -165,6 +166,6 @@ abstract class _DdCustomOptions implements DdCustomOptions {
   set customShowBody(CustomShowBody? value);
   @override
   @JsonKey(ignore: true)
-  _$$_DdCustomOptionsCopyWith<_$_DdCustomOptions> get copyWith =>
+  _$$DdCustomOptionsImplCopyWith<_$DdCustomOptionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

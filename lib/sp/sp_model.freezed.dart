@@ -88,18 +88,20 @@ class _$SpViewCopyWithImpl<$Res, $Val extends SpView>
 }
 
 /// @nodoc
-abstract class _$$_SpViewCopyWith<$Res> {
-  factory _$$_SpViewCopyWith(_$_SpView value, $Res Function(_$_SpView) then) =
-      __$$_SpViewCopyWithImpl<$Res>;
+abstract class _$$SpViewImplCopyWith<$Res> {
+  factory _$$SpViewImplCopyWith(
+          _$SpViewImpl value, $Res Function(_$SpViewImpl) then) =
+      __$$SpViewImplCopyWithImpl<$Res>;
   @useResult
   $Res call({@JsonKey(name: 'keys') Set<String> keys});
 }
 
 /// @nodoc
-class __$$_SpViewCopyWithImpl<$Res>
-    extends _$SpViewCopyWithImpl<$Res, _$_SpView>
-    implements _$$_SpViewCopyWith<$Res> {
-  __$$_SpViewCopyWithImpl(_$_SpView _value, $Res Function(_$_SpView) _then)
+class __$$SpViewImplCopyWithImpl<$Res>
+    extends _$SpViewCopyWithImpl<$Res, _$SpViewImpl>
+    implements _$$SpViewImplCopyWith<$Res> {
+  __$$SpViewImplCopyWithImpl(
+      _$SpViewImpl _value, $Res Function(_$SpViewImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -107,7 +109,7 @@ class __$$_SpViewCopyWithImpl<$Res>
   $Res call({
     Object? keys = null,
   }) {
-    return _then(_$_SpView(
+    return _then(_$SpViewImpl(
       keys: null == keys
           ? _value._keys
           : keys // ignore: cast_nullable_to_non_nullable
@@ -118,16 +120,16 @@ class __$$_SpViewCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SpView extends _SpView {
-  const _$_SpView(
+class _$SpViewImpl extends _SpView {
+  const _$SpViewImpl(
       {@JsonKey(name: 'keys') required final Set<String> keys,
       final String? $type})
       : _keys = keys,
         $type = $type ?? 'default',
         super._();
 
-  factory _$_SpView.fromJson(Map<String, dynamic> json) =>
-      _$$_SpViewFromJson(json);
+  factory _$SpViewImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SpViewImplFromJson(json);
 
   final Set<String> _keys;
   @override
@@ -150,7 +152,7 @@ class _$_SpView extends _SpView {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SpView &&
+            other is _$SpViewImpl &&
             const DeepCollectionEquality().equals(other._keys, _keys));
   }
 
@@ -162,8 +164,8 @@ class _$_SpView extends _SpView {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SpViewCopyWith<_$_SpView> get copyWith =>
-      __$$_SpViewCopyWithImpl<_$_SpView>(this, _$identity);
+  _$$SpViewImplCopyWith<_$SpViewImpl> get copyWith =>
+      __$$SpViewImplCopyWithImpl<_$SpViewImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -229,7 +231,7 @@ class _$_SpView extends _SpView {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SpViewToJson(
+    return _$$SpViewImplToJson(
       this,
     );
   }
@@ -237,33 +239,33 @@ class _$_SpView extends _SpView {
 
 abstract class _SpView extends SpView {
   const factory _SpView(
-      {@JsonKey(name: 'keys') required final Set<String> keys}) = _$_SpView;
+      {@JsonKey(name: 'keys') required final Set<String> keys}) = _$SpViewImpl;
   const _SpView._() : super._();
 
-  factory _SpView.fromJson(Map<String, dynamic> json) = _$_SpView.fromJson;
+  factory _SpView.fromJson(Map<String, dynamic> json) = _$SpViewImpl.fromJson;
 
   @JsonKey(name: 'keys')
   Set<String> get keys;
   @JsonKey(ignore: true)
-  _$$_SpViewCopyWith<_$_SpView> get copyWith =>
+  _$$SpViewImplCopyWith<_$SpViewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SpSendKeyValueModelCopyWith<$Res> {
-  factory _$$_SpSendKeyValueModelCopyWith(_$_SpSendKeyValueModel value,
-          $Res Function(_$_SpSendKeyValueModel) then) =
-      __$$_SpSendKeyValueModelCopyWithImpl<$Res>;
+abstract class _$$SpSendKeyValueModelImplCopyWith<$Res> {
+  factory _$$SpSendKeyValueModelImplCopyWith(_$SpSendKeyValueModelImpl value,
+          $Res Function(_$SpSendKeyValueModelImpl) then) =
+      __$$SpSendKeyValueModelImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object value});
 }
 
 /// @nodoc
-class __$$_SpSendKeyValueModelCopyWithImpl<$Res>
-    extends _$SpViewCopyWithImpl<$Res, _$_SpSendKeyValueModel>
-    implements _$$_SpSendKeyValueModelCopyWith<$Res> {
-  __$$_SpSendKeyValueModelCopyWithImpl(_$_SpSendKeyValueModel _value,
-      $Res Function(_$_SpSendKeyValueModel) _then)
+class __$$SpSendKeyValueModelImplCopyWithImpl<$Res>
+    extends _$SpViewCopyWithImpl<$Res, _$SpSendKeyValueModelImpl>
+    implements _$$SpSendKeyValueModelImplCopyWith<$Res> {
+  __$$SpSendKeyValueModelImplCopyWithImpl(_$SpSendKeyValueModelImpl _value,
+      $Res Function(_$SpSendKeyValueModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -271,7 +273,7 @@ class __$$_SpSendKeyValueModelCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_SpSendKeyValueModel(
+    return _then(_$SpSendKeyValueModelImpl(
       value: null == value ? _value.value : value,
     ));
   }
@@ -279,13 +281,13 @@ class __$$_SpSendKeyValueModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SpSendKeyValueModel extends _SpSendKeyValueModel {
-  _$_SpSendKeyValueModel({required this.value, final String? $type})
+class _$SpSendKeyValueModelImpl extends _SpSendKeyValueModel {
+  _$SpSendKeyValueModelImpl({required this.value, final String? $type})
       : $type = $type ?? 'sendKeyValue',
         super._();
 
-  factory _$_SpSendKeyValueModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SpSendKeyValueModelFromJson(json);
+  factory _$SpSendKeyValueModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SpSendKeyValueModelImplFromJson(json);
 
   @override
   final Object value;
@@ -302,7 +304,7 @@ class _$_SpSendKeyValueModel extends _SpSendKeyValueModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SpSendKeyValueModel &&
+            other is _$SpSendKeyValueModelImpl &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -314,8 +316,8 @@ class _$_SpSendKeyValueModel extends _SpSendKeyValueModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SpSendKeyValueModelCopyWith<_$_SpSendKeyValueModel> get copyWith =>
-      __$$_SpSendKeyValueModelCopyWithImpl<_$_SpSendKeyValueModel>(
+  _$$SpSendKeyValueModelImplCopyWith<_$SpSendKeyValueModelImpl> get copyWith =>
+      __$$SpSendKeyValueModelImplCopyWithImpl<_$SpSendKeyValueModelImpl>(
           this, _$identity);
 
   @override
@@ -382,7 +384,7 @@ class _$_SpSendKeyValueModel extends _SpSendKeyValueModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SpSendKeyValueModelToJson(
+    return _$$SpSendKeyValueModelImplToJson(
       this,
     );
   }
@@ -390,14 +392,14 @@ class _$_SpSendKeyValueModel extends _SpSendKeyValueModel {
 
 abstract class _SpSendKeyValueModel extends SpView {
   factory _SpSendKeyValueModel({required final Object value}) =
-      _$_SpSendKeyValueModel;
+      _$SpSendKeyValueModelImpl;
   _SpSendKeyValueModel._() : super._();
 
   factory _SpSendKeyValueModel.fromJson(Map<String, dynamic> json) =
-      _$_SpSendKeyValueModel.fromJson;
+      _$SpSendKeyValueModelImpl.fromJson;
 
   Object get value;
   @JsonKey(ignore: true)
-  _$$_SpSendKeyValueModelCopyWith<_$_SpSendKeyValueModel> get copyWith =>
+  _$$SpSendKeyValueModelImplCopyWith<_$SpSendKeyValueModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

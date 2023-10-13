@@ -35,10 +35,8 @@ extension SocetResponseModelExt on SendResponseModel {
   Future<void> send(DataFormatVersions version,SocketConnect socketConnect) async  {
     try {
       final jsonStr = jsonEncode(toJson());
-      ddCheckPluginLog('发送数据到idea:$jsonStr');
       socketConnect.sendData(jsonStr, version);
-    } catch (e,s) {
-      ddCheckPluginLog('\n发错出现错误\n$e\n$s');
+    } catch (_) {
     }
   }
 }

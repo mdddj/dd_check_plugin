@@ -1,3 +1,11 @@
+
+
+# 3.0.0
+
+* Remove the `handle` parameter and use the `extend` parameter instead
+* Hive tools are added, but `FlutterX` plugin version `3.7.3` or later is required
+
+
 # 2.5.5
 
 doc update

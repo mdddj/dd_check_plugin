@@ -1,40 +1,82 @@
 part of dd_check_plugin;
 
+enum HiveGetTypes {
+  getBoxList("getBoxList"),
+  getKeys("getKeys"),
+  getValue("getValue");
 
+  const HiveGetTypes(this.action);
 
-class HiveToolManager extends ServerMessageHandle with HiveTools {
-
-  final List<String> boxNames;
-
-  HiveToolManager({required this.boxNames});
-
-
-
-  @override
-  void error(error) {}
-
-  @override
-  void mapMessageHandle(
-      Map<String, dynamic> data, SocketConnect socketConnect) {}
-
-  @override
-  void stringMessageHandle(String data) {}
-
-  @override
-  List<String> get getBoxNames => boxNames;
+  final String action;
 }
 
+class HiveToolManager extends ServerMessageHandle with HiveTools {
+  final List<DdPluginHiveBox> boxList;
 
+  HiveToolManager({required this.boxList});
 
+  @override
+  Future<void> mapMessageHandle(
+      Map<String, dynamic> data, SocketConnect socketConnect) async {
+    DDCheckPluginSetting.showLog = true;
+    Logger().i(data);
+    try {
+      final action = HivePluginAction.fromJson(data);
+      final type = action.handleType;
+      ddCheckPluginLog(jsonEncode(action));
+      switch (type) {
+        case HiveGetTypes.getBoxList:
+          socketConnect.sendMap(
+              PublicSendModel.arr(
+                      type: type.action,
+                      data: getBoxNames.map((e) => e.boxName).toList())
+                  .toJson(),
+              'hive_${type.action}');
+          break;
+        case HiveGetTypes.getKeys:
+          final obj = action as HiveGetKeys;
+          if (socketConnect.appProjectName == obj.projectName) {
+            final box = await findBox(obj.boxName);
+            if (box != null) {
+              final sendModel = PublicSendModel.arr(
+                  type: type.action,
+                  data: box.keys.map((e) => e.toString()).toList());
+              socketConnect.sendMap(sendModel.toJson(), 'hive_${type.action}');
+            }
+          }
+          break;
+        case HiveGetTypes.getValue:
+          final obj = action as HiveGetValue;
+          if (socketConnect.appProjectName == obj.projectName) {
+            final box = await findBox(obj.boxName);
+            if (box != null) {
+              final keys = box.keys;
+              try {
+                final find =
+                    keys.firstWhere((element) => element.toString() == obj.key);
+                final getValue = box.get(find);
+                final makeModel =
+                    PublicSendModel.any(type: type.action, data: getValue);
+                socketConnect.sendMap(
+                    makeModel.toJson(), 'hive_${type.action}');
+              } catch (e) {
+                ddCheckPluginLog('Not find key : ${obj.toJson()}');
+              }
+            }
+          }
+          break;
+      }
+    } catch (e, s) {
+      Logger().e(e, error: e, stackTrace: s);
+    }
+  }
 
-
+  @override
+  List<DdPluginHiveBox> get getBoxNames => boxList;
+}
 
 mixin HiveTools {
-
-
-
-
-  List<String> get getBoxNames;
+  List<DdPluginHiveBox> get getBoxNames;
 
   /// 打开一个盒子,并获取所有键
   Future<List<String>> openBox(String boxName) async {
@@ -48,5 +90,20 @@ mixin HiveTools {
     return keys.map((e) => e.toString()).toList();
   }
 
-  Future<void> getValue(String boxName, dynamic name) async {}
+  Future<Box?> findBox(String boxName) async {
+    try {
+      final find =
+          getBoxNames.firstWhere((element) => element.boxName == boxName);
+      return find.getBox;
+    } catch (_) {}
+    return null;
+  }
+}
+
+abstract class DdPluginHiveBox<T> {
+  final String boxName;
+
+  DdPluginHiveBox(this.boxName);
+
+  Future<Box<T>> get getBox;
 }

@@ -6,24 +6,28 @@ part of 'socket_send_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SocketSendModel _$$_SocketSendModelFromJson(Map<String, dynamic> json) =>
-    _$_SocketSendModel(
+_$SocketSendModelImpl _$$SocketSendModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SocketSendModelImpl(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_SocketSendModelToJson(_$_SocketSendModel instance) =>
+Map<String, dynamic> _$$SocketSendModelImplToJson(
+        _$SocketSendModelImpl instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$SpViewSendModel _$$SpViewSendModelFromJson(Map<String, dynamic> json) =>
-    _$SpViewSendModel(
+_$SpViewSendModelImpl _$$SpViewSendModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SpViewSendModelImpl(
       type: json['type'] as String? ?? "",
       model: SpView.fromJson(json['jsonString'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SpViewSendModelToJson(_$SpViewSendModel instance) =>
+Map<String, dynamic> _$$SpViewSendModelImplToJson(
+        _$SpViewSendModelImpl instance) =>
     <String, dynamic>{
       'type': instance.type,
       'jsonString': modelToString(instance.model),

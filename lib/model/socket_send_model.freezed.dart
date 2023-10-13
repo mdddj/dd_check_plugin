@@ -95,30 +95,30 @@ class _$SocketSendModelCopyWithImpl<$Res, $Val extends SocketSendModel>
 }
 
 /// @nodoc
-abstract class _$$_SocketSendModelCopyWith<$Res> {
-  factory _$$_SocketSendModelCopyWith(
-          _$_SocketSendModel value, $Res Function(_$_SocketSendModel) then) =
-      __$$_SocketSendModelCopyWithImpl<$Res>;
+abstract class _$$SocketSendModelImplCopyWith<$Res> {
+  factory _$$SocketSendModelImplCopyWith(_$SocketSendModelImpl value,
+          $Res Function(_$SocketSendModelImpl) then) =
+      __$$SocketSendModelImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SocketSendModelCopyWithImpl<$Res>
-    extends _$SocketSendModelCopyWithImpl<$Res, _$_SocketSendModel>
-    implements _$$_SocketSendModelCopyWith<$Res> {
-  __$$_SocketSendModelCopyWithImpl(
-      _$_SocketSendModel _value, $Res Function(_$_SocketSendModel) _then)
+class __$$SocketSendModelImplCopyWithImpl<$Res>
+    extends _$SocketSendModelCopyWithImpl<$Res, _$SocketSendModelImpl>
+    implements _$$SocketSendModelImplCopyWith<$Res> {
+  __$$SocketSendModelImplCopyWithImpl(
+      _$SocketSendModelImpl _value, $Res Function(_$SocketSendModelImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_SocketSendModel extends _SocketSendModel {
-  const _$_SocketSendModel({final String? $type})
+class _$SocketSendModelImpl extends _SocketSendModel {
+  const _$SocketSendModelImpl({final String? $type})
       : $type = $type ?? 'default',
         super._();
 
-  factory _$_SocketSendModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SocketSendModelFromJson(json);
+  factory _$SocketSendModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SocketSendModelImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -131,7 +131,7 @@ class _$_SocketSendModel extends _SocketSendModel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SocketSendModel);
+        (other.runtimeType == runtimeType && other is _$SocketSendModelImpl);
   }
 
   @JsonKey(ignore: true)
@@ -208,25 +208,25 @@ class _$_SocketSendModel extends _SocketSendModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SocketSendModelToJson(
+    return _$$SocketSendModelImplToJson(
       this,
     );
   }
 }
 
 abstract class _SocketSendModel extends SocketSendModel {
-  const factory _SocketSendModel() = _$_SocketSendModel;
+  const factory _SocketSendModel() = _$SocketSendModelImpl;
   const _SocketSendModel._() : super._();
 
   factory _SocketSendModel.fromJson(Map<String, dynamic> json) =
-      _$_SocketSendModel.fromJson;
+      _$SocketSendModelImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$SpViewSendModelCopyWith<$Res> {
-  factory _$$SpViewSendModelCopyWith(
-          _$SpViewSendModel value, $Res Function(_$SpViewSendModel) then) =
-      __$$SpViewSendModelCopyWithImpl<$Res>;
+abstract class _$$SpViewSendModelImplCopyWith<$Res> {
+  factory _$$SpViewSendModelImplCopyWith(_$SpViewSendModelImpl value,
+          $Res Function(_$SpViewSendModelImpl) then) =
+      __$$SpViewSendModelImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {@JsonKey(name: "type") String type,
@@ -236,11 +236,11 @@ abstract class _$$SpViewSendModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SpViewSendModelCopyWithImpl<$Res>
-    extends _$SocketSendModelCopyWithImpl<$Res, _$SpViewSendModel>
-    implements _$$SpViewSendModelCopyWith<$Res> {
-  __$$SpViewSendModelCopyWithImpl(
-      _$SpViewSendModel _value, $Res Function(_$SpViewSendModel) _then)
+class __$$SpViewSendModelImplCopyWithImpl<$Res>
+    extends _$SocketSendModelCopyWithImpl<$Res, _$SpViewSendModelImpl>
+    implements _$$SpViewSendModelImplCopyWith<$Res> {
+  __$$SpViewSendModelImplCopyWithImpl(
+      _$SpViewSendModelImpl _value, $Res Function(_$SpViewSendModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -249,7 +249,7 @@ class __$$SpViewSendModelCopyWithImpl<$Res>
     Object? type = null,
     Object? model = null,
   }) {
-    return _then(_$SpViewSendModel(
+    return _then(_$SpViewSendModelImpl(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -272,16 +272,16 @@ class __$$SpViewSendModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SpViewSendModel extends SpViewSendModel {
-  _$SpViewSendModel(
+class _$SpViewSendModelImpl extends SpViewSendModel {
+  _$SpViewSendModelImpl(
       {@JsonKey(name: "type") this.type = "",
       @JsonKey(name: "jsonString", toJson: modelToString) required this.model,
       final String? $type})
       : $type = $type ?? 'sp',
         super._();
 
-  factory _$SpViewSendModel.fromJson(Map<String, dynamic> json) =>
-      _$$SpViewSendModelFromJson(json);
+  factory _$SpViewSendModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SpViewSendModelImplFromJson(json);
 
   @override
   @JsonKey(name: "type")
@@ -302,7 +302,7 @@ class _$SpViewSendModel extends SpViewSendModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SpViewSendModel &&
+            other is _$SpViewSendModelImpl &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.model, model) || other.model == model));
   }
@@ -314,8 +314,9 @@ class _$SpViewSendModel extends SpViewSendModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SpViewSendModelCopyWith<_$SpViewSendModel> get copyWith =>
-      __$$SpViewSendModelCopyWithImpl<_$SpViewSendModel>(this, _$identity);
+  _$$SpViewSendModelImplCopyWith<_$SpViewSendModelImpl> get copyWith =>
+      __$$SpViewSendModelImplCopyWithImpl<_$SpViewSendModelImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -387,7 +388,7 @@ class _$SpViewSendModel extends SpViewSendModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SpViewSendModelToJson(
+    return _$$SpViewSendModelImplToJson(
       this,
     );
   }
@@ -395,20 +396,19 @@ class _$SpViewSendModel extends SpViewSendModel {
 
 abstract class SpViewSendModel extends SocketSendModel {
   factory SpViewSendModel(
-      {@JsonKey(name: "type")
-          final String type,
+      {@JsonKey(name: "type") final String type,
       @JsonKey(name: "jsonString", toJson: modelToString)
-          required final SpView model}) = _$SpViewSendModel;
+      required final SpView model}) = _$SpViewSendModelImpl;
   SpViewSendModel._() : super._();
 
   factory SpViewSendModel.fromJson(Map<String, dynamic> json) =
-      _$SpViewSendModel.fromJson;
+      _$SpViewSendModelImpl.fromJson;
 
   @JsonKey(name: "type")
   String get type;
   @JsonKey(name: "jsonString", toJson: modelToString)
   SpView get model;
   @JsonKey(ignore: true)
-  _$$SpViewSendModelCopyWith<_$SpViewSendModel> get copyWith =>
+  _$$SpViewSendModelImplCopyWith<_$SpViewSendModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

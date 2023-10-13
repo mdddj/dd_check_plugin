@@ -6,13 +6,13 @@ part of 'response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ResponseModel _$$_ResponseModelFromJson(Map<String, dynamic> json) =>
-    _$_ResponseModel(
+_$ResponseModelImpl _$$ResponseModelImplFromJson(Map<String, dynamic> json) =>
+    _$ResponseModelImpl(
       json['json'] as String,
       json['type'] as String,
     );
 
-Map<String, dynamic> _$$_ResponseModelToJson(_$_ResponseModel instance) =>
+Map<String, dynamic> _$$ResponseModelImplToJson(_$ResponseModelImpl instance) =>
     <String, dynamic>{
       'json': instance.json,
       'type': instance.type,

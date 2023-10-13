@@ -97,30 +97,30 @@ class _$SwiftActionCopyWithImpl<$Res, $Val extends SwiftAction>
 }
 
 /// @nodoc
-abstract class _$$_SwiftActionCopyWith<$Res> {
-  factory _$$_SwiftActionCopyWith(
-          _$_SwiftAction value, $Res Function(_$_SwiftAction) then) =
-      __$$_SwiftActionCopyWithImpl<$Res>;
+abstract class _$$SwiftActionImplCopyWith<$Res> {
+  factory _$$SwiftActionImplCopyWith(
+          _$SwiftActionImpl value, $Res Function(_$SwiftActionImpl) then) =
+      __$$SwiftActionImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SwiftActionCopyWithImpl<$Res>
-    extends _$SwiftActionCopyWithImpl<$Res, _$_SwiftAction>
-    implements _$$_SwiftActionCopyWith<$Res> {
-  __$$_SwiftActionCopyWithImpl(
-      _$_SwiftAction _value, $Res Function(_$_SwiftAction) _then)
+class __$$SwiftActionImplCopyWithImpl<$Res>
+    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftActionImpl>
+    implements _$$SwiftActionImplCopyWith<$Res> {
+  __$$SwiftActionImplCopyWithImpl(
+      _$SwiftActionImpl _value, $Res Function(_$SwiftActionImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_SwiftAction extends _SwiftAction {
-  const _$_SwiftAction({final String? $type})
+class _$SwiftActionImpl extends _SwiftAction {
+  const _$SwiftActionImpl({final String? $type})
       : $type = $type ?? 'DEFAULT',
         super._();
 
-  factory _$_SwiftAction.fromJson(Map<String, dynamic> json) =>
-      _$$_SwiftActionFromJson(json);
+  factory _$SwiftActionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SwiftActionImplFromJson(json);
 
   @JsonKey(name: 'action')
   final String $type;
@@ -133,7 +133,7 @@ class _$_SwiftAction extends _SwiftAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SwiftAction);
+        (other.runtimeType == runtimeType && other is _$SwiftActionImpl);
   }
 
   @JsonKey(ignore: true)
@@ -210,45 +210,45 @@ class _$_SwiftAction extends _SwiftAction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SwiftActionToJson(
+    return _$$SwiftActionImplToJson(
       this,
     );
   }
 }
 
 abstract class _SwiftAction extends SwiftAction {
-  const factory _SwiftAction() = _$_SwiftAction;
+  const factory _SwiftAction() = _$SwiftActionImpl;
   const _SwiftAction._() : super._();
 
   factory _SwiftAction.fromJson(Map<String, dynamic> json) =
-      _$_SwiftAction.fromJson;
+      _$SwiftActionImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$SwiftSpKeysActionCopyWith<$Res> {
-  factory _$$SwiftSpKeysActionCopyWith(
-          _$SwiftSpKeysAction value, $Res Function(_$SwiftSpKeysAction) then) =
-      __$$SwiftSpKeysActionCopyWithImpl<$Res>;
+abstract class _$$SwiftSpKeysActionImplCopyWith<$Res> {
+  factory _$$SwiftSpKeysActionImplCopyWith(_$SwiftSpKeysActionImpl value,
+          $Res Function(_$SwiftSpKeysActionImpl) then) =
+      __$$SwiftSpKeysActionImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SwiftSpKeysActionCopyWithImpl<$Res>
-    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftSpKeysAction>
-    implements _$$SwiftSpKeysActionCopyWith<$Res> {
-  __$$SwiftSpKeysActionCopyWithImpl(
-      _$SwiftSpKeysAction _value, $Res Function(_$SwiftSpKeysAction) _then)
+class __$$SwiftSpKeysActionImplCopyWithImpl<$Res>
+    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftSpKeysActionImpl>
+    implements _$$SwiftSpKeysActionImplCopyWith<$Res> {
+  __$$SwiftSpKeysActionImplCopyWithImpl(_$SwiftSpKeysActionImpl _value,
+      $Res Function(_$SwiftSpKeysActionImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SwiftSpKeysAction extends SwiftSpKeysAction {
-  _$SwiftSpKeysAction({final String? $type})
+class _$SwiftSpKeysActionImpl extends SwiftSpKeysAction {
+  _$SwiftSpKeysActionImpl({final String? $type})
       : $type = $type ?? 'SP_KEY',
         super._();
 
-  factory _$SwiftSpKeysAction.fromJson(Map<String, dynamic> json) =>
-      _$$SwiftSpKeysActionFromJson(json);
+  factory _$SwiftSpKeysActionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SwiftSpKeysActionImplFromJson(json);
 
   @JsonKey(name: 'action')
   final String $type;
@@ -261,7 +261,7 @@ class _$SwiftSpKeysAction extends SwiftSpKeysAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SwiftSpKeysAction);
+        (other.runtimeType == runtimeType && other is _$SwiftSpKeysActionImpl);
   }
 
   @JsonKey(ignore: true)
@@ -338,35 +338,36 @@ class _$SwiftSpKeysAction extends SwiftSpKeysAction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SwiftSpKeysActionToJson(
+    return _$$SwiftSpKeysActionImplToJson(
       this,
     );
   }
 }
 
 abstract class SwiftSpKeysAction extends SwiftAction {
-  factory SwiftSpKeysAction() = _$SwiftSpKeysAction;
+  factory SwiftSpKeysAction() = _$SwiftSpKeysActionImpl;
   SwiftSpKeysAction._() : super._();
 
   factory SwiftSpKeysAction.fromJson(Map<String, dynamic> json) =
-      _$SwiftSpKeysAction.fromJson;
+      _$SwiftSpKeysActionImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$SwiftSpGetValueActionCopyWith<$Res> {
-  factory _$$SwiftSpGetValueActionCopyWith(_$SwiftSpGetValueAction value,
-          $Res Function(_$SwiftSpGetValueAction) then) =
-      __$$SwiftSpGetValueActionCopyWithImpl<$Res>;
+abstract class _$$SwiftSpGetValueActionImplCopyWith<$Res> {
+  factory _$$SwiftSpGetValueActionImplCopyWith(
+          _$SwiftSpGetValueActionImpl value,
+          $Res Function(_$SwiftSpGetValueActionImpl) then) =
+      __$$SwiftSpGetValueActionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String data});
 }
 
 /// @nodoc
-class __$$SwiftSpGetValueActionCopyWithImpl<$Res>
-    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftSpGetValueAction>
-    implements _$$SwiftSpGetValueActionCopyWith<$Res> {
-  __$$SwiftSpGetValueActionCopyWithImpl(_$SwiftSpGetValueAction _value,
-      $Res Function(_$SwiftSpGetValueAction) _then)
+class __$$SwiftSpGetValueActionImplCopyWithImpl<$Res>
+    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftSpGetValueActionImpl>
+    implements _$$SwiftSpGetValueActionImplCopyWith<$Res> {
+  __$$SwiftSpGetValueActionImplCopyWithImpl(_$SwiftSpGetValueActionImpl _value,
+      $Res Function(_$SwiftSpGetValueActionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -374,7 +375,7 @@ class __$$SwiftSpGetValueActionCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$SwiftSpGetValueAction(
+    return _then(_$SwiftSpGetValueActionImpl(
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -385,13 +386,13 @@ class __$$SwiftSpGetValueActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SwiftSpGetValueAction extends SwiftSpGetValueAction {
-  _$SwiftSpGetValueAction({required this.data, final String? $type})
+class _$SwiftSpGetValueActionImpl extends SwiftSpGetValueAction {
+  _$SwiftSpGetValueActionImpl({required this.data, final String? $type})
       : $type = $type ?? 'SP_GET_VALUE',
         super._();
 
-  factory _$SwiftSpGetValueAction.fromJson(Map<String, dynamic> json) =>
-      _$$SwiftSpGetValueActionFromJson(json);
+  factory _$SwiftSpGetValueActionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SwiftSpGetValueActionImplFromJson(json);
 
   @override
   final String data;
@@ -408,7 +409,7 @@ class _$SwiftSpGetValueAction extends SwiftSpGetValueAction {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwiftSpGetValueAction &&
+            other is _$SwiftSpGetValueActionImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -419,9 +420,9 @@ class _$SwiftSpGetValueAction extends SwiftSpGetValueAction {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SwiftSpGetValueActionCopyWith<_$SwiftSpGetValueAction> get copyWith =>
-      __$$SwiftSpGetValueActionCopyWithImpl<_$SwiftSpGetValueAction>(
-          this, _$identity);
+  _$$SwiftSpGetValueActionImplCopyWith<_$SwiftSpGetValueActionImpl>
+      get copyWith => __$$SwiftSpGetValueActionImplCopyWithImpl<
+          _$SwiftSpGetValueActionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -493,7 +494,7 @@ class _$SwiftSpGetValueAction extends SwiftSpGetValueAction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SwiftSpGetValueActionToJson(
+    return _$$SwiftSpGetValueActionImplToJson(
       this,
     );
   }
@@ -501,14 +502,14 @@ class _$SwiftSpGetValueAction extends SwiftSpGetValueAction {
 
 abstract class SwiftSpGetValueAction extends SwiftAction {
   factory SwiftSpGetValueAction({required final String data}) =
-      _$SwiftSpGetValueAction;
+      _$SwiftSpGetValueActionImpl;
   SwiftSpGetValueAction._() : super._();
 
   factory SwiftSpGetValueAction.fromJson(Map<String, dynamic> json) =
-      _$SwiftSpGetValueAction.fromJson;
+      _$SwiftSpGetValueActionImpl.fromJson;
 
   String get data;
   @JsonKey(ignore: true)
-  _$$SwiftSpGetValueActionCopyWith<_$SwiftSpGetValueAction> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SwiftSpGetValueActionImplCopyWith<_$SwiftSpGetValueActionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
