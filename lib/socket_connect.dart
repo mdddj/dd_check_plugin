@@ -77,8 +77,8 @@ class SocketConnect {
       String? initHost,
       DataFormatVersions? version,
       ValueChanged<Socket>? connectSuccess,
-      ServerMessageHandle? handle,
-      String? projectName}) async {
+      String? projectName,
+      required List<DdPluginExtend> extend}) async {
     String? pName = projectName;
     String version = '0.0';
     final infos = await PackageInfo.fromPlatform();
@@ -99,7 +99,7 @@ class SocketConnect {
     if (socket != null && ip.isNotEmpty) {
       socket!.listen((event) {
         var str = utf8.decode(event..buffer.asByteData());
-        responseHandle(str, handle);
+        responseHandle(str, extend);
       }, onDone: () {
         debugPrint("连接断开,准备重连");
       }, onError: (e) {
@@ -109,15 +109,17 @@ class SocketConnect {
   }
 
   /// 处理插件返回的数据
-  void responseHandle(String data, ServerMessageHandle? handle) {
-    try {
-      final map = jsonDecode(data);
-      handle?.mapMessageHandle(map,this);
-      final model = ResponseModel.fromJson(map);
-      model.handle();
-    } catch (e) {
-      ddCheckPluginLog('处理idea返回数据失败:$e');
-      handle?.stringMessageHandle(data);
+  void responseHandle(String data, List<ServerMessageHandle> handle) {
+    for (var element in handle) {
+      try {
+        final map = jsonDecode(data);
+        element.mapMessageHandle(map, this);
+        final model = ResponseModel.fromJson(map);
+        model.handle();
+      } catch (e) {
+        ddCheckPluginLog('处理idea返回数据失败:$e');
+        element.stringMessageHandle(data);
+      }
     }
   }
 

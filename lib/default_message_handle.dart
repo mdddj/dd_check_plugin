@@ -24,12 +24,7 @@ class DefaultPluginMessageHandle extends ServerMessageHandle {
 
   @override
   void stringMessageHandle(String data) {
-    // debugPrint("接收到string对象:$data");
-    try{
 
-    }catch(e){
-      debugPrint("转换模型失败");
-    }
   }
 
 }

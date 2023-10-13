@@ -1,4 +1,9 @@
 part of dd_check_plugin;
+
+
+///扩展
+typedef DdPluginExtend = ServerMessageHandle;
+
 ///服务端的消息处理
 abstract class ServerMessageHandle {
 

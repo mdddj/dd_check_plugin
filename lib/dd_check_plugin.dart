@@ -61,9 +61,12 @@ class DdCheckPlugin {
       String? initHost,
       DataFormatVersions? version,
       ValueChanged<Socket>? conectSuccess,
-      ServerMessageHandle? handle,
       CustomCoverterResponseData? customCoverterResponseData,
-      String? projectName}) async {
+      String? projectName,List<DdPluginExtend>? extend}) async {
+
+    final extendList = extend??[];
+    extendList.add(DefaultPluginMessageHandle());
+
     final s = SocketConnect();
     await s.connect(
         defaultProjectName: defaultProjectName,
@@ -74,7 +77,7 @@ class DdCheckPlugin {
         version: version,
         connectSuccess: conectSuccess,
         projectName: projectName,
-        handle: handle ?? DefaultPluginMessageHandle());
+        extend: extendList);
     dio.interceptors.add(DioHttpRequestInterceptor(
         version ?? DataFormatVersions.ideaPlugin, s,
         customCoverterResponseData: customCoverterResponseData,
