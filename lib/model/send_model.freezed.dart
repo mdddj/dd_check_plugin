@@ -21,40 +21,23 @@ SendResponseModel _$SendResponseModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SendResponseModel {
   String get url => throw _privateConstructorUsedError;
-  set url(String value) => throw _privateConstructorUsedError;
   String get method => throw _privateConstructorUsedError;
-  set method(String value) => throw _privateConstructorUsedError;
   dynamic get data => throw _privateConstructorUsedError;
-  set data(dynamic value) => throw _privateConstructorUsedError;
   Map<String, dynamic> get queryParams => throw _privateConstructorUsedError;
-  set queryParams(Map<String, dynamic> value) =>
-      throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
-  set statusCode(int value) => throw _privateConstructorUsedError;
   dynamic get body => throw _privateConstructorUsedError;
-  set body(dynamic value) => throw _privateConstructorUsedError;
   Map<String, dynamic> get headers => throw _privateConstructorUsedError;
-  set headers(Map<String, dynamic> value) => throw _privateConstructorUsedError;
   Map<String, dynamic> get responseHeaders =>
       throw _privateConstructorUsedError;
-  set responseHeaders(Map<String, dynamic> value) =>
-      throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
-  set timestamp(int value) => throw _privateConstructorUsedError;
   String get projectName => throw _privateConstructorUsedError;
-  set projectName(String value) => throw _privateConstructorUsedError;
   @JsonKey(
       toJson: null,
       fromJson: null,
       includeFromJson: false,
       includeToJson: false)
   Response<dynamic>? get response => throw _privateConstructorUsedError;
-  @JsonKey(
-      toJson: null,
-      fromJson: null,
-      includeFromJson: false,
-      includeToJson: false)
-  set response(Response<dynamic>? value) => throw _privateConstructorUsedError;
+  List<String> get extendNotes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,7 +67,8 @@ abstract class $SendResponseModelCopyWith<$Res> {
           fromJson: null,
           includeFromJson: false,
           includeToJson: false)
-      Response<dynamic>? response});
+      Response<dynamic>? response,
+      List<String> extendNotes});
 }
 
 /// @nodoc
@@ -111,6 +95,7 @@ class _$SendResponseModelCopyWithImpl<$Res, $Val extends SendResponseModel>
     Object? timestamp = null,
     Object? projectName = null,
     Object? response = freezed,
+    Object? extendNotes = null,
   }) {
     return _then(_value.copyWith(
       url: null == url
@@ -157,6 +142,10 @@ class _$SendResponseModelCopyWithImpl<$Res, $Val extends SendResponseModel>
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
               as Response<dynamic>?,
+      extendNotes: null == extendNotes
+          ? _value.extendNotes
+          : extendNotes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -185,7 +174,8 @@ abstract class _$$SendResponseModelImplCopyWith<$Res>
           fromJson: null,
           includeFromJson: false,
           includeToJson: false)
-      Response<dynamic>? response});
+      Response<dynamic>? response,
+      List<String> extendNotes});
 }
 
 /// @nodoc
@@ -210,6 +200,7 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
     Object? timestamp = null,
     Object? projectName = null,
     Object? response = freezed,
+    Object? extendNotes = null,
   }) {
     return _then(_$SendResponseModelImpl(
       url: null == url
@@ -225,7 +216,7 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
       queryParams: null == queryParams
-          ? _value.queryParams
+          ? _value._queryParams
           : queryParams // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       statusCode: null == statusCode
@@ -237,11 +228,11 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
           : body // ignore: cast_nullable_to_non_nullable
               as dynamic,
       headers: null == headers
-          ? _value.headers
+          ? _value._headers
           : headers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       responseHeaders: null == responseHeaders
-          ? _value.responseHeaders
+          ? _value._responseHeaders
           : responseHeaders // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       timestamp: null == timestamp
@@ -256,6 +247,10 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
               as Response<dynamic>?,
+      extendNotes: null == extendNotes
+          ? _value._extendNotes
+          : extendNotes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -267,11 +262,11 @@ class _$SendResponseModelImpl implements _SendResponseModel {
       {this.url = '',
       this.method = '',
       this.data,
-      this.queryParams = const {},
+      final Map<String, dynamic> queryParams = const {},
       this.statusCode = 0,
       this.body,
-      this.headers = const {},
-      this.responseHeaders = const {},
+      final Map<String, dynamic> headers = const {},
+      final Map<String, dynamic> responseHeaders = const {},
       this.timestamp = 0,
       this.projectName = '',
       @JsonKey(
@@ -279,51 +274,125 @@ class _$SendResponseModelImpl implements _SendResponseModel {
           fromJson: null,
           includeFromJson: false,
           includeToJson: false)
-      this.response});
+      this.response,
+      final List<String> extendNotes = const []})
+      : _queryParams = queryParams,
+        _headers = headers,
+        _responseHeaders = responseHeaders,
+        _extendNotes = extendNotes;
 
   factory _$SendResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendResponseModelImplFromJson(json);
 
   @override
   @JsonKey()
-  String url;
+  final String url;
   @override
   @JsonKey()
-  String method;
+  final String method;
   @override
-  dynamic data;
-  @override
-  @JsonKey()
-  Map<String, dynamic> queryParams;
+  final dynamic data;
+  final Map<String, dynamic> _queryParams;
   @override
   @JsonKey()
-  int statusCode;
-  @override
-  dynamic body;
-  @override
-  @JsonKey()
-  Map<String, dynamic> headers;
-  @override
-  @JsonKey()
-  Map<String, dynamic> responseHeaders;
+  Map<String, dynamic> get queryParams {
+    if (_queryParams is EqualUnmodifiableMapView) return _queryParams;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_queryParams);
+  }
+
   @override
   @JsonKey()
-  int timestamp;
+  final int statusCode;
+  @override
+  final dynamic body;
+  final Map<String, dynamic> _headers;
   @override
   @JsonKey()
-  String projectName;
+  Map<String, dynamic> get headers {
+    if (_headers is EqualUnmodifiableMapView) return _headers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_headers);
+  }
+
+  final Map<String, dynamic> _responseHeaders;
+  @override
+  @JsonKey()
+  Map<String, dynamic> get responseHeaders {
+    if (_responseHeaders is EqualUnmodifiableMapView) return _responseHeaders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_responseHeaders);
+  }
+
+  @override
+  @JsonKey()
+  final int timestamp;
+  @override
+  @JsonKey()
+  final String projectName;
   @override
   @JsonKey(
       toJson: null,
       fromJson: null,
       includeFromJson: false,
       includeToJson: false)
-  Response<dynamic>? response;
+  final Response<dynamic>? response;
+  final List<String> _extendNotes;
+  @override
+  @JsonKey()
+  List<String> get extendNotes {
+    if (_extendNotes is EqualUnmodifiableListView) return _extendNotes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_extendNotes);
+  }
 
   @override
   String toString() {
-    return 'SendResponseModel(url: $url, method: $method, data: $data, queryParams: $queryParams, statusCode: $statusCode, body: $body, headers: $headers, responseHeaders: $responseHeaders, timestamp: $timestamp, projectName: $projectName, response: $response)';
+    return 'SendResponseModel(url: $url, method: $method, data: $data, queryParams: $queryParams, statusCode: $statusCode, body: $body, headers: $headers, responseHeaders: $responseHeaders, timestamp: $timestamp, projectName: $projectName, response: $response, extendNotes: $extendNotes)';
   }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendResponseModelImpl &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.method, method) || other.method == method) &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality()
+                .equals(other._queryParams, _queryParams) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other._headers, _headers) &&
+            const DeepCollectionEquality()
+                .equals(other._responseHeaders, _responseHeaders) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.response, response) ||
+                other.response == response) &&
+            const DeepCollectionEquality()
+                .equals(other._extendNotes, _extendNotes));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      url,
+      method,
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(_queryParams),
+      statusCode,
+      const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(_headers),
+      const DeepCollectionEquality().hash(_responseHeaders),
+      timestamp,
+      projectName,
+      response,
+      const DeepCollectionEquality().hash(_extendNotes));
 
   @JsonKey(ignore: true)
   @override
@@ -342,56 +411,47 @@ class _$SendResponseModelImpl implements _SendResponseModel {
 
 abstract class _SendResponseModel implements SendResponseModel {
   factory _SendResponseModel(
-      {String url,
-      String method,
-      dynamic data,
-      Map<String, dynamic> queryParams,
-      int statusCode,
-      dynamic body,
-      Map<String, dynamic> headers,
-      Map<String, dynamic> responseHeaders,
-      int timestamp,
-      String projectName,
+      {final String url,
+      final String method,
+      final dynamic data,
+      final Map<String, dynamic> queryParams,
+      final int statusCode,
+      final dynamic body,
+      final Map<String, dynamic> headers,
+      final Map<String, dynamic> responseHeaders,
+      final int timestamp,
+      final String projectName,
       @JsonKey(
           toJson: null,
           fromJson: null,
           includeFromJson: false,
           includeToJson: false)
-      Response<dynamic>? response}) = _$SendResponseModelImpl;
+      final Response<dynamic>? response,
+      final List<String> extendNotes}) = _$SendResponseModelImpl;
 
   factory _SendResponseModel.fromJson(Map<String, dynamic> json) =
       _$SendResponseModelImpl.fromJson;
 
   @override
   String get url;
-  set url(String value);
   @override
   String get method;
-  set method(String value);
   @override
   dynamic get data;
-  set data(dynamic value);
   @override
   Map<String, dynamic> get queryParams;
-  set queryParams(Map<String, dynamic> value);
   @override
   int get statusCode;
-  set statusCode(int value);
   @override
   dynamic get body;
-  set body(dynamic value);
   @override
   Map<String, dynamic> get headers;
-  set headers(Map<String, dynamic> value);
   @override
   Map<String, dynamic> get responseHeaders;
-  set responseHeaders(Map<String, dynamic> value);
   @override
   int get timestamp;
-  set timestamp(int value);
   @override
   String get projectName;
-  set projectName(String value);
   @override
   @JsonKey(
       toJson: null,
@@ -399,12 +459,8 @@ abstract class _SendResponseModel implements SendResponseModel {
       includeFromJson: false,
       includeToJson: false)
   Response<dynamic>? get response;
-  @JsonKey(
-      toJson: null,
-      fromJson: null,
-      includeFromJson: false,
-      includeToJson: false)
-  set response(Response<dynamic>? value);
+  @override
+  List<String> get extendNotes;
   @override
   @JsonKey(ignore: true)
   _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>

@@ -20,6 +20,10 @@ _$SendResponseModelImpl _$$SendResponseModelImplFromJson(
           json['responseHeaders'] as Map<String, dynamic>? ?? const {},
       timestamp: json['timestamp'] as int? ?? 0,
       projectName: json['projectName'] as String? ?? '',
+      extendNotes: (json['extendNotes'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$SendResponseModelImplToJson(
@@ -35,4 +39,5 @@ Map<String, dynamic> _$$SendResponseModelImplToJson(
       'responseHeaders': instance.responseHeaders,
       'timestamp': instance.timestamp,
       'projectName': instance.projectName,
+      'extendNotes': instance.extendNotes,
     };

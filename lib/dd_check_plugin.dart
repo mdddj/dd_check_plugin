@@ -6,13 +6,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:logger/logger.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
 
 import 'hive/hive_plugin_action.dart';
 import 'model/public_send_model.dart';
-import 'model/response_model.dart';
 import 'model/send_model.dart';
 import 'model/socket_send_model.dart';
 import 'model/swift_ui_action.dart';
@@ -63,8 +61,7 @@ class DdCheckPlugin {
       Duration? timeOut,
       String? initHost,
       DataFormatVersions? version,
-      ValueChanged<Socket>? conectSuccess,
-      CustomCoverterResponseData? customCoverterResponseData,
+      ValueChanged<Socket>? conectSuccess, CustomHandleDioRequestModel? customCoverterResponseData,
       String? projectName,
       List<DdPluginExtend>? extend}) async {
     final extendList = extend ?? [];
@@ -80,9 +77,11 @@ class DdCheckPlugin {
         connectSuccess: conectSuccess,
         projectName: projectName,
         extend: extendList);
-    dio.interceptors.add(DioHttpRequestInterceptor(
-        version ?? DataFormatVersions.ideaPlugin, s,
-        customCoverterResponseData: customCoverterResponseData,
-        projectName: s.appProjectName));
+    if (dio.interceptors.whereType<DioHttpRequestInterceptor>().isEmpty) {
+      dio.interceptors.add(DioHttpRequestInterceptor(
+          version ?? DataFormatVersions.ideaPlugin, s,
+          customCoverterResponseData: customCoverterResponseData,
+          projectName: s.appProjectName));
+    }
   }
 }

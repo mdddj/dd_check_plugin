@@ -18,8 +18,6 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
   @override
   Future<void> mapMessageHandle(
       Map<String, dynamic> data, SocketConnect socketConnect) async {
-    DDCheckPluginSetting.showLog = true;
-    Logger().i(data);
     try {
       final action = HivePluginAction.fromJson(data);
       final type = action.handleType;
@@ -67,7 +65,7 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
           break;
       }
     } catch (e, s) {
-      Logger().e(e, error: e, stackTrace: s);
+      ddCheckPluginLog('Hive Tool Covert Data Error:$e,$s');
     }
   }
 

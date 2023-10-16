@@ -1,4 +1,10 @@
+# 3.0.2
 
+* dio request model add 'extendNotes' properties
+ 
+# 3.0.1
+
+* Fixed the issue that the dio interceptor was added repeatedly 
 
 # 3.0.0
 

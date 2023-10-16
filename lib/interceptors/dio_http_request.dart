@@ -22,11 +22,13 @@ class DioHttpRequestInterceptor extends Interceptor {
   final DataFormatVersions version;
 
   ///自定义解析返回数据
-  final CustomCoverterResponseData? customCoverterResponseData;
+  final CustomHandleDioRequestModel? customCoverterResponseData;
   final String? projectName;
 
   final SocketConnect socketConnect;
-  DioHttpRequestInterceptor(this.version, this.socketConnect, {this.customCoverterResponseData,this.projectName});
+
+  DioHttpRequestInterceptor(this.version, this.socketConnect,
+      {this.customCoverterResponseData, this.projectName});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -55,16 +57,14 @@ class DioHttpRequestInterceptor extends Interceptor {
     var endTime = DateTime.now();
     var timers = endTime.difference(startDate).inMilliseconds;
     final queryParameters = response.requestOptions.queryParameters;
-    if(queryParameters.isEmpty){
-      try{
-        final uri =  response.requestOptions.uri;
+    if (queryParameters.isEmpty) {
+      try {
+        final uri = response.requestOptions.uri;
         final params = uri.queryParameters;
         params.forEach((key, value) {
           queryParameters[key] = value;
         });
-      }catch(_){
-
-      }
+      } catch (_) {}
     }
     final model = SendResponseModel(
         url: response.requestOptions.uri.toString(),
@@ -79,9 +79,9 @@ class DioHttpRequestInterceptor extends Interceptor {
         projectName: projectName ?? '',
         response: response);
     if (customCoverterResponseData != null) {
-      customCoverterResponseData?.call(model).send(version,socketConnect);
+      customCoverterResponseData?.call(model).send(version, socketConnect);
     } else {
-      model.send(version,socketConnect);
+      model.send(version, socketConnect);
     }
   }
 }
