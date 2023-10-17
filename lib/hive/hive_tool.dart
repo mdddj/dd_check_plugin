@@ -52,13 +52,20 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
               try {
                 final find =
                     keys.firstWhere((element) => element.toString() == obj.key);
-                final getValue = box.get(find);
+                var getValue = box.get(find);
+
+                try {
+                  jsonEncode(getValue);
+                } catch (e) {
+                  getValue = getValue.toString();
+                }
+
                 final makeModel =
                     PublicSendModel.any(type: type.action, data: getValue);
                 socketConnect.sendMap(
                     makeModel.toJson(), 'hive_${type.action}');
-              } catch (e) {
-                ddCheckPluginLog('Not find key : ${obj.toJson()}');
+              } catch (e, s) {
+                ddCheckPluginLog('send data fail : ${obj.toJson()}  \n$e\n$s');
               }
             }
           }

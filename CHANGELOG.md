@@ -1,3 +1,11 @@
+# 3.0.4
+
+* bug fix
+
+# 3.0.3
+
+细节优化
+
 # 3.0.2
 
 * dio request model add 'extendNotes' properties

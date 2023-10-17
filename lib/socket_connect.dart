@@ -10,7 +10,7 @@ class SocketConnect {
   String? appProjectName;
 
   ///发送数据类型
-  DataFormatVersions? dataFormatVersions;
+  DataFormatVersions dataFormatVersions = DataFormatVersions.ideaPlugin;
 
 
 
@@ -52,12 +52,8 @@ class SocketConnect {
 
   ///发送数据
   void sendMap(Map<String,dynamic> map,String type) {
-    if(dataFormatVersions!=null){
-      ddCheckPluginLog("send data : $map");
-      sendDataMap(jsonEncode(map), type, dataFormatVersions!);
-    }else{
-      ddCheckPluginLog("DataFormatVersions is null");
-    }
+    ddCheckPluginLog("send data : $map");
+    sendDataMap(jsonEncode(map), type, dataFormatVersions);
   }
 
   Future<void> sendDataMap(
@@ -97,7 +93,7 @@ class SocketConnect {
       String? projectName,
       required List<DdPluginExtend> extend}) async {
     String? pName = projectName;
-    dataFormatVersions = version;
+    dataFormatVersions = version ?? DataFormatVersions.ideaPlugin;
     String v = '0.0';
     final infos = await PackageInfo.fromPlatform();
     if (pName == null) {
