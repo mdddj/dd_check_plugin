@@ -1,4 +1,4 @@
-part of dd_check_plugin;
+part of 'dd_check_plugin.dart';
 
 ///服务监听端口
 const serverPort = 9999;
@@ -11,9 +11,6 @@ class SocketConnect {
 
   ///发送数据类型
   DataFormatVersions dataFormatVersions = DataFormatVersions.ideaPlugin;
-
-
-
 
   ///发送消息 (dio 专用)
   Future<void> sendData(String msg, DataFormatVersions version,
@@ -32,7 +29,8 @@ class SocketConnect {
     switch (versions) {
       case DataFormatVersions.ideaPlugin:
         {
-          debugPrint("SendDataByModel does not support data of type ideaPlugin");
+          debugPrint(
+              "SendDataByModel does not support data of type ideaPlugin");
           break;
         }
       case DataFormatVersions.appleApp:
@@ -47,11 +45,12 @@ class SocketConnect {
     var l = int32BigEndianBytes(strLen);
     socket?.add(l..buffer.asByteData());
     socket?.write(sendDataString);
+    ddCheckPluginLog("send header length : ${bytes.length}");
+    ddCheckPluginLog('send dada string :$sendDataString');
   }
 
-
   ///发送数据
-  void sendMap(Map<String,dynamic> map,String type) {
+  void sendMap(Map<String, dynamic> map, String type) {
     ddCheckPluginLog("send data : $map");
     sendDataMap(jsonEncode(map), type, dataFormatVersions);
   }
@@ -91,36 +90,39 @@ class SocketConnect {
       DataFormatVersions? version,
       ValueChanged<Socket>? connectSuccess,
       String? projectName,
-      required List<DdPluginExtend> extend}) async {
-    String? pName = projectName;
-    dataFormatVersions = version ?? DataFormatVersions.ideaPlugin;
-    String v = '0.0';
-    final infos = await PackageInfo.fromPlatform();
-    if (pName == null) {
-      pName = infos.appName;
-      if (pName.isEmpty) {
-        pName = defaultProjectName ?? 'Flutter Project';
+      required List<ServerMessageHandle> extend}) async {
+    try {
+      String? pName = projectName;
+      dataFormatVersions = version ?? DataFormatVersions.ideaPlugin;
+      String v = '0.0';
+      final infos = await PackageInfo.fromPlatform();
+      if (pName == null) {
+        pName = infos.appName;
+        if (pName.isEmpty) {
+          pName = defaultProjectName ?? 'Flutter Project';
+        }
       }
+      v = infos.version;
+      pName = '$pName($v)';
+      appProjectName = pName;
+      String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
+          conectSuccess: (s) {
+        socket = s;
+        connectSuccess?.call(s);
+      }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
+      if (socket != null && ip.isNotEmpty) {
+        socket!.listen((event) {
+          var str = utf8.decode(event..buffer.asByteData());
+          responseHandle(str, extend);
+        }, onDone: () {
+          ddCheckPluginLog('Connection disconnected');
+        }, onError: (e) {
+          ddCheckPluginLog("An error occurred : $e");
+        });
+      } else {}
+    } on ConnectException {
+      rethrow;
     }
-    v = infos.version;
-    pName = '$pName($v)';
-    appProjectName = pName;
-    String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
-        conectSuccess: (s) {
-      socket = s;
-      connectSuccess?.call(s);
-    }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
-    if (socket != null && ip.isNotEmpty) {
-      socket!.listen((event) {
-        var str = utf8.decode(event..buffer.asByteData());
-        responseHandle(str, extend);
-      }, onDone: () {
-        ddCheckPluginLog('Connection disconnected');
-
-      }, onError: (e) {
-        ddCheckPluginLog("An error occurred : $e");
-      });
-    } else {}
   }
 
   /// 处理socket接收到的数据返回的数据

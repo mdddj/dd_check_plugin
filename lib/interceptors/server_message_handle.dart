@@ -1,8 +1,7 @@
-part of dd_check_plugin;
+part of '../dd_check_plugin.dart';
 
 
-///扩展
-typedef DdPluginExtend = ServerMessageHandle;
+
 
 ///服务端的消息处理
 abstract class ServerMessageHandle {

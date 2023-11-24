@@ -1,13 +1,11 @@
-part of dd_check_plugin;
+part of '../dd_check_plugin.dart';
+class HiveGetTypes {
+  final String keyType;
+  const HiveGetTypes(this.keyType);
+  static HiveGetTypes get getBoxList => const HiveGetTypes('getBoxList');
 
-enum HiveGetTypes {
-  getBoxList("getBoxList"),
-  getKeys("getKeys"),
-  getValue("getValue");
-
-  const HiveGetTypes(this.action);
-
-  final String action;
+  static HiveGetTypes get getKeys => const HiveGetTypes('getKeys');
+  static HiveGetTypes get getValue => const HiveGetTypes('getValue');
 }
 
 class HiveToolManager extends ServerMessageHandle with HiveTools {
@@ -20,59 +18,54 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
       Map<String, dynamic> data, SocketConnect socketConnect) async {
     try {
       final action = HivePluginAction.fromJson(data);
-      final type = action.handleType;
-      ddCheckPluginLog(jsonEncode(action));
-      switch (type) {
-        case HiveGetTypes.getBoxList:
-          socketConnect.sendMap(
-              PublicSendModel.arr(
-                      type: type.action,
-                      data: getBoxNames.map((e) => e.boxName).toList())
-                  .toJson(),
-              'hive_${type.action}');
-          break;
-        case HiveGetTypes.getKeys:
-          final obj = action as HiveGetKeys;
-          if (socketConnect.appProjectName == obj.projectName) {
-            final box = await findBox(obj.boxName);
-            if (box != null) {
-              final sendModel = PublicSendModel.arr(
-                  type: type.action,
-                  data: box.keys.map((e) => e.toString()).toList());
-              socketConnect.sendMap(sendModel.toJson(), 'hive_${type.action}');
-            }
+      final type = action.handleType.keyType;
+      if(type == HiveGetTypes.getBoxList.keyType){
+        socketConnect.sendMap(
+            PublicSendModel.arr(
+                type: type,
+                data: getBoxNames.map((e) => e.boxName).toList())
+                .toJson(),
+            'hive_$type');
+      }else if(type == HiveGetTypes.getKeys.keyType){
+        final obj = action as HiveGetKeys;
+        if (socketConnect.appProjectName == obj.projectName) {
+          final box = await findBox(obj.boxName);
+          if (box != null) {
+            final sendModel = PublicSendModel.arr(
+                type: type,
+                data: box.keys.map((e) => e.toString()).toList());
+            socketConnect.sendMap(sendModel.toJson(), 'hive_$type');
           }
-          break;
-        case HiveGetTypes.getValue:
-          final obj = action as HiveGetValue;
-          if (socketConnect.appProjectName == obj.projectName) {
-            final box = await findBox(obj.boxName);
-            if (box != null) {
-              final keys = box.keys;
+        }
+      }else if(type == HiveGetTypes.getValue.keyType){
+        final obj = action as HiveGetValue;
+        if (socketConnect.appProjectName == obj.projectName) {
+          final box = await findBox(obj.boxName);
+          if (box != null) {
+            final keys = box.keys;
+            try {
+              final find =
+              keys.firstWhere((element) => element.toString() == obj.key);
+              var getValue = box.get(find);
+
               try {
-                final find =
-                    keys.firstWhere((element) => element.toString() == obj.key);
-                var getValue = box.get(find);
-
-                try {
-                  jsonEncode(getValue);
-                } catch (e) {
-                  getValue = getValue.toString();
-                }
-
-                final makeModel =
-                    PublicSendModel.any(type: type.action, data: getValue);
-                socketConnect.sendMap(
-                    makeModel.toJson(), 'hive_${type.action}');
-              } catch (e, s) {
-                ddCheckPluginLog('send data fail : ${obj.toJson()}  \n$e\n$s');
+                jsonEncode(getValue);
+              } catch (e) {
+                getValue = getValue.toString();
               }
+
+              final makeModel =
+              PublicSendModel.any(type: type, data: getValue);
+              socketConnect.sendMap(
+                  makeModel.toJson(), 'hive_$type');
+            } catch (e, s) {
+              ddCheckPluginLog('send data fail : ${obj.toJson()}  \n$e\n$s');
             }
           }
-          break;
+        }
       }
-    } catch (e, s) {
-      ddCheckPluginLog('Hive Tool Covert Data Error:$e,$s');
+    } on CheckedFromJsonException catch (_) {
+      ddCheckPluginLog('Unable to process this request: ${jsonEncode(data)}');
     }
   }
 

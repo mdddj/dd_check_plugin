@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info/package_info.dart';
@@ -61,27 +62,32 @@ class DdCheckPlugin {
       Duration? timeOut,
       String? initHost,
       DataFormatVersions? version,
-      ValueChanged<Socket>? conectSuccess, CustomHandleDioRequestModel? customCoverterResponseData,
+      ValueChanged<Socket>? conectSuccess,
+      CustomHandleDioRequestModel? customCoverterResponseData,
       String? projectName,
-      List<DdPluginExtend>? extend}) async {
-    final extendList = extend ?? [];
-    extendList.add(DefaultPluginMessageHandle());
-    final s = SocketConnect();
-    await s.connect(
-        defaultProjectName: defaultProjectName,
-        port: port,
-        hostHandle: hostHandle,
-        timeOut: timeOut,
-        initHost: initHost,
-        version: version,
-        connectSuccess: conectSuccess,
-        projectName: projectName,
-        extend: extendList);
-    if (dio.interceptors.whereType<DioHttpRequestInterceptor>().isEmpty) {
-      dio.interceptors.add(DioHttpRequestInterceptor(
-          version ?? DataFormatVersions.ideaPlugin, s,
-          customCoverterResponseData: customCoverterResponseData,
-          projectName: s.appProjectName));
+      List<ServerMessageHandle>? extend}) async {
+    try {
+      final extendList = extend ?? <ServerMessageHandle>[];
+      extendList.add(DefaultPluginMessageHandle.instance);
+      final s = SocketConnect();
+      await s.connect(
+          defaultProjectName: defaultProjectName,
+          port: port,
+          hostHandle: hostHandle,
+          timeOut: timeOut,
+          initHost: initHost,
+          version: version,
+          connectSuccess: conectSuccess,
+          projectName: projectName,
+          extend: extendList);
+      if (dio.interceptors.whereType<DioHttpRequestInterceptor>().isEmpty) {
+        dio.interceptors.add(DioHttpRequestInterceptor(
+            version ?? DataFormatVersions.ideaPlugin, s,
+            customCoverterResponseData: customCoverterResponseData,
+            projectName: s.appProjectName));
+      }
+    } on ConnectException {
+      rethrow;
     }
   }
 }

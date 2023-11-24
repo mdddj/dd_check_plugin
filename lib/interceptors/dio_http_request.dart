@@ -1,4 +1,4 @@
-part of dd_check_plugin;
+part of '../dd_check_plugin.dart';
 
 class DDCheckPluginError extends Error {
   final String msg;

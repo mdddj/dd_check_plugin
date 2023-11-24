@@ -1,3 +1,4 @@
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,6 +34,7 @@ class SpViewUtil {
   static Future<void> sendAllSpKeys(SwiftSpKeysAction _,SocketConnect socketConnect) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
+    ddCheckPluginLog("sp ll keys ${keys.length}");
     socketConnect.sendDataByModel(SocketSendModel.sp(model: SpView(keys: keys),type: SpView.socketKey));
   }
 

@@ -1,4 +1,4 @@
-part of dd_check_plugin;
+part of 'dd_check_plugin.dart';
 
 class ConnectException implements Exception {
   final String msg;
@@ -76,7 +76,7 @@ class IpUtil {
         return results.firstWhere((e) => e.isNotEmpty, orElse: () => '');
       }
     } catch (e) {
-      throw const ConnectException("梁典典: 连接IDEA模块失败");
+      throw const ConnectException("FlutterX: connection fail");
     }
   }
 

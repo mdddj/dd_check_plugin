@@ -1,3 +1,40 @@
+# 3.1.1
+
+* 细节优化，删除中文报错
+
+# 3.1.0
+
+修改插件依赖约束
+```yaml
+environment:
+  sdk: ">=2.12.0 <4.0.0"
+  flutter: ">=2.10.0"
+```
+
+# 3.0.9
+
+dio: ^5.3.3  ->>>  dio: ^5.3.4
+
+# 3.0.8
+
+依赖升级
+
+
+# 3.0.7
+
+* Optimize Exception Handling
+
+# 3.0.6
+
+In order to resolve some plug-in dependency conflicts, if there is no problem, please do not update this version!
+
+> change `network_info_plus: ^3.0.2`
+
+
+# 3.0.5
+
+update flutter_lints to 3.0.0
+
 # 3.0.4
 
 * bug fix
