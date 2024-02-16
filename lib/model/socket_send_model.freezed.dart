@@ -20,6 +20,8 @@ SocketSendModel _$SocketSendModelFromJson(Map<String, dynamic> json) {
       return _SocketSendModel.fromJson(json);
     case 'sp':
       return SpViewSendModel.fromJson(json);
+    case 'ping':
+      return PingViewSendModel.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'SocketSendModel',
@@ -35,6 +37,7 @@ mixin _$SocketSendModel {
     required TResult Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)
         sp,
+    required TResult Function(@JsonKey(name: "type") String type) ping,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +46,7 @@ mixin _$SocketSendModel {
     TResult? Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
         sp,
+    TResult? Function(@JsonKey(name: "type") String type)? ping,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +55,7 @@ mixin _$SocketSendModel {
     TResult Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
         sp,
+    TResult Function(@JsonKey(name: "type") String type)? ping,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,18 +63,21 @@ mixin _$SocketSendModel {
   TResult map<TResult extends Object?>(
     TResult Function(_SocketSendModel value) $default, {
     required TResult Function(SpViewSendModel value) sp,
+    required TResult Function(PingViewSendModel value) ping,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_SocketSendModel value)? $default, {
     TResult? Function(SpViewSendModel value)? sp,
+    TResult? Function(PingViewSendModel value)? ping,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_SocketSendModel value)? $default, {
     TResult Function(SpViewSendModel value)? sp,
+    TResult Function(PingViewSendModel value)? ping,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,6 +153,7 @@ class _$SocketSendModelImpl extends _SocketSendModel {
     required TResult Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)
         sp,
+    required TResult Function(@JsonKey(name: "type") String type) ping,
   }) {
     return $default();
   }
@@ -156,6 +165,7 @@ class _$SocketSendModelImpl extends _SocketSendModel {
     TResult? Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
         sp,
+    TResult? Function(@JsonKey(name: "type") String type)? ping,
   }) {
     return $default?.call();
   }
@@ -167,6 +177,7 @@ class _$SocketSendModelImpl extends _SocketSendModel {
     TResult Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
         sp,
+    TResult Function(@JsonKey(name: "type") String type)? ping,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -180,6 +191,7 @@ class _$SocketSendModelImpl extends _SocketSendModel {
   TResult map<TResult extends Object?>(
     TResult Function(_SocketSendModel value) $default, {
     required TResult Function(SpViewSendModel value) sp,
+    required TResult Function(PingViewSendModel value) ping,
   }) {
     return $default(this);
   }
@@ -189,6 +201,7 @@ class _$SocketSendModelImpl extends _SocketSendModel {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_SocketSendModel value)? $default, {
     TResult? Function(SpViewSendModel value)? sp,
+    TResult? Function(PingViewSendModel value)? ping,
   }) {
     return $default?.call(this);
   }
@@ -198,6 +211,7 @@ class _$SocketSendModelImpl extends _SocketSendModel {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_SocketSendModel value)? $default, {
     TResult Function(SpViewSendModel value)? sp,
+    TResult Function(PingViewSendModel value)? ping,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -325,6 +339,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
     required TResult Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)
         sp,
+    required TResult Function(@JsonKey(name: "type") String type) ping,
   }) {
     return sp(type, model);
   }
@@ -336,6 +351,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
     TResult? Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
         sp,
+    TResult? Function(@JsonKey(name: "type") String type)? ping,
   }) {
     return sp?.call(type, model);
   }
@@ -347,6 +363,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
     TResult Function(@JsonKey(name: "type") String type,
             @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
         sp,
+    TResult Function(@JsonKey(name: "type") String type)? ping,
     required TResult orElse(),
   }) {
     if (sp != null) {
@@ -360,6 +377,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
   TResult map<TResult extends Object?>(
     TResult Function(_SocketSendModel value) $default, {
     required TResult Function(SpViewSendModel value) sp,
+    required TResult Function(PingViewSendModel value) ping,
   }) {
     return sp(this);
   }
@@ -369,6 +387,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_SocketSendModel value)? $default, {
     TResult? Function(SpViewSendModel value)? sp,
+    TResult? Function(PingViewSendModel value)? ping,
   }) {
     return sp?.call(this);
   }
@@ -378,6 +397,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_SocketSendModel value)? $default, {
     TResult Function(SpViewSendModel value)? sp,
+    TResult Function(PingViewSendModel value)? ping,
     required TResult orElse(),
   }) {
     if (sp != null) {
@@ -410,5 +430,175 @@ abstract class SpViewSendModel extends SocketSendModel {
   SpView get model;
   @JsonKey(ignore: true)
   _$$SpViewSendModelImplCopyWith<_$SpViewSendModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PingViewSendModelImplCopyWith<$Res> {
+  factory _$$PingViewSendModelImplCopyWith(_$PingViewSendModelImpl value,
+          $Res Function(_$PingViewSendModelImpl) then) =
+      __$$PingViewSendModelImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({@JsonKey(name: "type") String type});
+}
+
+/// @nodoc
+class __$$PingViewSendModelImplCopyWithImpl<$Res>
+    extends _$SocketSendModelCopyWithImpl<$Res, _$PingViewSendModelImpl>
+    implements _$$PingViewSendModelImplCopyWith<$Res> {
+  __$$PingViewSendModelImplCopyWithImpl(_$PingViewSendModelImpl _value,
+      $Res Function(_$PingViewSendModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$PingViewSendModelImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PingViewSendModelImpl extends PingViewSendModel {
+  _$PingViewSendModelImpl(
+      {@JsonKey(name: "type") this.type = "ping", final String? $type})
+      : $type = $type ?? 'ping',
+        super._();
+
+  factory _$PingViewSendModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PingViewSendModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: "type")
+  final String type;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SocketSendModel.ping(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PingViewSendModelImpl &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PingViewSendModelImplCopyWith<_$PingViewSendModelImpl> get copyWith =>
+      __$$PingViewSendModelImplCopyWithImpl<_$PingViewSendModelImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(@JsonKey(name: "type") String type,
+            @JsonKey(name: "jsonString", toJson: modelToString) SpView model)
+        sp,
+    required TResult Function(@JsonKey(name: "type") String type) ping,
+  }) {
+    return ping(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(@JsonKey(name: "type") String type,
+            @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
+        sp,
+    TResult? Function(@JsonKey(name: "type") String type)? ping,
+  }) {
+    return ping?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(@JsonKey(name: "type") String type,
+            @JsonKey(name: "jsonString", toJson: modelToString) SpView model)?
+        sp,
+    TResult Function(@JsonKey(name: "type") String type)? ping,
+    required TResult orElse(),
+  }) {
+    if (ping != null) {
+      return ping(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SocketSendModel value) $default, {
+    required TResult Function(SpViewSendModel value) sp,
+    required TResult Function(PingViewSendModel value) ping,
+  }) {
+    return ping(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SocketSendModel value)? $default, {
+    TResult? Function(SpViewSendModel value)? sp,
+    TResult? Function(PingViewSendModel value)? ping,
+  }) {
+    return ping?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SocketSendModel value)? $default, {
+    TResult Function(SpViewSendModel value)? sp,
+    TResult Function(PingViewSendModel value)? ping,
+    required TResult orElse(),
+  }) {
+    if (ping != null) {
+      return ping(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PingViewSendModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class PingViewSendModel extends SocketSendModel {
+  factory PingViewSendModel({@JsonKey(name: "type") final String type}) =
+      _$PingViewSendModelImpl;
+  PingViewSendModel._() : super._();
+
+  factory PingViewSendModel.fromJson(Map<String, dynamic> json) =
+      _$PingViewSendModelImpl.fromJson;
+
+  @JsonKey(name: "type")
+  String get type;
+  @JsonKey(ignore: true)
+  _$$PingViewSendModelImplCopyWith<_$PingViewSendModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

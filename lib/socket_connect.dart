@@ -12,6 +12,10 @@ class SocketConnect {
   ///发送数据类型
   DataFormatVersions dataFormatVersions = DataFormatVersions.ideaPlugin;
 
+  Timer? _heartTimer;
+
+
+
   ///发送消息 (dio 专用)
   Future<void> sendData(String msg, DataFormatVersions version,
       {String type = "request"}) async {
@@ -109,14 +113,17 @@ class SocketConnect {
           conectSuccess: (s) {
         socket = s;
         connectSuccess?.call(s);
+        _startPing();
       }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
       if (socket != null && ip.isNotEmpty) {
         socket!.listen((event) {
           var str = utf8.decode(event..buffer.asByteData());
           responseHandle(str, extend);
         }, onDone: () {
+          _closePing();
           ddCheckPluginLog('Connection disconnected');
         }, onError: (e) {
+          _closePing();
           ddCheckPluginLog("An error occurred : $e");
         });
       } else {}
@@ -139,4 +146,17 @@ class SocketConnect {
 
   Uint8List int32BigEndianBytes(int value) =>
       Uint8List(4)..buffer.asByteData().setInt32(0, value);
+
+
+  void _startPing(){
+    _heartTimer ??= Timer.periodic(const Duration(seconds: 10), (timer) {
+      sendDataByModel(SocketSendModel.ping());
+    });
+  }
+
+
+  void _closePing(){
+    _heartTimer?.cancel();
+    _heartTimer = null;
+  }
 }

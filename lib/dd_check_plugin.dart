@@ -1,5 +1,6 @@
 library dd_check_plugin;
 
+import 'dart:async';
 import 'dart:convert' hide json;
 import 'dart:io';
 
@@ -8,7 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:network_info_plus/network_info_plus.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'hive/hive_plugin_action.dart';
 import 'model/public_send_model.dart';

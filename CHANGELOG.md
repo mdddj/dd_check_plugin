@@ -1,3 +1,19 @@
+# 3.1.5
+
+Dependency upgrade
+
+# 3.1.4
+
+
+Add connection heartbeat logic
+
+# 3.1.3
+依赖升级
+
+# 3.1.2
+
+升级 dio
+
 # 3.1.1
 
 * 细节优化，删除中文报错

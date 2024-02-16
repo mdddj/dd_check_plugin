@@ -33,3 +33,17 @@ Map<String, dynamic> _$$SpViewSendModelImplToJson(
       'jsonString': modelToString(instance.model),
       'runtimeType': instance.$type,
     };
+
+_$PingViewSendModelImpl _$$PingViewSendModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PingViewSendModelImpl(
+      type: json['type'] as String? ?? "ping",
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$PingViewSendModelImplToJson(
+        _$PingViewSendModelImpl instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'runtimeType': instance.$type,
+    };
