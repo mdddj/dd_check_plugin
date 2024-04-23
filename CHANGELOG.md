@@ -1,3 +1,23 @@
+# 3.1.9
+
+依赖升级
+
+# 3.1.8
+
+依赖升级
+
+# 3.1.7
+
+Package upgrades
+```yaml
+network_info_plus: ^5.0.2
+package_info_plus: ^6.0.0
+```
+
+# 3.1.6
+
+Dependency upgrade
+
 # 3.1.5
 
 Dependency upgrade
