@@ -12,7 +12,7 @@ part of 'socket_send_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SocketSendModel _$SocketSendModelFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -81,6 +81,8 @@ mixin _$SocketSendModel {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SocketSendModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -100,6 +102,9 @@ class _$SocketSendModelCopyWithImpl<$Res, $Val extends SocketSendModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -116,6 +121,9 @@ class __$$SocketSendModelImplCopyWithImpl<$Res>
   __$$SocketSendModelImplCopyWithImpl(
       _$SocketSendModelImpl _value, $Res Function(_$SocketSendModelImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -137,12 +145,12 @@ class _$SocketSendModelImpl extends _SocketSendModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$SocketSendModelImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -257,6 +265,8 @@ class __$$SpViewSendModelImplCopyWithImpl<$Res>
       _$SpViewSendModelImpl _value, $Res Function(_$SpViewSendModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -275,6 +285,8 @@ class __$$SpViewSendModelImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SpViewCopyWith<$Res> get model {
@@ -313,7 +325,7 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SpViewSendModelImpl &&
@@ -321,11 +333,13 @@ class _$SpViewSendModelImpl extends SpViewSendModel {
             (identical(other.model, model) || other.model == model));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type, model);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpViewSendModelImplCopyWith<_$SpViewSendModelImpl> get copyWith =>
@@ -428,7 +442,10 @@ abstract class SpViewSendModel extends SocketSendModel {
   String get type;
   @JsonKey(name: "jsonString", toJson: modelToString)
   SpView get model;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpViewSendModelImplCopyWith<_$SpViewSendModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -450,6 +467,8 @@ class __$$PingViewSendModelImplCopyWithImpl<$Res>
       $Res Function(_$PingViewSendModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -488,18 +507,20 @@ class _$PingViewSendModelImpl extends PingViewSendModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PingViewSendModelImpl &&
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PingViewSendModelImplCopyWith<_$PingViewSendModelImpl> get copyWith =>
@@ -598,7 +619,10 @@ abstract class PingViewSendModel extends SocketSendModel {
 
   @JsonKey(name: "type")
   String get type;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SocketSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PingViewSendModelImplCopyWith<_$PingViewSendModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

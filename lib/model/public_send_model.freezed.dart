@@ -12,7 +12,7 @@ part of 'public_send_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PublicSendModel _$PublicSendModelFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -97,8 +97,13 @@ mixin _$PublicSendModel {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this PublicSendModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PublicSendModelCopyWith<PublicSendModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -122,6 +127,8 @@ class _$PublicSendModelCopyWithImpl<$Res, $Val extends PublicSendModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,6 +163,8 @@ class __$$PublicSendModelImplCopyWithImpl<$Res>
       _$PublicSendModelImpl _value, $Res Function(_$PublicSendModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -204,7 +213,7 @@ class _$PublicSendModelImpl extends _PublicSendModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PublicSendModelImpl &&
@@ -212,11 +221,13 @@ class _$PublicSendModelImpl extends _PublicSendModel {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PublicSendModelImplCopyWith<_$PublicSendModelImpl> get copyWith =>
@@ -332,8 +343,11 @@ abstract class _PublicSendModel extends PublicSendModel {
   @override
   @JsonKey(name: 'data')
   String get data;
+
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PublicSendModelImplCopyWith<_$PublicSendModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -359,6 +373,8 @@ class __$$PublicSendModelArrImplCopyWithImpl<$Res>
       $Res Function(_$PublicSendModelArrImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -413,7 +429,7 @@ class _$PublicSendModelArrImpl extends PublicSendModelArr {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PublicSendModelArrImpl &&
@@ -421,12 +437,14 @@ class _$PublicSendModelArrImpl extends PublicSendModelArr {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, type, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PublicSendModelArrImplCopyWith<_$PublicSendModelArrImpl> get copyWith =>
@@ -543,8 +561,11 @@ abstract class PublicSendModelArr extends PublicSendModel {
   @override
   @JsonKey(name: 'data')
   List<String> get data;
+
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PublicSendModelArrImplCopyWith<_$PublicSendModelArrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -570,6 +591,8 @@ class __$$PublicSendModelAnyImplCopyWithImpl<$Res>
       $Res Function(_$PublicSendModelAnyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -618,7 +641,7 @@ class _$PublicSendModelAnyImpl extends PublicSendModelAny {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PublicSendModelAnyImpl &&
@@ -626,12 +649,14 @@ class _$PublicSendModelAnyImpl extends PublicSendModelAny {
             const DeepCollectionEquality().equals(other.data, data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, type, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PublicSendModelAnyImplCopyWith<_$PublicSendModelAnyImpl> get copyWith =>
@@ -747,8 +772,11 @@ abstract class PublicSendModelAny extends PublicSendModel {
   @override
   @JsonKey(name: 'data')
   dynamic get data;
+
+  /// Create a copy of PublicSendModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PublicSendModelAnyImplCopyWith<_$PublicSendModelAnyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

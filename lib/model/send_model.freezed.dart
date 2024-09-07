@@ -12,7 +12,7 @@ part of 'send_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SendResponseModel _$SendResponseModelFromJson(Map<String, dynamic> json) {
   return _SendResponseModel.fromJson(json);
@@ -39,8 +39,12 @@ mixin _$SendResponseModel {
   Response<dynamic>? get response => throw _privateConstructorUsedError;
   List<String> get extendNotes => throw _privateConstructorUsedError;
 
+  /// Serializes this SendResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendResponseModelCopyWith<SendResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -81,6 +85,8 @@ class _$SendResponseModelCopyWithImpl<$Res, $Val extends SendResponseModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -186,6 +192,8 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$SendResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -352,7 +360,7 @@ class _$SendResponseModelImpl implements _SendResponseModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendResponseModelImpl &&
@@ -377,7 +385,7 @@ class _$SendResponseModelImpl implements _SendResponseModel {
                 .equals(other._extendNotes, _extendNotes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -394,7 +402,9 @@ class _$SendResponseModelImpl implements _SendResponseModel {
       response,
       const DeepCollectionEquality().hash(_extendNotes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>
@@ -461,8 +471,11 @@ abstract class _SendResponseModel implements SendResponseModel {
   Response<dynamic>? get response;
   @override
   List<String> get extendNotes;
+
+  /// Create a copy of SendResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

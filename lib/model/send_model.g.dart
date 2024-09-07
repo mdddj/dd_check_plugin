@@ -13,12 +13,12 @@ _$SendResponseModelImpl _$$SendResponseModelImplFromJson(
       method: json['method'] as String? ?? '',
       data: json['data'],
       queryParams: json['queryParams'] as Map<String, dynamic>? ?? const {},
-      statusCode: json['statusCode'] as int? ?? 0,
+      statusCode: (json['statusCode'] as num?)?.toInt() ?? 0,
       body: json['body'],
       headers: json['headers'] as Map<String, dynamic>? ?? const {},
       responseHeaders:
           json['responseHeaders'] as Map<String, dynamic>? ?? const {},
-      timestamp: json['timestamp'] as int? ?? 0,
+      timestamp: (json['timestamp'] as num?)?.toInt() ?? 0,
       projectName: json['projectName'] as String? ?? '',
       extendNotes: (json['extendNotes'] as List<dynamic>?)
               ?.map((e) => e as String)

@@ -12,7 +12,7 @@ part of 'swift_ui_action.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SwiftAction _$SwiftActionFromJson(Map<String, dynamic> json) {
   switch (json['action']) {
@@ -75,6 +75,8 @@ mixin _$SwiftAction {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SwiftAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -94,6 +96,9 @@ class _$SwiftActionCopyWithImpl<$Res, $Val extends SwiftAction>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -110,6 +115,9 @@ class __$$SwiftActionImplCopyWithImpl<$Res>
   __$$SwiftActionImplCopyWithImpl(
       _$SwiftActionImpl _value, $Res Function(_$SwiftActionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -131,12 +139,12 @@ class _$SwiftActionImpl extends _SwiftAction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$SwiftActionImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -238,6 +246,9 @@ class __$$SwiftSpKeysActionImplCopyWithImpl<$Res>
   __$$SwiftSpKeysActionImplCopyWithImpl(_$SwiftSpKeysActionImpl _value,
       $Res Function(_$SwiftSpKeysActionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -259,12 +270,12 @@ class _$SwiftSpKeysActionImpl extends SwiftSpKeysAction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$SwiftSpKeysActionImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -370,6 +381,8 @@ class __$$SwiftSpGetValueActionImplCopyWithImpl<$Res>
       $Res Function(_$SwiftSpGetValueActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -406,18 +419,20 @@ class _$SwiftSpGetValueActionImpl extends SwiftSpGetValueAction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwiftSpGetValueActionImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SwiftSpGetValueActionImplCopyWith<_$SwiftSpGetValueActionImpl>
@@ -509,7 +524,10 @@ abstract class SwiftSpGetValueAction extends SwiftAction {
       _$SwiftSpGetValueActionImpl.fromJson;
 
   String get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SwiftSpGetValueActionImplCopyWith<_$SwiftSpGetValueActionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

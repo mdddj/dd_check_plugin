@@ -12,7 +12,7 @@ part of 'sp_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SpView _$SpViewFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -67,6 +67,8 @@ mixin _$SpView {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SpView to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -85,6 +87,9 @@ class _$SpViewCopyWithImpl<$Res, $Val extends SpView>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -104,6 +109,8 @@ class __$$SpViewImplCopyWithImpl<$Res>
       _$SpViewImpl _value, $Res Function(_$SpViewImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,19 +156,21 @@ class _$SpViewImpl extends _SpView {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SpViewImpl &&
             const DeepCollectionEquality().equals(other._keys, _keys));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_keys));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpViewImplCopyWith<_$SpViewImpl> get copyWith =>
@@ -246,7 +255,10 @@ abstract class _SpView extends SpView {
 
   @JsonKey(name: 'keys')
   Set<String> get keys;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpViewImplCopyWith<_$SpViewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -268,6 +280,8 @@ class __$$SpSendKeyValueModelImplCopyWithImpl<$Res>
       $Res Function(_$SpSendKeyValueModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -301,19 +315,21 @@ class _$SpSendKeyValueModelImpl extends _SpSendKeyValueModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SpSendKeyValueModelImpl &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpSendKeyValueModelImplCopyWith<_$SpSendKeyValueModelImpl> get copyWith =>
@@ -399,7 +415,10 @@ abstract class _SpSendKeyValueModel extends SpView {
       _$SpSendKeyValueModelImpl.fromJson;
 
   Object get value;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SpView
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpSendKeyValueModelImplCopyWith<_$SpSendKeyValueModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

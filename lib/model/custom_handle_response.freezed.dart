@@ -12,7 +12,7 @@ part of 'custom_handle_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DdCustomOptions {
@@ -26,7 +26,9 @@ mixin _$DdCustomOptions {
   set customShowBody(CustomShowBody? value) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DdCustomOptions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DdCustomOptionsCopyWith<DdCustomOptions> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +55,8 @@ class _$DdCustomOptionsCopyWithImpl<$Res, $Val extends DdCustomOptions>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DdCustomOptions
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +103,8 @@ class __$$DdCustomOptionsImplCopyWithImpl<$Res>
       _$DdCustomOptionsImpl _value, $Res Function(_$DdCustomOptionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DdCustomOptions
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,7 +147,9 @@ class _$DdCustomOptionsImpl implements _DdCustomOptions {
     return 'DdCustomOptions(customShowParams: $customShowParams, customShowHeader: $customShowHeader, customShowBody: $customShowBody)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DdCustomOptions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DdCustomOptionsImplCopyWith<_$DdCustomOptionsImpl> get copyWith =>
@@ -164,8 +172,11 @@ abstract class _DdCustomOptions implements DdCustomOptions {
   @override
   CustomShowBody? get customShowBody;
   set customShowBody(CustomShowBody? value);
+
+  /// Create a copy of DdCustomOptions
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DdCustomOptionsImplCopyWith<_$DdCustomOptionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

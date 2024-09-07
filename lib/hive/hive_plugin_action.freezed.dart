@@ -12,7 +12,7 @@ part of 'hive_plugin_action.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 HivePluginAction _$HivePluginActionFromJson(Map<String, dynamic> json) {
   switch (json['action']) {
@@ -77,8 +77,13 @@ mixin _$HivePluginAction {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this HivePluginAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HivePluginActionCopyWith<HivePluginAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -102,6 +107,8 @@ class _$HivePluginActionCopyWithImpl<$Res, $Val extends HivePluginAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,6 +142,8 @@ class __$$HiveGetKeysImplCopyWithImpl<$Res>
       _$HiveGetKeysImpl _value, $Res Function(_$HiveGetKeysImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,7 +187,7 @@ class _$HiveGetKeysImpl extends HiveGetKeys {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HiveGetKeysImpl &&
@@ -187,11 +196,13 @@ class _$HiveGetKeysImpl extends HiveGetKeys {
             (identical(other.boxName, boxName) || other.boxName == boxName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, projectName, boxName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HiveGetKeysImplCopyWith<_$HiveGetKeysImpl> get copyWith =>
@@ -285,8 +296,11 @@ abstract class HiveGetKeys extends HivePluginAction {
   @override
   String get projectName;
   String get boxName;
+
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HiveGetKeysImplCopyWith<_$HiveGetKeysImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -310,6 +324,8 @@ class __$$HiveGetBoxsImplCopyWithImpl<$Res>
       _$HiveGetBoxsImpl _value, $Res Function(_$HiveGetBoxsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -346,7 +362,7 @@ class _$HiveGetBoxsImpl extends HiveGetBoxs {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HiveGetBoxsImpl &&
@@ -354,11 +370,13 @@ class _$HiveGetBoxsImpl extends HiveGetBoxs {
                 other.projectName == projectName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, projectName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HiveGetBoxsImplCopyWith<_$HiveGetBoxsImpl> get copyWith =>
@@ -450,8 +468,11 @@ abstract class HiveGetBoxs extends HivePluginAction {
 
   @override
   String get projectName;
+
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HiveGetBoxsImplCopyWith<_$HiveGetBoxsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -475,6 +496,8 @@ class __$$HiveGetValueImplCopyWithImpl<$Res>
       _$HiveGetValueImpl _value, $Res Function(_$HiveGetValueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -526,7 +549,7 @@ class _$HiveGetValueImpl extends HiveGetValue {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HiveGetValueImpl &&
@@ -536,11 +559,13 @@ class _$HiveGetValueImpl extends HiveGetValue {
             (identical(other.boxName, boxName) || other.boxName == boxName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, projectName, key, boxName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HiveGetValueImplCopyWith<_$HiveGetValueImpl> get copyWith =>
@@ -636,8 +661,11 @@ abstract class HiveGetValue extends HivePluginAction {
   String get projectName;
   String get key;
   String get boxName;
+
+  /// Create a copy of HivePluginAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HiveGetValueImplCopyWith<_$HiveGetValueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
