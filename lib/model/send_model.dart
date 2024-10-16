@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 
 import '../dd_check_plugin.dart';
 
@@ -20,7 +22,7 @@ class SendResponseModel with _$SendResponseModel {
       dynamic data,
       @Default({}) Map<String, dynamic> queryParams,
       @Default(0) int statusCode,
-      dynamic body,
+      @JsonKey(toJson: _toJsonByData) dynamic body,
       @Default({}) Map<String, dynamic> headers,
       @Default({}) Map<String, dynamic> responseHeaders,
       @Default(0) int timestamp,
@@ -37,13 +39,43 @@ class SendResponseModel with _$SendResponseModel {
       _$SendResponseModelFromJson(json);
 }
 
+dynamic _toJsonByData(dynamic value) {
+  try {
+    if (value is FormData) {
+      final form = value;
+      var map = <String, dynamic>{};
+      for (var element in form.fields) {
+        map[element.key] = element.value;
+      }
+      for (var element in form.files) {
+        map[element.key] = {
+          "filename": element.value.filename ?? '',
+          "length": '${element.value.length}',
+          "headers": element.value.headers ?? {},
+          "contentType": "${element.value.contentType}"
+        };
+      }
+      return map;
+    }
+    return value;
+  } catch (e) {
+    debugPrint("flutterx:Failed to parse request data,($e)");
+    return {"dataType": '${value.runtimeType}'};
+  }
+}
+
 /// SocketResponseModel 对象扩展
 extension SocetResponseModelExt on SendResponseModel {
   Future<void> send(
       DataFormatVersions version, SocketConnect socketConnect) async {
     try {
-      final jsonStr = jsonEncode(toJson());
+      final json = toJson();
+      final jsonStr = jsonEncode(json);
       socketConnect.sendData(jsonStr, version);
-    } catch (_) {}
+    } catch (e, s) {
+      print(e);
+      print(s);
+      debugPrint("flutterx:Sending data to Flutterx failed");
+    }
   }
 }

@@ -64,7 +64,8 @@ class DioHttpRequestInterceptor extends Interceptor {
         params.forEach((key, value) {
           queryParameters[key] = value;
         });
-      } catch (_) {}
+      } catch (_) {
+      }
     }
     final model = SendResponseModel(
         url: response.requestOptions.uri.toString(),

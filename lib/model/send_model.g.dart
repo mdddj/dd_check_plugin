@@ -34,7 +34,7 @@ Map<String, dynamic> _$$SendResponseModelImplToJson(
       'data': instance.data,
       'queryParams': instance.queryParams,
       'statusCode': instance.statusCode,
-      'body': instance.body,
+      'body': _toJsonByData(instance.body),
       'headers': instance.headers,
       'responseHeaders': instance.responseHeaders,
       'timestamp': instance.timestamp,

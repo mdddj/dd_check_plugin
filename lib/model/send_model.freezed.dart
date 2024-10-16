@@ -25,6 +25,7 @@ mixin _$SendResponseModel {
   dynamic get data => throw _privateConstructorUsedError;
   Map<String, dynamic> get queryParams => throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
+  @JsonKey(toJson: _toJsonByData)
   dynamic get body => throw _privateConstructorUsedError;
   Map<String, dynamic> get headers => throw _privateConstructorUsedError;
   Map<String, dynamic> get responseHeaders =>
@@ -61,7 +62,7 @@ abstract class $SendResponseModelCopyWith<$Res> {
       dynamic data,
       Map<String, dynamic> queryParams,
       int statusCode,
-      dynamic body,
+      @JsonKey(toJson: _toJsonByData) dynamic body,
       Map<String, dynamic> headers,
       Map<String, dynamic> responseHeaders,
       int timestamp,
@@ -170,7 +171,7 @@ abstract class _$$SendResponseModelImplCopyWith<$Res>
       dynamic data,
       Map<String, dynamic> queryParams,
       int statusCode,
-      dynamic body,
+      @JsonKey(toJson: _toJsonByData) dynamic body,
       Map<String, dynamic> headers,
       Map<String, dynamic> responseHeaders,
       int timestamp,
@@ -272,7 +273,7 @@ class _$SendResponseModelImpl implements _SendResponseModel {
       this.data,
       final Map<String, dynamic> queryParams = const {},
       this.statusCode = 0,
-      this.body,
+      @JsonKey(toJson: _toJsonByData) this.body,
       final Map<String, dynamic> headers = const {},
       final Map<String, dynamic> responseHeaders = const {},
       this.timestamp = 0,
@@ -313,6 +314,7 @@ class _$SendResponseModelImpl implements _SendResponseModel {
   @JsonKey()
   final int statusCode;
   @override
+  @JsonKey(toJson: _toJsonByData)
   final dynamic body;
   final Map<String, dynamic> _headers;
   @override
@@ -426,7 +428,7 @@ abstract class _SendResponseModel implements SendResponseModel {
       final dynamic data,
       final Map<String, dynamic> queryParams,
       final int statusCode,
-      final dynamic body,
+      @JsonKey(toJson: _toJsonByData) final dynamic body,
       final Map<String, dynamic> headers,
       final Map<String, dynamic> responseHeaders,
       final int timestamp,
@@ -453,6 +455,7 @@ abstract class _SendResponseModel implements SendResponseModel {
   @override
   int get statusCode;
   @override
+  @JsonKey(toJson: _toJsonByData)
   dynamic get body;
   @override
   Map<String, dynamic> get headers;
