@@ -75,7 +75,11 @@ class IpUtil {
         List<String> results = await Future.wait<String>(futureList);
         return results.firstWhere((e) => e.isNotEmpty, orElse: () => '');
       }
-    } catch (e) {
+    } catch (e,s) {
+      if(DDCheckPluginSetting.showLog){
+        print(e);
+        print(s);
+      }
       throw const ConnectException("FlutterX: connection fail");
     }
   }

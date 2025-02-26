@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:logger/logger.dart';
 
 import '../dd_check_plugin.dart';
 
@@ -73,9 +72,11 @@ extension SocetResponseModelExt on SendResponseModel {
       final jsonStr = jsonEncode(json);
       socketConnect.sendData(jsonStr, version);
     } catch (e, s) {
-      print(e);
-      print(s);
-      debugPrint("flutterx:Sending data to Flutterx failed");
+      if (DDCheckPluginSetting.showLog) {
+        print(e);
+        print(s);
+        debugPrint("flutterx:Sending data to Flutterx failed");
+      }
     }
   }
 }

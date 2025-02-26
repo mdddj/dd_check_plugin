@@ -1,26 +1,18 @@
 # dd_check_plugin
 
-需要搭配Idea插件食用
+Document: https://flutterx.itbug.shop/starter.html
+
+FlutterX IDEA&AS Plugin
 [https://plugins.jetbrains.com/plugin/18986-fluttercheckversionx](https://plugins.jetbrains.com/plugin/18986-fluttercheckversionx)
 
-# 安装
-```yaml
-dd_check_plugin: any
-```
-
-# 初始化
+# connect to flutterX plugin
 ```dart
-
-/// Dio() 换成你的自己的dio实例
-DdCheckPlugin().init(Dio());
+DdCheckPlugin().init(Dio());// change your self dio instance
 ```
-
-
 
 
 # example
 ```dart
-
 void connecnt(){
   await DdCheckPlugin().init(
     BaseApi.getDio(),
@@ -34,4 +26,3 @@ void connecnt(){
 }
 ```
 
-接入完成.
