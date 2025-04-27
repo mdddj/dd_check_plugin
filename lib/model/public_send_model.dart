@@ -7,13 +7,13 @@ part 'public_send_model.g.dart';
 
 
 @freezed
-class PublicSendModel with _$PublicSendModel {
+sealed class PublicSendModel with _$PublicSendModel {
   const PublicSendModel._();
 
   const factory PublicSendModel({
     @JsonKey(name: 'type') @Default('') String type,
     @JsonKey(name: 'data') @Default('') String data,
-  }) = _PublicSendModel;
+  }) = PublicSendModelDefault;
 
   const factory PublicSendModel.arr({
     @JsonKey(name: 'type') @Default('') String type,

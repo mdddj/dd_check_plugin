@@ -6,9 +6,8 @@ part of 'send_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SendResponseModelImpl _$$SendResponseModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SendResponseModelImpl(
+_SendResponseModel _$SendResponseModelFromJson(Map<String, dynamic> json) =>
+    _SendResponseModel(
       url: json['url'] as String? ?? '',
       method: json['method'] as String? ?? '',
       data: json['data'],
@@ -26,8 +25,7 @@ _$SendResponseModelImpl _$$SendResponseModelImplFromJson(
           const [],
     );
 
-Map<String, dynamic> _$$SendResponseModelImplToJson(
-        _$SendResponseModelImpl instance) =>
+Map<String, dynamic> _$SendResponseModelToJson(_SendResponseModel instance) =>
     <String, dynamic>{
       'url': instance.url,
       'method': instance.method,

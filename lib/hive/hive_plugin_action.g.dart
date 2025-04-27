@@ -6,41 +6,38 @@ part of 'hive_plugin_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$HiveGetKeysImpl _$$HiveGetKeysImplFromJson(Map<String, dynamic> json) =>
-    _$HiveGetKeysImpl(
+HiveGetKeys _$HiveGetKeysFromJson(Map<String, dynamic> json) => HiveGetKeys(
       json['projectName'] as String,
       json['boxName'] as String,
       $type: json['action'] as String?,
     );
 
-Map<String, dynamic> _$$HiveGetKeysImplToJson(_$HiveGetKeysImpl instance) =>
+Map<String, dynamic> _$HiveGetKeysToJson(HiveGetKeys instance) =>
     <String, dynamic>{
       'projectName': instance.projectName,
       'boxName': instance.boxName,
       'action': instance.$type,
     };
 
-_$HiveGetBoxsImpl _$$HiveGetBoxsImplFromJson(Map<String, dynamic> json) =>
-    _$HiveGetBoxsImpl(
+HiveGetBoxs _$HiveGetBoxsFromJson(Map<String, dynamic> json) => HiveGetBoxs(
       json['projectName'] as String,
       $type: json['action'] as String?,
     );
 
-Map<String, dynamic> _$$HiveGetBoxsImplToJson(_$HiveGetBoxsImpl instance) =>
+Map<String, dynamic> _$HiveGetBoxsToJson(HiveGetBoxs instance) =>
     <String, dynamic>{
       'projectName': instance.projectName,
       'action': instance.$type,
     };
 
-_$HiveGetValueImpl _$$HiveGetValueImplFromJson(Map<String, dynamic> json) =>
-    _$HiveGetValueImpl(
+HiveGetValue _$HiveGetValueFromJson(Map<String, dynamic> json) => HiveGetValue(
       json['projectName'] as String,
       json['key'] as String,
       json['boxName'] as String,
       $type: json['action'] as String?,
     );
 
-Map<String, dynamic> _$$HiveGetValueImplToJson(_$HiveGetValueImpl instance) =>
+Map<String, dynamic> _$HiveGetValueToJson(HiveGetValue instance) =>
     <String, dynamic>{
       'projectName': instance.projectName,
       'key': instance.key,

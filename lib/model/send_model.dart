@@ -14,7 +14,7 @@ typedef CustomHandleDioRequestModel = SendResponseModel Function(
     SendResponseModel oldModel);
 
 @freezed
-class SendResponseModel with _$SendResponseModel {
+sealed class SendResponseModel with _$SendResponseModel {
   factory SendResponseModel(
       {@Default('') String url,
       @Default('') String method,
@@ -65,16 +65,15 @@ dynamic _toJsonByData(dynamic value) {
 
 /// SocketResponseModel 对象扩展
 extension SocetResponseModelExt on SendResponseModel {
-  Future<void> send(
-      DataFormatVersions version, SocketConnect socketConnect) async {
+  Future<void> send(SocketConnect socketConnect) async {
     try {
       final json = toJson();
       final jsonStr = jsonEncode(json);
-      socketConnect.sendData(jsonStr, version);
+      socketConnect.sendData(jsonStr);
     } catch (e, s) {
       if (DDCheckPluginSetting.showLog) {
-        print(e);
-        print(s);
+        debugPrint('$e');
+        debugPrint("$s");
         debugPrint("flutterx:Sending data to Flutterx failed");
       }
     }

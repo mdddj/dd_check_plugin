@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,161 +10,95 @@ part of 'send_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SendResponseModel _$SendResponseModelFromJson(Map<String, dynamic> json) {
-  return _SendResponseModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SendResponseModel {
-  String get url => throw _privateConstructorUsedError;
-  String get method => throw _privateConstructorUsedError;
-  dynamic get data => throw _privateConstructorUsedError;
-  Map<String, dynamic> get queryParams => throw _privateConstructorUsedError;
-  int get statusCode => throw _privateConstructorUsedError;
+  String get url;
+  String get method;
+  dynamic get data;
+  Map<String, dynamic> get queryParams;
+  int get statusCode;
   @JsonKey(toJson: _toJsonByData)
-  dynamic get body => throw _privateConstructorUsedError;
-  Map<String, dynamic> get headers => throw _privateConstructorUsedError;
-  Map<String, dynamic> get responseHeaders =>
-      throw _privateConstructorUsedError;
-  int get timestamp => throw _privateConstructorUsedError;
-  String get projectName => throw _privateConstructorUsedError;
+  dynamic get body;
+  Map<String, dynamic> get headers;
+  Map<String, dynamic> get responseHeaders;
+  int get timestamp;
+  String get projectName;
   @JsonKey(
       toJson: null,
       fromJson: null,
       includeFromJson: false,
       includeToJson: false)
-  Response<dynamic>? get response => throw _privateConstructorUsedError;
-  List<String> get extendNotes => throw _privateConstructorUsedError;
-
-  /// Serializes this SendResponseModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Response? get response;
+  List<String> get extendNotes;
 
   /// Create a copy of SendResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SendResponseModelCopyWith<SendResponseModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SendResponseModelCopyWith<$Res> {
-  factory $SendResponseModelCopyWith(
-          SendResponseModel value, $Res Function(SendResponseModel) then) =
-      _$SendResponseModelCopyWithImpl<$Res, SendResponseModel>;
-  @useResult
-  $Res call(
-      {String url,
-      String method,
-      dynamic data,
-      Map<String, dynamic> queryParams,
-      int statusCode,
-      @JsonKey(toJson: _toJsonByData) dynamic body,
-      Map<String, dynamic> headers,
-      Map<String, dynamic> responseHeaders,
-      int timestamp,
-      String projectName,
-      @JsonKey(
-          toJson: null,
-          fromJson: null,
-          includeFromJson: false,
-          includeToJson: false)
-      Response<dynamic>? response,
-      List<String> extendNotes});
-}
-
-/// @nodoc
-class _$SendResponseModelCopyWithImpl<$Res, $Val extends SendResponseModel>
-    implements $SendResponseModelCopyWith<$Res> {
-  _$SendResponseModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SendResponseModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $SendResponseModelCopyWith<SendResponseModel> get copyWith =>
+      _$SendResponseModelCopyWithImpl<SendResponseModel>(
+          this as SendResponseModel, _$identity);
+
+  /// Serializes this SendResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? url = null,
-    Object? method = null,
-    Object? data = freezed,
-    Object? queryParams = null,
-    Object? statusCode = null,
-    Object? body = freezed,
-    Object? headers = null,
-    Object? responseHeaders = null,
-    Object? timestamp = null,
-    Object? projectName = null,
-    Object? response = freezed,
-    Object? extendNotes = null,
-  }) {
-    return _then(_value.copyWith(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      method: null == method
-          ? _value.method
-          : method // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      queryParams: null == queryParams
-          ? _value.queryParams
-          : queryParams // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      statusCode: null == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      body: freezed == body
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      headers: null == headers
-          ? _value.headers
-          : headers // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      responseHeaders: null == responseHeaders
-          ? _value.responseHeaders
-          : responseHeaders // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      response: freezed == response
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
-              as Response<dynamic>?,
-      extendNotes: null == extendNotes
-          ? _value.extendNotes
-          : extendNotes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SendResponseModel &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.method, method) || other.method == method) &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality()
+                .equals(other.queryParams, queryParams) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other.headers, headers) &&
+            const DeepCollectionEquality()
+                .equals(other.responseHeaders, responseHeaders) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.response, response) ||
+                other.response == response) &&
+            const DeepCollectionEquality()
+                .equals(other.extendNotes, extendNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      url,
+      method,
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(queryParams),
+      statusCode,
+      const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(headers),
+      const DeepCollectionEquality().hash(responseHeaders),
+      timestamp,
+      projectName,
+      response,
+      const DeepCollectionEquality().hash(extendNotes));
+
+  @override
+  String toString() {
+    return 'SendResponseModel(url: $url, method: $method, data: $data, queryParams: $queryParams, statusCode: $statusCode, body: $body, headers: $headers, responseHeaders: $responseHeaders, timestamp: $timestamp, projectName: $projectName, response: $response, extendNotes: $extendNotes)';
   }
 }
 
 /// @nodoc
-abstract class _$$SendResponseModelImplCopyWith<$Res>
-    implements $SendResponseModelCopyWith<$Res> {
-  factory _$$SendResponseModelImplCopyWith(_$SendResponseModelImpl value,
-          $Res Function(_$SendResponseModelImpl) then) =
-      __$$SendResponseModelImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $SendResponseModelCopyWith<$Res> {
+  factory $SendResponseModelCopyWith(
+          SendResponseModel value, $Res Function(SendResponseModel) _then) =
+      _$SendResponseModelCopyWithImpl;
   @useResult
   $Res call(
       {String url,
@@ -181,17 +116,17 @@ abstract class _$$SendResponseModelImplCopyWith<$Res>
           fromJson: null,
           includeFromJson: false,
           includeToJson: false)
-      Response<dynamic>? response,
+      Response? response,
       List<String> extendNotes});
 }
 
 /// @nodoc
-class __$$SendResponseModelImplCopyWithImpl<$Res>
-    extends _$SendResponseModelCopyWithImpl<$Res, _$SendResponseModelImpl>
-    implements _$$SendResponseModelImplCopyWith<$Res> {
-  __$$SendResponseModelImplCopyWithImpl(_$SendResponseModelImpl _value,
-      $Res Function(_$SendResponseModelImpl) _then)
-      : super(_value, _then);
+class _$SendResponseModelCopyWithImpl<$Res>
+    implements $SendResponseModelCopyWith<$Res> {
+  _$SendResponseModelCopyWithImpl(this._self, this._then);
+
+  final SendResponseModel _self;
+  final $Res Function(SendResponseModel) _then;
 
   /// Create a copy of SendResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -211,53 +146,53 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
     Object? response = freezed,
     Object? extendNotes = null,
   }) {
-    return _then(_$SendResponseModelImpl(
+    return _then(_self.copyWith(
       url: null == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
       method: null == method
-          ? _value.method
+          ? _self.method
           : method // ignore: cast_nullable_to_non_nullable
               as String,
       data: freezed == data
-          ? _value.data
+          ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
       queryParams: null == queryParams
-          ? _value._queryParams
+          ? _self.queryParams
           : queryParams // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       statusCode: null == statusCode
-          ? _value.statusCode
+          ? _self.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
               as int,
       body: freezed == body
-          ? _value.body
+          ? _self.body
           : body // ignore: cast_nullable_to_non_nullable
               as dynamic,
       headers: null == headers
-          ? _value._headers
+          ? _self.headers
           : headers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       responseHeaders: null == responseHeaders
-          ? _value._responseHeaders
+          ? _self.responseHeaders
           : responseHeaders // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       timestamp: null == timestamp
-          ? _value.timestamp
+          ? _self.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as int,
       projectName: null == projectName
-          ? _value.projectName
+          ? _self.projectName
           : projectName // ignore: cast_nullable_to_non_nullable
               as String,
       response: freezed == response
-          ? _value.response
+          ? _self.response
           : response // ignore: cast_nullable_to_non_nullable
-              as Response<dynamic>?,
+              as Response?,
       extendNotes: null == extendNotes
-          ? _value._extendNotes
+          ? _self.extendNotes
           : extendNotes // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -266,8 +201,8 @@ class __$$SendResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SendResponseModelImpl implements _SendResponseModel {
-  _$SendResponseModelImpl(
+class _SendResponseModel implements SendResponseModel {
+  _SendResponseModel(
       {this.url = '',
       this.method = '',
       this.data,
@@ -289,9 +224,8 @@ class _$SendResponseModelImpl implements _SendResponseModel {
         _headers = headers,
         _responseHeaders = responseHeaders,
         _extendNotes = extendNotes;
-
-  factory _$SendResponseModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SendResponseModelImplFromJson(json);
+  factory _SendResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$SendResponseModelFromJson(json);
 
   @override
   @JsonKey()
@@ -346,7 +280,7 @@ class _$SendResponseModelImpl implements _SendResponseModel {
       fromJson: null,
       includeFromJson: false,
       includeToJson: false)
-  final Response<dynamic>? response;
+  final Response? response;
   final List<String> _extendNotes;
   @override
   @JsonKey()
@@ -356,16 +290,26 @@ class _$SendResponseModelImpl implements _SendResponseModel {
     return EqualUnmodifiableListView(_extendNotes);
   }
 
+  /// Create a copy of SendResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SendResponseModel(url: $url, method: $method, data: $data, queryParams: $queryParams, statusCode: $statusCode, body: $body, headers: $headers, responseHeaders: $responseHeaders, timestamp: $timestamp, projectName: $projectName, response: $response, extendNotes: $extendNotes)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SendResponseModelCopyWith<_SendResponseModel> get copyWith =>
+      __$SendResponseModelCopyWithImpl<_SendResponseModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SendResponseModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendResponseModelImpl &&
+            other is _SendResponseModel &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.method, method) || other.method == method) &&
             const DeepCollectionEquality().equals(other.data, data) &&
@@ -404,81 +348,117 @@ class _$SendResponseModelImpl implements _SendResponseModel {
       response,
       const DeepCollectionEquality().hash(_extendNotes));
 
-  /// Create a copy of SendResponseModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>
-      __$$SendResponseModelImplCopyWithImpl<_$SendResponseModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SendResponseModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'SendResponseModel(url: $url, method: $method, data: $data, queryParams: $queryParams, statusCode: $statusCode, body: $body, headers: $headers, responseHeaders: $responseHeaders, timestamp: $timestamp, projectName: $projectName, response: $response, extendNotes: $extendNotes)';
   }
 }
 
-abstract class _SendResponseModel implements SendResponseModel {
-  factory _SendResponseModel(
-      {final String url,
-      final String method,
-      final dynamic data,
-      final Map<String, dynamic> queryParams,
-      final int statusCode,
-      @JsonKey(toJson: _toJsonByData) final dynamic body,
-      final Map<String, dynamic> headers,
-      final Map<String, dynamic> responseHeaders,
-      final int timestamp,
-      final String projectName,
+/// @nodoc
+abstract mixin class _$SendResponseModelCopyWith<$Res>
+    implements $SendResponseModelCopyWith<$Res> {
+  factory _$SendResponseModelCopyWith(
+          _SendResponseModel value, $Res Function(_SendResponseModel) _then) =
+      __$SendResponseModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String url,
+      String method,
+      dynamic data,
+      Map<String, dynamic> queryParams,
+      int statusCode,
+      @JsonKey(toJson: _toJsonByData) dynamic body,
+      Map<String, dynamic> headers,
+      Map<String, dynamic> responseHeaders,
+      int timestamp,
+      String projectName,
       @JsonKey(
           toJson: null,
           fromJson: null,
           includeFromJson: false,
           includeToJson: false)
-      final Response<dynamic>? response,
-      final List<String> extendNotes}) = _$SendResponseModelImpl;
+      Response? response,
+      List<String> extendNotes});
+}
 
-  factory _SendResponseModel.fromJson(Map<String, dynamic> json) =
-      _$SendResponseModelImpl.fromJson;
+/// @nodoc
+class __$SendResponseModelCopyWithImpl<$Res>
+    implements _$SendResponseModelCopyWith<$Res> {
+  __$SendResponseModelCopyWithImpl(this._self, this._then);
 
-  @override
-  String get url;
-  @override
-  String get method;
-  @override
-  dynamic get data;
-  @override
-  Map<String, dynamic> get queryParams;
-  @override
-  int get statusCode;
-  @override
-  @JsonKey(toJson: _toJsonByData)
-  dynamic get body;
-  @override
-  Map<String, dynamic> get headers;
-  @override
-  Map<String, dynamic> get responseHeaders;
-  @override
-  int get timestamp;
-  @override
-  String get projectName;
-  @override
-  @JsonKey(
-      toJson: null,
-      fromJson: null,
-      includeFromJson: false,
-      includeToJson: false)
-  Response<dynamic>? get response;
-  @override
-  List<String> get extendNotes;
+  final _SendResponseModel _self;
+  final $Res Function(_SendResponseModel) _then;
 
   /// Create a copy of SendResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendResponseModelImplCopyWith<_$SendResponseModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? url = null,
+    Object? method = null,
+    Object? data = freezed,
+    Object? queryParams = null,
+    Object? statusCode = null,
+    Object? body = freezed,
+    Object? headers = null,
+    Object? responseHeaders = null,
+    Object? timestamp = null,
+    Object? projectName = null,
+    Object? response = freezed,
+    Object? extendNotes = null,
+  }) {
+    return _then(_SendResponseModel(
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      method: null == method
+          ? _self.method
+          : method // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      queryParams: null == queryParams
+          ? _self._queryParams
+          : queryParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      statusCode: null == statusCode
+          ? _self.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      body: freezed == body
+          ? _self.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      headers: null == headers
+          ? _self._headers
+          : headers // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      responseHeaders: null == responseHeaders
+          ? _self._responseHeaders
+          : responseHeaders // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      timestamp: null == timestamp
+          ? _self.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectName: null == projectName
+          ? _self.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String,
+      response: freezed == response
+          ? _self.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as Response?,
+      extendNotes: null == extendNotes
+          ? _self._extendNotes
+          : extendNotes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
 }
+
+// dart format on

@@ -8,7 +8,7 @@ typedef CustomShowHeader = Map<String,dynamic> Function(Response response);
 typedef CustomShowBody = Map<String,dynamic> Function(Response response);
 
 @unfreezed
-class DdCustomOptions with _$DdCustomOptions {
+sealed class DdCustomOptions with _$DdCustomOptions {
   factory DdCustomOptions({
     CustomShowParams? customShowParams,
     CustomShowHeader? customShowHeader,

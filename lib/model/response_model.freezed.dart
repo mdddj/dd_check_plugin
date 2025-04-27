@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,133 +10,30 @@ part of 'response_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ResponseModel _$ResponseModelFromJson(Map<String, dynamic> json) {
-  return _ResponseModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ResponseModel {
-  String get json => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-
-  /// Serializes this ResponseModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get json;
+  String get type;
 
   /// Create a copy of ResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ResponseModelCopyWith<ResponseModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$ResponseModelCopyWithImpl<ResponseModel>(
+          this as ResponseModel, _$identity);
 
-/// @nodoc
-abstract class $ResponseModelCopyWith<$Res> {
-  factory $ResponseModelCopyWith(
-          ResponseModel value, $Res Function(ResponseModel) then) =
-      _$ResponseModelCopyWithImpl<$Res, ResponseModel>;
-  @useResult
-  $Res call({String json, String type});
-}
-
-/// @nodoc
-class _$ResponseModelCopyWithImpl<$Res, $Val extends ResponseModel>
-    implements $ResponseModelCopyWith<$Res> {
-  _$ResponseModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ResponseModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? json = null,
-    Object? type = null,
-  }) {
-    return _then(_value.copyWith(
-      json: null == json
-          ? _value.json
-          : json // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ResponseModelImplCopyWith<$Res>
-    implements $ResponseModelCopyWith<$Res> {
-  factory _$$ResponseModelImplCopyWith(
-          _$ResponseModelImpl value, $Res Function(_$ResponseModelImpl) then) =
-      __$$ResponseModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String json, String type});
-}
-
-/// @nodoc
-class __$$ResponseModelImplCopyWithImpl<$Res>
-    extends _$ResponseModelCopyWithImpl<$Res, _$ResponseModelImpl>
-    implements _$$ResponseModelImplCopyWith<$Res> {
-  __$$ResponseModelImplCopyWithImpl(
-      _$ResponseModelImpl _value, $Res Function(_$ResponseModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ResponseModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? json = null,
-    Object? type = null,
-  }) {
-    return _then(_$ResponseModelImpl(
-      null == json
-          ? _value.json
-          : json // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ResponseModelImpl implements _ResponseModel {
-  const _$ResponseModelImpl(this.json, this.type);
-
-  factory _$ResponseModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ResponseModelImplFromJson(json);
-
-  @override
-  final String json;
-  @override
-  final String type;
-
-  @override
-  String toString() {
-    return 'ResponseModel(json: $json, type: $type)';
-  }
+  /// Serializes this ResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResponseModelImpl &&
+            other is ResponseModel &&
             (identical(other.json, json) || other.json == json) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -144,38 +42,134 @@ class _$ResponseModelImpl implements _ResponseModel {
   @override
   int get hashCode => Object.hash(runtimeType, json, type);
 
-  /// Create a copy of ResponseModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ResponseModelImplCopyWith<_$ResponseModelImpl> get copyWith =>
-      __$$ResponseModelImplCopyWithImpl<_$ResponseModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ResponseModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ResponseModel(json: $json, type: $type)';
   }
 }
 
-abstract class _ResponseModel implements ResponseModel {
-  const factory _ResponseModel(final String json, final String type) =
-      _$ResponseModelImpl;
+/// @nodoc
+abstract mixin class $ResponseModelCopyWith<$Res> {
+  factory $ResponseModelCopyWith(
+          ResponseModel value, $Res Function(ResponseModel) _then) =
+      _$ResponseModelCopyWithImpl;
+  @useResult
+  $Res call({String json, String type});
+}
 
-  factory _ResponseModel.fromJson(Map<String, dynamic> json) =
-      _$ResponseModelImpl.fromJson;
+/// @nodoc
+class _$ResponseModelCopyWithImpl<$Res>
+    implements $ResponseModelCopyWith<$Res> {
+  _$ResponseModelCopyWithImpl(this._self, this._then);
+
+  final ResponseModel _self;
+  final $Res Function(ResponseModel) _then;
+
+  /// Create a copy of ResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? json = null,
+    Object? type = null,
+  }) {
+    return _then(_self.copyWith(
+      json: null == json
+          ? _self.json
+          : json // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ResponseModel implements ResponseModel {
+  const _ResponseModel(this.json, this.type);
+  factory _ResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ResponseModelFromJson(json);
 
   @override
-  String get json;
+  final String json;
   @override
-  String get type;
+  final String type;
 
   /// Create a copy of ResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResponseModelImplCopyWith<_$ResponseModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ResponseModelCopyWith<_ResponseModel> get copyWith =>
+      __$ResponseModelCopyWithImpl<_ResponseModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ResponseModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ResponseModel &&
+            (identical(other.json, json) || other.json == json) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, json, type);
+
+  @override
+  String toString() {
+    return 'ResponseModel(json: $json, type: $type)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$ResponseModelCopyWith<$Res>
+    implements $ResponseModelCopyWith<$Res> {
+  factory _$ResponseModelCopyWith(
+          _ResponseModel value, $Res Function(_ResponseModel) _then) =
+      __$ResponseModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String json, String type});
+}
+
+/// @nodoc
+class __$ResponseModelCopyWithImpl<$Res>
+    implements _$ResponseModelCopyWith<$Res> {
+  __$ResponseModelCopyWithImpl(this._self, this._then);
+
+  final _ResponseModel _self;
+  final $Res Function(_ResponseModel) _then;
+
+  /// Create a copy of ResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? json = null,
+    Object? type = null,
+  }) {
+    return _then(_ResponseModel(
+      null == json
+          ? _self.json
+          : json // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

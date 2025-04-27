@@ -11,7 +11,7 @@ part 'response_model.g.dart';
 const initConnectType = 'connected';
 
 @freezed
-class ResponseModel with _$ResponseModel {
+sealed class ResponseModel with _$ResponseModel {
   const factory ResponseModel(String json, String type) = _ResponseModel;
   factory ResponseModel.fromJson(dynamic json) => _$ResponseModelFromJson(json);
 }

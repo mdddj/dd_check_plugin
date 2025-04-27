@@ -18,16 +18,13 @@ class DDCheckPluginError extends Error {
 class DioHttpRequestInterceptor extends Interceptor {
   late DateTime startDate;
 
-  ///版本级别,用来分辨个版本之间不同的数据格式
-  final DataFormatVersions version;
-
   ///自定义解析返回数据
   final CustomHandleDioRequestModel? customCoverterResponseData;
   final String? projectName;
 
   final SocketConnect socketConnect;
 
-  DioHttpRequestInterceptor(this.version, this.socketConnect,
+  DioHttpRequestInterceptor(this.socketConnect,
       {this.customCoverterResponseData, this.projectName});
 
   @override
@@ -64,8 +61,7 @@ class DioHttpRequestInterceptor extends Interceptor {
         params.forEach((key, value) {
           queryParameters[key] = value;
         });
-      } catch (_) {
-      }
+      } catch (_) {}
     }
     final model = SendResponseModel(
         url: response.requestOptions.uri.toString(),
@@ -80,9 +76,9 @@ class DioHttpRequestInterceptor extends Interceptor {
         projectName: projectName ?? '',
         response: response);
     if (customCoverterResponseData != null) {
-      customCoverterResponseData?.call(model).send(version, socketConnect);
+      customCoverterResponseData?.call(model).send(socketConnect);
     } else {
-      model.send(version, socketConnect);
+      model.send(socketConnect);
     }
   }
 }

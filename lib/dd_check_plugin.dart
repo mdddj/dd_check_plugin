@@ -1,4 +1,4 @@
-library dd_check_plugin;
+library;
 
 import 'dart:async';
 import 'dart:convert' hide json;
@@ -32,8 +32,6 @@ part 'hive/hive_tool.dart';
 
 const kProjectName = 'dd_check_plugin';
 
-enum DataFormatVersions { ideaPlugin, appleApp }
-
 class DDCheckPluginSetting {
   static bool showLog = false;
 }
@@ -56,14 +54,13 @@ class DdCheckPlugin {
   /// [conectSuccess] - 连接idea插件回调
   /// [handle] - 处理idea端插件发送来的数据
   /// [customCoverterResponseData] - 自定义传输模型
-  Future<void> init(Dio dio,
+  Future<void> init(Dio? dio,
       {String? defaultProjectName,
       int? port,
       HostHandle? hostHandle,
       Duration? timeOut,
       String? initHost,
-      DataFormatVersions? version,
-      ValueChanged<Socket>? conectSuccess,
+      FlutterXConnectSuccess? conectSuccess,
       CustomHandleDioRequestModel? customCoverterResponseData,
       String? projectName,
       List<ServerMessageHandle>? extend}) async {
@@ -77,15 +74,15 @@ class DdCheckPlugin {
           hostHandle: hostHandle,
           timeOut: timeOut,
           initHost: initHost,
-          version: version,
           connectSuccess: conectSuccess,
           projectName: projectName,
           extend: extendList);
-      if (dio.interceptors.whereType<DioHttpRequestInterceptor>().isEmpty) {
-        dio.interceptors.add(DioHttpRequestInterceptor(
-            version ?? DataFormatVersions.ideaPlugin, s,
-            customCoverterResponseData: customCoverterResponseData,
-            projectName: s.appProjectName));
+      if (dio != null) {
+        if (dio.interceptors.whereType<DioHttpRequestInterceptor>().isEmpty) {
+          dio.interceptors.add(DioHttpRequestInterceptor(s,
+              customCoverterResponseData: customCoverterResponseData,
+              projectName: s.appProjectName));
+        }
       }
     } on ConnectException {
       rethrow;

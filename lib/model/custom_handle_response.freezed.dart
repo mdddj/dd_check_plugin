@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,85 +10,37 @@ part of 'custom_handle_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DdCustomOptions {
-  CustomShowParams? get customShowParams => throw _privateConstructorUsedError;
-  set customShowParams(CustomShowParams? value) =>
-      throw _privateConstructorUsedError;
-  CustomShowHeader? get customShowHeader => throw _privateConstructorUsedError;
-  set customShowHeader(CustomShowHeader? value) =>
-      throw _privateConstructorUsedError;
-  CustomShowBody? get customShowBody => throw _privateConstructorUsedError;
-  set customShowBody(CustomShowBody? value) =>
-      throw _privateConstructorUsedError;
+  CustomShowParams? get customShowParams;
+  set customShowParams(CustomShowParams? value);
+  CustomShowHeader? get customShowHeader;
+  set customShowHeader(CustomShowHeader? value);
+  CustomShowBody? get customShowBody;
+  set customShowBody(CustomShowBody? value);
 
   /// Create a copy of DdCustomOptions
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DdCustomOptionsCopyWith<DdCustomOptions> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DdCustomOptionsCopyWith<$Res> {
-  factory $DdCustomOptionsCopyWith(
-          DdCustomOptions value, $Res Function(DdCustomOptions) then) =
-      _$DdCustomOptionsCopyWithImpl<$Res, DdCustomOptions>;
-  @useResult
-  $Res call(
-      {CustomShowParams? customShowParams,
-      CustomShowHeader? customShowHeader,
-      CustomShowBody? customShowBody});
-}
-
-/// @nodoc
-class _$DdCustomOptionsCopyWithImpl<$Res, $Val extends DdCustomOptions>
-    implements $DdCustomOptionsCopyWith<$Res> {
-  _$DdCustomOptionsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of DdCustomOptions
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $DdCustomOptionsCopyWith<DdCustomOptions> get copyWith =>
+      _$DdCustomOptionsCopyWithImpl<DdCustomOptions>(
+          this as DdCustomOptions, _$identity);
+
   @override
-  $Res call({
-    Object? customShowParams = freezed,
-    Object? customShowHeader = freezed,
-    Object? customShowBody = freezed,
-  }) {
-    return _then(_value.copyWith(
-      customShowParams: freezed == customShowParams
-          ? _value.customShowParams
-          : customShowParams // ignore: cast_nullable_to_non_nullable
-              as CustomShowParams?,
-      customShowHeader: freezed == customShowHeader
-          ? _value.customShowHeader
-          : customShowHeader // ignore: cast_nullable_to_non_nullable
-              as CustomShowHeader?,
-      customShowBody: freezed == customShowBody
-          ? _value.customShowBody
-          : customShowBody // ignore: cast_nullable_to_non_nullable
-              as CustomShowBody?,
-    ) as $Val);
+  String toString() {
+    return 'DdCustomOptions(customShowParams: $customShowParams, customShowHeader: $customShowHeader, customShowBody: $customShowBody)';
   }
 }
 
 /// @nodoc
-abstract class _$$DdCustomOptionsImplCopyWith<$Res>
-    implements $DdCustomOptionsCopyWith<$Res> {
-  factory _$$DdCustomOptionsImplCopyWith(_$DdCustomOptionsImpl value,
-          $Res Function(_$DdCustomOptionsImpl) then) =
-      __$$DdCustomOptionsImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $DdCustomOptionsCopyWith<$Res> {
+  factory $DdCustomOptionsCopyWith(
+          DdCustomOptions value, $Res Function(DdCustomOptions) _then) =
+      _$DdCustomOptionsCopyWithImpl;
   @useResult
   $Res call(
       {CustomShowParams? customShowParams,
@@ -96,12 +49,12 @@ abstract class _$$DdCustomOptionsImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$DdCustomOptionsImplCopyWithImpl<$Res>
-    extends _$DdCustomOptionsCopyWithImpl<$Res, _$DdCustomOptionsImpl>
-    implements _$$DdCustomOptionsImplCopyWith<$Res> {
-  __$$DdCustomOptionsImplCopyWithImpl(
-      _$DdCustomOptionsImpl _value, $Res Function(_$DdCustomOptionsImpl) _then)
-      : super(_value, _then);
+class _$DdCustomOptionsCopyWithImpl<$Res>
+    implements $DdCustomOptionsCopyWith<$Res> {
+  _$DdCustomOptionsCopyWithImpl(this._self, this._then);
+
+  final DdCustomOptions _self;
+  final $Res Function(DdCustomOptions) _then;
 
   /// Create a copy of DdCustomOptions
   /// with the given fields replaced by the non-null parameter values.
@@ -112,17 +65,17 @@ class __$$DdCustomOptionsImplCopyWithImpl<$Res>
     Object? customShowHeader = freezed,
     Object? customShowBody = freezed,
   }) {
-    return _then(_$DdCustomOptionsImpl(
+    return _then(_self.copyWith(
       customShowParams: freezed == customShowParams
-          ? _value.customShowParams
+          ? _self.customShowParams
           : customShowParams // ignore: cast_nullable_to_non_nullable
               as CustomShowParams?,
       customShowHeader: freezed == customShowHeader
-          ? _value.customShowHeader
+          ? _self.customShowHeader
           : customShowHeader // ignore: cast_nullable_to_non_nullable
               as CustomShowHeader?,
       customShowBody: freezed == customShowBody
-          ? _value.customShowBody
+          ? _self.customShowBody
           : customShowBody // ignore: cast_nullable_to_non_nullable
               as CustomShowBody?,
     ));
@@ -131,8 +84,8 @@ class __$$DdCustomOptionsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DdCustomOptionsImpl implements _DdCustomOptions {
-  _$DdCustomOptionsImpl(
+class _DdCustomOptions implements DdCustomOptions {
+  _DdCustomOptions(
       {this.customShowParams, this.customShowHeader, this.customShowBody});
 
   @override
@@ -142,41 +95,66 @@ class _$DdCustomOptionsImpl implements _DdCustomOptions {
   @override
   CustomShowBody? customShowBody;
 
+  /// Create a copy of DdCustomOptions
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DdCustomOptionsCopyWith<_DdCustomOptions> get copyWith =>
+      __$DdCustomOptionsCopyWithImpl<_DdCustomOptions>(this, _$identity);
+
   @override
   String toString() {
     return 'DdCustomOptions(customShowParams: $customShowParams, customShowHeader: $customShowHeader, customShowBody: $customShowBody)';
   }
-
-  /// Create a copy of DdCustomOptions
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DdCustomOptionsImplCopyWith<_$DdCustomOptionsImpl> get copyWith =>
-      __$$DdCustomOptionsImplCopyWithImpl<_$DdCustomOptionsImpl>(
-          this, _$identity);
 }
 
-abstract class _DdCustomOptions implements DdCustomOptions {
-  factory _DdCustomOptions(
+/// @nodoc
+abstract mixin class _$DdCustomOptionsCopyWith<$Res>
+    implements $DdCustomOptionsCopyWith<$Res> {
+  factory _$DdCustomOptionsCopyWith(
+          _DdCustomOptions value, $Res Function(_DdCustomOptions) _then) =
+      __$DdCustomOptionsCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
       {CustomShowParams? customShowParams,
       CustomShowHeader? customShowHeader,
-      CustomShowBody? customShowBody}) = _$DdCustomOptionsImpl;
+      CustomShowBody? customShowBody});
+}
 
-  @override
-  CustomShowParams? get customShowParams;
-  set customShowParams(CustomShowParams? value);
-  @override
-  CustomShowHeader? get customShowHeader;
-  set customShowHeader(CustomShowHeader? value);
-  @override
-  CustomShowBody? get customShowBody;
-  set customShowBody(CustomShowBody? value);
+/// @nodoc
+class __$DdCustomOptionsCopyWithImpl<$Res>
+    implements _$DdCustomOptionsCopyWith<$Res> {
+  __$DdCustomOptionsCopyWithImpl(this._self, this._then);
+
+  final _DdCustomOptions _self;
+  final $Res Function(_DdCustomOptions) _then;
 
   /// Create a copy of DdCustomOptions
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DdCustomOptionsImplCopyWith<_$DdCustomOptionsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? customShowParams = freezed,
+    Object? customShowHeader = freezed,
+    Object? customShowBody = freezed,
+  }) {
+    return _then(_DdCustomOptions(
+      customShowParams: freezed == customShowParams
+          ? _self.customShowParams
+          : customShowParams // ignore: cast_nullable_to_non_nullable
+              as CustomShowParams?,
+      customShowHeader: freezed == customShowHeader
+          ? _self.customShowHeader
+          : customShowHeader // ignore: cast_nullable_to_non_nullable
+              as CustomShowHeader?,
+      customShowBody: freezed == customShowBody
+          ? _self.customShowBody
+          : customShowBody // ignore: cast_nullable_to_non_nullable
+              as CustomShowBody?,
+    ));
+  }
 }
+
+// dart format on

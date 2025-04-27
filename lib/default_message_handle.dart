@@ -12,17 +12,17 @@ class DefaultPluginMessageHandle extends ServerMessageHandle {
   void mapMessageHandle(
       Map<String, dynamic> data, SocketConnect socketConnect) {
     try {
-
       final model = SwiftAction.fromJson(data);
-      model.map(
-        (value) => null,
-        spKeys: (value) {
-          SpViewUtil.sendAllSpKeys(value, socketConnect);
-        },
-        spGetValue: (value) {
-          SpViewUtil.sendSpValueToSwift(value, socketConnect);
-        },
-      );
+      switch (model) {
+        case SwiftActionDefault():
+          break;
+        case SwiftSpKeysAction d:
+          SpViewUtil.sendAllSpKeys(d, socketConnect);
+          break;
+        case SwiftSpGetValueAction d:
+          SpViewUtil.sendSpValueToSwift(d, socketConnect);
+          break;
+      }
     } on CheckedFromJsonException catch (_) {
       ddCheckPluginLog('Unable to process this request');
     }

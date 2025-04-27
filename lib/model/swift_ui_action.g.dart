@@ -6,37 +6,35 @@ part of 'swift_ui_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SwiftActionImpl _$$SwiftActionImplFromJson(Map<String, dynamic> json) =>
-    _$SwiftActionImpl(
+SwiftActionDefault _$SwiftActionDefaultFromJson(Map<String, dynamic> json) =>
+    SwiftActionDefault(
       $type: json['action'] as String?,
     );
 
-Map<String, dynamic> _$$SwiftActionImplToJson(_$SwiftActionImpl instance) =>
+Map<String, dynamic> _$SwiftActionDefaultToJson(SwiftActionDefault instance) =>
     <String, dynamic>{
       'action': instance.$type,
     };
 
-_$SwiftSpKeysActionImpl _$$SwiftSpKeysActionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SwiftSpKeysActionImpl(
+SwiftSpKeysAction _$SwiftSpKeysActionFromJson(Map<String, dynamic> json) =>
+    SwiftSpKeysAction(
       $type: json['action'] as String?,
     );
 
-Map<String, dynamic> _$$SwiftSpKeysActionImplToJson(
-        _$SwiftSpKeysActionImpl instance) =>
+Map<String, dynamic> _$SwiftSpKeysActionToJson(SwiftSpKeysAction instance) =>
     <String, dynamic>{
       'action': instance.$type,
     };
 
-_$SwiftSpGetValueActionImpl _$$SwiftSpGetValueActionImplFromJson(
+SwiftSpGetValueAction _$SwiftSpGetValueActionFromJson(
         Map<String, dynamic> json) =>
-    _$SwiftSpGetValueActionImpl(
+    SwiftSpGetValueAction(
       data: json['data'] as String,
       $type: json['action'] as String?,
     );
 
-Map<String, dynamic> _$$SwiftSpGetValueActionImplToJson(
-        _$SwiftSpGetValueActionImpl instance) =>
+Map<String, dynamic> _$SwiftSpGetValueActionToJson(
+        SwiftSpGetValueAction instance) =>
     <String, dynamic>{
       'data': instance.data,
       'action': instance.$type,

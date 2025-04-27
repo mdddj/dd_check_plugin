@@ -23,9 +23,6 @@ linter:
     - directives_ordering
     # DOCUMENTATION
     - slash_for_doc_comments
-    - package_api_docs # prefer
-    #    - public_member_api_docs # prefer
-
     # USAGE
     - implementation_imports
     - avoid_relative_lib_imports # prefer

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,15 +10,12 @@ part of 'swift_ui_action.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 SwiftAction _$SwiftActionFromJson(Map<String, dynamic> json) {
   switch (json['action']) {
     case 'DEFAULT':
-      return _SwiftAction.fromJson(json);
+      return SwiftActionDefault.fromJson(json);
     case 'SP_KEY':
       return SwiftSpKeysAction.fromJson(json);
     case 'SP_GET_VALUE':
@@ -31,117 +29,53 @@ SwiftAction _$SwiftActionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SwiftAction {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function() spKeys,
-    required TResult Function(String data) spGetValue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function()? spKeys,
-    TResult? Function(String data)? spGetValue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function()? spKeys,
-    TResult Function(String data)? spGetValue,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SwiftAction value) $default, {
-    required TResult Function(SwiftSpKeysAction value) spKeys,
-    required TResult Function(SwiftSpGetValueAction value) spGetValue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SwiftAction value)? $default, {
-    TResult? Function(SwiftSpKeysAction value)? spKeys,
-    TResult? Function(SwiftSpGetValueAction value)? spGetValue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SwiftAction value)? $default, {
-    TResult Function(SwiftSpKeysAction value)? spKeys,
-    TResult Function(SwiftSpGetValueAction value)? spGetValue,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
   /// Serializes this SwiftAction to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
+  Map<String, dynamic> toJson();
 
-/// @nodoc
-abstract class $SwiftActionCopyWith<$Res> {
-  factory $SwiftActionCopyWith(
-          SwiftAction value, $Res Function(SwiftAction) then) =
-      _$SwiftActionCopyWithImpl<$Res, SwiftAction>;
-}
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SwiftAction);
+  }
 
-/// @nodoc
-class _$SwiftActionCopyWithImpl<$Res, $Val extends SwiftAction>
-    implements $SwiftActionCopyWith<$Res> {
-  _$SwiftActionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SwiftAction
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SwiftActionImplCopyWith<$Res> {
-  factory _$$SwiftActionImplCopyWith(
-          _$SwiftActionImpl value, $Res Function(_$SwiftActionImpl) then) =
-      __$$SwiftActionImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SwiftActionImplCopyWithImpl<$Res>
-    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftActionImpl>
-    implements _$$SwiftActionImplCopyWith<$Res> {
-  __$$SwiftActionImplCopyWithImpl(
-      _$SwiftActionImpl _value, $Res Function(_$SwiftActionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SwiftAction
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SwiftActionImpl extends _SwiftAction {
-  const _$SwiftActionImpl({final String? $type})
-      : $type = $type ?? 'DEFAULT',
-        super._();
-
-  factory _$SwiftActionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SwiftActionImplFromJson(json);
-
-  @JsonKey(name: 'action')
-  final String $type;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'SwiftAction()';
   }
+}
+
+/// @nodoc
+class $SwiftActionCopyWith<$Res> {
+  $SwiftActionCopyWith(SwiftAction _, $Res Function(SwiftAction) __);
+}
+
+/// @nodoc
+@JsonSerializable()
+class SwiftActionDefault extends SwiftAction {
+  const SwiftActionDefault({final String? $type})
+      : $type = $type ?? 'DEFAULT',
+        super._();
+  factory SwiftActionDefault.fromJson(Map<String, dynamic> json) =>
+      _$SwiftActionDefaultFromJson(json);
+
+  @JsonKey(name: 'action')
+  final String $type;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SwiftActionDefaultToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SwiftActionImpl);
+        (other.runtimeType == runtimeType && other is SwiftActionDefault);
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -149,280 +83,80 @@ class _$SwiftActionImpl extends _SwiftAction {
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function() spKeys,
-    required TResult Function(String data) spGetValue,
-  }) {
-    return $default();
+  String toString() {
+    return 'SwiftAction()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function()? spKeys,
-    TResult? Function(String data)? spGetValue,
-  }) {
-    return $default?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function()? spKeys,
-    TResult Function(String data)? spGetValue,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SwiftAction value) $default, {
-    required TResult Function(SwiftSpKeysAction value) spKeys,
-    required TResult Function(SwiftSpGetValueAction value) spGetValue,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SwiftAction value)? $default, {
-    TResult? Function(SwiftSpKeysAction value)? spKeys,
-    TResult? Function(SwiftSpGetValueAction value)? spGetValue,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SwiftAction value)? $default, {
-    TResult Function(SwiftSpKeysAction value)? spKeys,
-    TResult Function(SwiftSpGetValueAction value)? spGetValue,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SwiftActionImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _SwiftAction extends SwiftAction {
-  const factory _SwiftAction() = _$SwiftActionImpl;
-  const _SwiftAction._() : super._();
-
-  factory _SwiftAction.fromJson(Map<String, dynamic> json) =
-      _$SwiftActionImpl.fromJson;
-}
-
-/// @nodoc
-abstract class _$$SwiftSpKeysActionImplCopyWith<$Res> {
-  factory _$$SwiftSpKeysActionImplCopyWith(_$SwiftSpKeysActionImpl value,
-          $Res Function(_$SwiftSpKeysActionImpl) then) =
-      __$$SwiftSpKeysActionImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SwiftSpKeysActionImplCopyWithImpl<$Res>
-    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftSpKeysActionImpl>
-    implements _$$SwiftSpKeysActionImplCopyWith<$Res> {
-  __$$SwiftSpKeysActionImplCopyWithImpl(_$SwiftSpKeysActionImpl _value,
-      $Res Function(_$SwiftSpKeysActionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SwiftAction
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SwiftSpKeysActionImpl extends SwiftSpKeysAction {
-  _$SwiftSpKeysActionImpl({final String? $type})
+class SwiftSpKeysAction extends SwiftAction {
+  SwiftSpKeysAction({final String? $type})
       : $type = $type ?? 'SP_KEY',
         super._();
-
-  factory _$SwiftSpKeysActionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SwiftSpKeysActionImplFromJson(json);
+  factory SwiftSpKeysAction.fromJson(Map<String, dynamic> json) =>
+      _$SwiftSpKeysActionFromJson(json);
 
   @JsonKey(name: 'action')
   final String $type;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SwiftSpKeysActionToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SwiftSpKeysAction);
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'SwiftAction.spKeys()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SwiftSpKeysActionImpl);
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function() spKeys,
-    required TResult Function(String data) spGetValue,
-  }) {
-    return spKeys();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function()? spKeys,
-    TResult? Function(String data)? spGetValue,
-  }) {
-    return spKeys?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function()? spKeys,
-    TResult Function(String data)? spGetValue,
-    required TResult orElse(),
-  }) {
-    if (spKeys != null) {
-      return spKeys();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SwiftAction value) $default, {
-    required TResult Function(SwiftSpKeysAction value) spKeys,
-    required TResult Function(SwiftSpGetValueAction value) spGetValue,
-  }) {
-    return spKeys(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SwiftAction value)? $default, {
-    TResult? Function(SwiftSpKeysAction value)? spKeys,
-    TResult? Function(SwiftSpGetValueAction value)? spGetValue,
-  }) {
-    return spKeys?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SwiftAction value)? $default, {
-    TResult Function(SwiftSpKeysAction value)? spKeys,
-    TResult Function(SwiftSpGetValueAction value)? spGetValue,
-    required TResult orElse(),
-  }) {
-    if (spKeys != null) {
-      return spKeys(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SwiftSpKeysActionImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class SwiftSpKeysAction extends SwiftAction {
-  factory SwiftSpKeysAction() = _$SwiftSpKeysActionImpl;
-  SwiftSpKeysAction._() : super._();
-
-  factory SwiftSpKeysAction.fromJson(Map<String, dynamic> json) =
-      _$SwiftSpKeysActionImpl.fromJson;
-}
-
-/// @nodoc
-abstract class _$$SwiftSpGetValueActionImplCopyWith<$Res> {
-  factory _$$SwiftSpGetValueActionImplCopyWith(
-          _$SwiftSpGetValueActionImpl value,
-          $Res Function(_$SwiftSpGetValueActionImpl) then) =
-      __$$SwiftSpGetValueActionImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String data});
-}
-
-/// @nodoc
-class __$$SwiftSpGetValueActionImplCopyWithImpl<$Res>
-    extends _$SwiftActionCopyWithImpl<$Res, _$SwiftSpGetValueActionImpl>
-    implements _$$SwiftSpGetValueActionImplCopyWith<$Res> {
-  __$$SwiftSpGetValueActionImplCopyWithImpl(_$SwiftSpGetValueActionImpl _value,
-      $Res Function(_$SwiftSpGetValueActionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SwiftAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$SwiftSpGetValueActionImpl(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SwiftSpGetValueActionImpl extends SwiftSpGetValueAction {
-  _$SwiftSpGetValueActionImpl({required this.data, final String? $type})
+class SwiftSpGetValueAction extends SwiftAction {
+  SwiftSpGetValueAction({required this.data, final String? $type})
       : $type = $type ?? 'SP_GET_VALUE',
         super._();
+  factory SwiftSpGetValueAction.fromJson(Map<String, dynamic> json) =>
+      _$SwiftSpGetValueActionFromJson(json);
 
-  factory _$SwiftSpGetValueActionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SwiftSpGetValueActionImplFromJson(json);
-
-  @override
   final String data;
 
   @JsonKey(name: 'action')
   final String $type;
 
+  /// Create a copy of SwiftAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SwiftSpGetValueActionCopyWith<SwiftSpGetValueAction> get copyWith =>
+      _$SwiftSpGetValueActionCopyWithImpl<SwiftSpGetValueAction>(
+          this, _$identity);
+
   @override
-  String toString() {
-    return 'SwiftAction.spGetValue(data: $data)';
+  Map<String, dynamic> toJson() {
+    return _$SwiftSpGetValueActionToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwiftSpGetValueActionImpl &&
+            other is SwiftSpGetValueAction &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -430,104 +164,43 @@ class _$SwiftSpGetValueActionImpl extends SwiftSpGetValueAction {
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
+  @override
+  String toString() {
+    return 'SwiftAction.spGetValue(data: $data)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SwiftSpGetValueActionCopyWith<$Res>
+    implements $SwiftActionCopyWith<$Res> {
+  factory $SwiftSpGetValueActionCopyWith(SwiftSpGetValueAction value,
+          $Res Function(SwiftSpGetValueAction) _then) =
+      _$SwiftSpGetValueActionCopyWithImpl;
+  @useResult
+  $Res call({String data});
+}
+
+/// @nodoc
+class _$SwiftSpGetValueActionCopyWithImpl<$Res>
+    implements $SwiftSpGetValueActionCopyWith<$Res> {
+  _$SwiftSpGetValueActionCopyWithImpl(this._self, this._then);
+
+  final SwiftSpGetValueAction _self;
+  final $Res Function(SwiftSpGetValueAction) _then;
+
   /// Create a copy of SwiftAction
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$SwiftSpGetValueActionImplCopyWith<_$SwiftSpGetValueActionImpl>
-      get copyWith => __$$SwiftSpGetValueActionImplCopyWithImpl<
-          _$SwiftSpGetValueActionImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function() spKeys,
-    required TResult Function(String data) spGetValue,
+  $Res call({
+    Object? data = null,
   }) {
-    return spGetValue(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function()? spKeys,
-    TResult? Function(String data)? spGetValue,
-  }) {
-    return spGetValue?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function()? spKeys,
-    TResult Function(String data)? spGetValue,
-    required TResult orElse(),
-  }) {
-    if (spGetValue != null) {
-      return spGetValue(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SwiftAction value) $default, {
-    required TResult Function(SwiftSpKeysAction value) spKeys,
-    required TResult Function(SwiftSpGetValueAction value) spGetValue,
-  }) {
-    return spGetValue(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SwiftAction value)? $default, {
-    TResult? Function(SwiftSpKeysAction value)? spKeys,
-    TResult? Function(SwiftSpGetValueAction value)? spGetValue,
-  }) {
-    return spGetValue?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SwiftAction value)? $default, {
-    TResult Function(SwiftSpKeysAction value)? spKeys,
-    TResult Function(SwiftSpGetValueAction value)? spGetValue,
-    required TResult orElse(),
-  }) {
-    if (spGetValue != null) {
-      return spGetValue(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SwiftSpGetValueActionImplToJson(
-      this,
-    );
+    return _then(SwiftSpGetValueAction(
+      data: null == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
-abstract class SwiftSpGetValueAction extends SwiftAction {
-  factory SwiftSpGetValueAction({required final String data}) =
-      _$SwiftSpGetValueActionImpl;
-  SwiftSpGetValueAction._() : super._();
-
-  factory SwiftSpGetValueAction.fromJson(Map<String, dynamic> json) =
-      _$SwiftSpGetValueActionImpl.fromJson;
-
-  String get data;
-
-  /// Create a copy of SwiftAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SwiftSpGetValueActionImplCopyWith<_$SwiftSpGetValueActionImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

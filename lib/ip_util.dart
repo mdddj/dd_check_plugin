@@ -77,8 +77,8 @@ class IpUtil {
       }
     } catch (e,s) {
       if(DDCheckPluginSetting.showLog){
-        print(e);
-        print(s);
+        debugPrint('$e');
+        debugPrint('$s');
       }
       throw const ConnectException("FlutterX: connection fail");
     }

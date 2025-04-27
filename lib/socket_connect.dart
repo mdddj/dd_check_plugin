@@ -2,6 +2,26 @@ part of 'dd_check_plugin.dart';
 
 ///服务监听端口
 const serverPort = 9999;
+typedef FlutterXConnectSuccess = void Function(
+    Socket socket, SocketConnect connect);
+
+enum FlutterXSendDataType {
+  dioRequest("request"),
+  jsonLog("customJsonLog"),
+
+  //hive
+  hiveGetBoxList("getBoxList"),
+  hiveGetKeys("getKeys"),
+  hiveGetValue("getValue"),
+
+  // sp
+  spGetKeys("SP_KEY"),
+  spGetValue("SP_GET_VALUE"),
+  ping("ping");
+
+  final String type;
+  const FlutterXSendDataType(this.type);
+}
 
 class SocketConnect {
   Socket? socket;
@@ -9,79 +29,62 @@ class SocketConnect {
   ///项目名字
   String? appProjectName;
 
-  ///发送数据类型
-  DataFormatVersions dataFormatVersions = DataFormatVersions.ideaPlugin;
-
   Timer? _heartTimer;
 
-
+  /// send a log to flutterx plugin windows
+  /// 发送一个日志到flutterx窗口
+  void sendJsonLog(String title, Map<String, dynamic> logData) {
+    sendData(jsonEncode({"title": title, "data": logData}),
+        type: FlutterXSendDataType.jsonLog);
+  }
 
   ///发送消息 (dio 专用)
-  Future<void> sendData(String msg, DataFormatVersions version,
-      {String type = "request"}) async {
+  Future<void> sendData(String msg,
+      {FlutterXSendDataType type = FlutterXSendDataType.dioRequest}) async {
     if (socket != null) {
-      sendDataMap(msg, type, version);
+      sendDataMap(msg, type);
     } else {
       ddCheckPluginLog('socket is null,send fail');
     }
   }
 
-  Future<void> sendDataByModel(SocketSendModel model,
-      [DataFormatVersions versions = DataFormatVersions.appleApp]) async {
-    late List<int> bytes;
-    late String sendDataString;
-    switch (versions) {
-      case DataFormatVersions.ideaPlugin:
-        {
-          debugPrint(
-              "SendDataByModel does not support data of type ideaPlugin");
-          break;
-        }
-      case DataFormatVersions.appleApp:
-        {
-          final map = model.toJson();
-          sendDataString = jsonEncode(map);
-          bytes = utf8.encode(sendDataString);
-          break;
-        }
-    }
-    var strLen = bytes.length;
-    var l = int32BigEndianBytes(strLen);
-    socket?.add(l..buffer.asByteData());
-    socket?.write(sendDataString);
-    ddCheckPluginLog("send header length : ${bytes.length}");
-    ddCheckPluginLog('send dada string :$sendDataString');
-  }
-
   ///发送数据
-  void sendMap(Map<String, dynamic> map, String type) {
+  void sendMap(Map<String, dynamic> map, FlutterXSendDataType type) {
     ddCheckPluginLog("send data : $map");
-    sendDataMap(jsonEncode(map), type, dataFormatVersions);
+
+    sendDataMap(jsonEncode(map), type);
   }
 
-  Future<void> sendDataMap(
-      String message, String type, DataFormatVersions versions) async {
+  Future<void> sendDataMap(String message, FlutterXSendDataType type) async {
     late List<int> bytes;
     late String sendDataString;
-    switch (versions) {
-      case DataFormatVersions.ideaPlugin:
-        {
-          sendDataString = message;
-          bytes = utf8.encode(message);
-          break;
-        }
-      case DataFormatVersions.appleApp:
-        {
-          final map = <String, dynamic>{"type": type, "jsonString": message};
-          sendDataString = jsonEncode(map);
-          bytes = utf8.encode(sendDataString);
-          break;
-        }
+    switch (type) {
+      case FlutterXSendDataType.dioRequest:
+        bytes = utf8.encode(message);
+        sendDataString = message;
+        break;
+      case FlutterXSendDataType.jsonLog:
+      case FlutterXSendDataType.hiveGetBoxList:
+      case FlutterXSendDataType.hiveGetKeys:
+      case FlutterXSendDataType.hiveGetValue:
+      case FlutterXSendDataType.spGetValue:
+      case FlutterXSendDataType.spGetKeys:
+      case FlutterXSendDataType.ping:
+        final data = {"type": type.type, "jsonDataString": message};
+        final json = jsonEncode(data);
+        bytes = utf8.encode(json);
+        sendDataString = json;
+        break;
     }
     var strLen = bytes.length;
     var l = int32BigEndianBytes(strLen);
     socket?.add(l..buffer.asByteData());
     socket?.write(sendDataString);
+  }
+
+  Future<void> sendDataByModel(
+      SocketSendModel model, FlutterXSendDataType type) async {
+    await sendData(jsonEncode(model), type: type);
   }
 
   /// 连接到idea插件
@@ -91,13 +94,11 @@ class SocketConnect {
       HostHandle? hostHandle,
       Duration? timeOut,
       String? initHost,
-      DataFormatVersions? version,
-      ValueChanged<Socket>? connectSuccess,
+      FlutterXConnectSuccess? connectSuccess,
       String? projectName,
       required List<ServerMessageHandle> extend}) async {
     try {
       String? pName = projectName;
-      dataFormatVersions = version ?? DataFormatVersions.ideaPlugin;
       String v = '0.0';
       final infos = await PackageInfo.fromPlatform();
       if (pName == null) {
@@ -112,7 +113,7 @@ class SocketConnect {
       String ip = await IpUtil().checkConnectServerAddress(port ?? serverPort,
           conectSuccess: (s) {
         socket = s;
-        connectSuccess?.call(s);
+        connectSuccess?.call(s, this);
         _startPing();
       }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
       if (socket != null && ip.isNotEmpty) {
@@ -147,15 +148,14 @@ class SocketConnect {
   Uint8List int32BigEndianBytes(int value) =>
       Uint8List(4)..buffer.asByteData().setInt32(0, value);
 
-
-  void _startPing(){
+  void _startPing() {
     _heartTimer ??= Timer.periodic(const Duration(seconds: 10), (timer) {
-      sendDataByModel(SocketSendModel.ping());
+      sendDataByModel(SocketSendModel.ping(), FlutterXSendDataType.ping);
+      // todo send ping data
     });
   }
 
-
-  void _closePing(){
+  void _closePing() {
     _heartTimer?.cancel();
     _heartTimer = null;
   }

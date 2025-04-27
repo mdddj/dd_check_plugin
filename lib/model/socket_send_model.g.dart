@@ -6,43 +6,39 @@ part of 'socket_send_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SocketSendModelImpl _$$SocketSendModelImplFromJson(
+SocketSendModelEmpty _$SocketSendModelEmptyFromJson(
         Map<String, dynamic> json) =>
-    _$SocketSendModelImpl(
+    SocketSendModelEmpty(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SocketSendModelImplToJson(
-        _$SocketSendModelImpl instance) =>
+Map<String, dynamic> _$SocketSendModelEmptyToJson(
+        SocketSendModelEmpty instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$SpViewSendModelImpl _$$SpViewSendModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SpViewSendModelImpl(
+SpViewSendModel _$SpViewSendModelFromJson(Map<String, dynamic> json) =>
+    SpViewSendModel(
       type: json['type'] as String? ?? "",
       model: SpView.fromJson(json['jsonString'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SpViewSendModelImplToJson(
-        _$SpViewSendModelImpl instance) =>
+Map<String, dynamic> _$SpViewSendModelToJson(SpViewSendModel instance) =>
     <String, dynamic>{
       'type': instance.type,
       'jsonString': modelToString(instance.model),
       'runtimeType': instance.$type,
     };
 
-_$PingViewSendModelImpl _$$PingViewSendModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PingViewSendModelImpl(
+PingViewSendModel _$PingViewSendModelFromJson(Map<String, dynamic> json) =>
+    PingViewSendModel(
       type: json['type'] as String? ?? "ping",
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PingViewSendModelImplToJson(
-        _$PingViewSendModelImpl instance) =>
+Map<String, dynamic> _$PingViewSendModelToJson(PingViewSendModel instance) =>
     <String, dynamic>{
       'type': instance.type,
       'runtimeType': instance.$type,

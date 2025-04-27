@@ -6,25 +6,24 @@ part of 'public_send_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PublicSendModelImpl _$$PublicSendModelImplFromJson(
+PublicSendModelDefault _$PublicSendModelDefaultFromJson(
         Map<String, dynamic> json) =>
-    _$PublicSendModelImpl(
+    PublicSendModelDefault(
       type: json['type'] as String? ?? '',
       data: json['data'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PublicSendModelImplToJson(
-        _$PublicSendModelImpl instance) =>
+Map<String, dynamic> _$PublicSendModelDefaultToJson(
+        PublicSendModelDefault instance) =>
     <String, dynamic>{
       'type': instance.type,
       'data': instance.data,
       'runtimeType': instance.$type,
     };
 
-_$PublicSendModelArrImpl _$$PublicSendModelArrImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PublicSendModelArrImpl(
+PublicSendModelArr _$PublicSendModelArrFromJson(Map<String, dynamic> json) =>
+    PublicSendModelArr(
       type: json['type'] as String? ?? '',
       data:
           (json['data'] as List<dynamic>?)?.map((e) => e as String).toList() ??
@@ -32,24 +31,21 @@ _$PublicSendModelArrImpl _$$PublicSendModelArrImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PublicSendModelArrImplToJson(
-        _$PublicSendModelArrImpl instance) =>
+Map<String, dynamic> _$PublicSendModelArrToJson(PublicSendModelArr instance) =>
     <String, dynamic>{
       'type': instance.type,
       'data': instance.data,
       'runtimeType': instance.$type,
     };
 
-_$PublicSendModelAnyImpl _$$PublicSendModelAnyImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PublicSendModelAnyImpl(
+PublicSendModelAny _$PublicSendModelAnyFromJson(Map<String, dynamic> json) =>
+    PublicSendModelAny(
       type: json['type'] as String? ?? '',
       data: json['data'],
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PublicSendModelAnyImplToJson(
-        _$PublicSendModelAnyImpl instance) =>
+Map<String, dynamic> _$PublicSendModelAnyToJson(PublicSendModelAny instance) =>
     <String, dynamic>{
       'type': instance.type,
       'data': instance.data,

@@ -9,10 +9,10 @@ part 'socket_send_model.freezed.dart';
 part 'socket_send_model.g.dart';
 
 @freezed
-class SocketSendModel with _$SocketSendModel {
+sealed class SocketSendModel with _$SocketSendModel {
   const SocketSendModel._();
 
-  const factory SocketSendModel() = _SocketSendModel;
+  const factory SocketSendModel.empty() = SocketSendModelEmpty;
 
   factory SocketSendModel.sp(
       {@Default("") @JsonKey(name: "type") String type,

@@ -1,4 +1,5 @@
 part of '../dd_check_plugin.dart';
+
 class HiveGetTypes {
   final String keyType;
   const HiveGetTypes(this.keyType);
@@ -19,25 +20,25 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
     try {
       final action = HivePluginAction.fromJson(data);
       final type = action.handleType.keyType;
-      if(type == HiveGetTypes.getBoxList.keyType){
+      if (type == HiveGetTypes.getBoxList.keyType) {
         socketConnect.sendMap(
             PublicSendModel.arr(
-                type: type,
-                data: getBoxNames.map((e) => e.boxName).toList())
+                    type: type,
+                    data: getBoxNames.map((e) => e.boxName).toList())
                 .toJson(),
-            'hive_$type');
-      }else if(type == HiveGetTypes.getKeys.keyType){
+            FlutterXSendDataType.hiveGetBoxList);
+      } else if (type == HiveGetTypes.getKeys.keyType) {
         final obj = action as HiveGetKeys;
         if (socketConnect.appProjectName == obj.projectName) {
           final box = await findBox(obj.boxName);
           if (box != null) {
             final sendModel = PublicSendModel.arr(
-                type: type,
-                data: box.keys.map((e) => e.toString()).toList());
-            socketConnect.sendMap(sendModel.toJson(), 'hive_$type');
+                type: type, data: box.keys.map((e) => e.toString()).toList());
+            socketConnect.sendMap(
+                sendModel.toJson(), FlutterXSendDataType.hiveGetKeys);
           }
         }
-      }else if(type == HiveGetTypes.getValue.keyType){
+      } else if (type == HiveGetTypes.getValue.keyType) {
         final obj = action as HiveGetValue;
         if (socketConnect.appProjectName == obj.projectName) {
           final box = await findBox(obj.boxName);
@@ -45,7 +46,7 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
             final keys = box.keys;
             try {
               final find =
-              keys.firstWhere((element) => element.toString() == obj.key);
+                  keys.firstWhere((element) => element.toString() == obj.key);
               var getValue = box.get(find);
 
               try {
@@ -54,10 +55,9 @@ class HiveToolManager extends ServerMessageHandle with HiveTools {
                 getValue = getValue.toString();
               }
 
-              final makeModel =
-              PublicSendModel.any(type: type, data: getValue);
+              final makeModel = PublicSendModel.any(type: type, data: getValue);
               socketConnect.sendMap(
-                  makeModel.toJson(), 'hive_$type');
+                  makeModel.toJson(), FlutterXSendDataType.hiveGetValue);
             } catch (e, s) {
               ddCheckPluginLog('send data fail : ${obj.toJson()}  \n$e\n$s');
             }

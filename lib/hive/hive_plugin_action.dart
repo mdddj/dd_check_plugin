@@ -8,15 +8,16 @@ part 'hive_plugin_action.g.dart';
 
 extension HivePluginActionEx on HivePluginAction {
   HiveGetTypes get handleType {
-    return map(
-        getKeys: (value) => HiveGetTypes.getKeys,
-        getBoxList: (value) => HiveGetTypes.getBoxList,
-        getValue: (value) => HiveGetTypes.getValue);
+    return switch(this){
+      HiveGetKeys() => HiveGetTypes.getKeys,
+      HiveGetBoxs() => HiveGetTypes.getBoxList,
+      HiveGetValue() =>  HiveGetTypes.getValue,
+    };
   }
 }
 
 @Freezed(unionKey: "action")
-class HivePluginAction with _$HivePluginAction {
+sealed class HivePluginAction with _$HivePluginAction {
   const HivePluginAction._();
 
   //获取盒子所有的 key
