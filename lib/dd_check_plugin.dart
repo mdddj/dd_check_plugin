@@ -60,7 +60,8 @@ class DdCheckPlugin {
       HostHandle? hostHandle,
       Duration? timeOut,
       String? initHost,
-      FlutterXConnectSuccess? conectSuccess,
+      FlutterXConnectSuccess? connectSuccess,
+      FlutterXConnectDisconnected? connectDisconnected,
       CustomHandleDioRequestModel? customCoverterResponseData,
       String? projectName,
       List<ServerMessageHandle>? extend}) async {
@@ -74,7 +75,8 @@ class DdCheckPlugin {
           hostHandle: hostHandle,
           timeOut: timeOut,
           initHost: initHost,
-          connectSuccess: conectSuccess,
+          connectSuccess: connectSuccess,
+          connectDisconnected: connectDisconnected,
           projectName: projectName,
           extend: extendList);
       if (dio != null) {

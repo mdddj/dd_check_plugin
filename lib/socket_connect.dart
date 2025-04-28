@@ -4,6 +4,7 @@ part of 'dd_check_plugin.dart';
 const serverPort = 9999;
 typedef FlutterXConnectSuccess = void Function(
     Socket socket, SocketConnect connect);
+typedef FlutterXConnectDisconnected = void Function(SocketConnect connect);
 
 enum FlutterXSendDataType {
   dioRequest("request"),
@@ -23,18 +24,38 @@ enum FlutterXSendDataType {
   const FlutterXSendDataType(this.type);
 }
 
+enum FlutterXLogType {
+  none(0),
+  error(1),
+  info(2),
+  success(3),
+  warning(4);
+
+  const FlutterXLogType(this.type);
+
+  final int type;
+}
+
 class SocketConnect {
   Socket? socket;
 
   ///项目名字
   String? appProjectName;
 
+  ///发送心跳的定时器
   Timer? _heartTimer;
 
   /// send a log to flutterx plugin windows
   /// 发送一个日志到flutterx窗口
-  void sendJsonLog(String title, Map<String, dynamic> logData) {
-    sendData(jsonEncode({"title": title, "data": logData}),
+  void sendJsonLog(String title, Map<String, dynamic> logData,
+      {String? subTitle, FlutterXLogType type = FlutterXLogType.none}) {
+    sendData(
+        jsonEncode({
+          "title": title,
+          "data": logData,
+          "subTitle": subTitle,
+          "logType": type.type
+        }),
         type: FlutterXSendDataType.jsonLog);
   }
 
@@ -95,6 +116,7 @@ class SocketConnect {
       Duration? timeOut,
       String? initHost,
       FlutterXConnectSuccess? connectSuccess,
+      FlutterXConnectDisconnected? connectDisconnected,
       String? projectName,
       required List<ServerMessageHandle> extend}) async {
     try {
@@ -115,6 +137,7 @@ class SocketConnect {
         socket = s;
         connectSuccess?.call(s, this);
         _startPing();
+        FlutterXConnectManager().addConnect(this);
       }, hostHandle: hostHandle, timeOut: timeOut, initHost: initHost);
       if (socket != null && ip.isNotEmpty) {
         socket!.listen((event) {
@@ -123,6 +146,8 @@ class SocketConnect {
         }, onDone: () {
           _closePing();
           ddCheckPluginLog('Connection disconnected');
+          connectDisconnected?.call(this);
+          FlutterXConnectManager().removeConnect(this);
         }, onError: (e) {
           _closePing();
           ddCheckPluginLog("An error occurred : $e");
@@ -158,5 +183,26 @@ class SocketConnect {
   void _closePing() {
     _heartTimer?.cancel();
     _heartTimer = null;
+  }
+}
+
+///flutterx 连接管理器
+class FlutterXConnectManager {
+  FlutterXConnectManager._();
+  static final FlutterXConnectManager instance = FlutterXConnectManager._();
+  factory FlutterXConnectManager() => instance;
+  List<SocketConnect> connects = [];
+
+  void addConnect(SocketConnect connect) {
+    connects.add(connect);
+  }
+
+  void removeConnect(SocketConnect connect) {
+    connects.remove(connect);
+  }
+
+  SocketConnect? getFirstConnect() {
+    if (connects.isNotEmpty) return connects.first;
+    return null;
   }
 }

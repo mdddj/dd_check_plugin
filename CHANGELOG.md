@@ -1,3 +1,10 @@
+# 4.0.0
+* 功能重构
+* 删除 `DataFormatVersions`
+* 新增 `FlutterXConnectManager` 插件实例管理类
+* 新增 `connectDisconnected` 连接断开回调
+* 重构SP,Hive面板相关代码，这个插件升级到 4.0.0版本后，flutterx插件需要升级到5.6.0才能用，否则这 2 个功能会失效
+
 # 3.3.4
 * 依赖升级
 
